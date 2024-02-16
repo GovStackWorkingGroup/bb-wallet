@@ -1,0 +1,12 @@
+version: '1.0'
+
+services:
+  exampleApp:
+    image: exampleOrg/exampleApp
+    ports:
+      - 3003:3003
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./example-app-data.json:/example-app-data.json

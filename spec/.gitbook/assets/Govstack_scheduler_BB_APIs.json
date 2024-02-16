@@ -1,0 +1,3755 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Govstack Scheduler API",
+    "description" : "Interfaces to services rendered by Scheduler building block",
+    "termsOfService" : "TBD",
+    "contact" : {
+      "email" : "psramkumar2@gmail.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version" : "1.0.0"
+  },
+  "externalDocs" : {
+    "description" : "Find out more about scheduler",
+    "url" : "https://www.govstack.global/"
+  },
+  "tags" : [ {
+    "name" : "event",
+    "description" : "event management API"
+  }, {
+    "name" : "entity",
+    "description" : "entity management API"
+  }, {
+    "name" : "alertSchedule",
+    "description" : "alertSchedule management  API"
+  }, {
+    "name" : "resource",
+    "description" : "resource  management API"
+  }, {
+    "name" : "subscribers",
+    "description" : "subscriber  management API"
+  }, {
+    "name" : "message",
+    "description" : "message management API"
+  }, {
+    "name" : "log",
+    "description" : "log management API"
+  }, {
+    "name" : "affiliation",
+    "description" : "affiliation management API"
+  }, {
+    "name" : "appointment",
+    "description" : "appointment management API"
+  } ],
+  "paths" : {
+    "/event/new" : {
+      "post" : {
+        "tags" : [ "event" ],
+        "summary" : "create a new event, in eventList with given eventDetails, returns new event id or failure error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/eventNewQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "description" : "ID of created event",
+                  "example" : "eventId:12345"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/event/modifications" : {
+      "put" : {
+        "tags" : [ "event" ],
+        "summary" : "changes values of specific details (as given by eventDetails) of given event (selected by eventFilter) in eventList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "eventId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "12345"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/eventModifyQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, event updated"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/event" : {
+      "delete" : {
+        "tags" : [ "event" ],
+        "summary" : "delete a predefined event in eventList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "eventId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "12345"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, event cancelled"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/event/listDetails" : {
+      "get" : {
+        "tags" : [ "event" ],
+        "summary" : "get list of events filetered by criteria in eventFilter and return info specified by eventDetailsRequired with success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/eventGetDetailsQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,eventList",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/eventList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/appointment/new" : {
+      "post" : {
+        "tags" : [ "appointment" ],
+        "summary" : "create a new appointment, in appointmentList with given appointmentDetails, returns new appointment id or failure error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/appointmentNewQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "description" : "ID of created appointment",
+                  "example" : "[eventId:12345,appointmentId:1]"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/appointment/modifications" : {
+      "put" : {
+        "tags" : [ "appointment" ],
+        "summary" : "changes values of specific details (as given by appointmentDetails) of given appointment (selected by appointmentFilter)in appointmentList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "appointmentId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/appointmentModifyQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, appointment updated"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/appointment" : {
+      "delete" : {
+        "tags" : [ "appointment" ],
+        "summary" : "delete a predefined appointment in appointmentList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "appointmentId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, appointment cancelled"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/appointment/listDetails" : {
+      "get" : {
+        "tags" : [ "appointment" ],
+        "summary" : "get list of appointments filetered by criteria in appointmentFilter and return info specified by appointmentDetailsRequired with success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/appointmentGetDetailsQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,appointmentList",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/appointmentList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/entity/new" : {
+      "post" : {
+        "tags" : [ "entity" ],
+        "summary" : "create a new entity, in entityList with given entityDetails, returns new entity id or entity error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/entityNewQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "description" : "ID of created entity",
+                  "example" : "entityName:xyz hospital,entityId:67890"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/entity/modifications" : {
+      "put" : {
+        "tags" : [ "entity" ],
+        "summary" : "changes values of specific details (as given by entityDetails) of given entity (selected by entityFilter)in entityList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "entityId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "67890"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/entityModifyQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, entity updated"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/entity" : {
+      "delete" : {
+        "tags" : [ "entity" ],
+        "summary" : "delete a predefined entity in entityList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "entityId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "67890"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, entity cancelled"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/entity/listDetails" : {
+      "get" : {
+        "tags" : [ "entity" ],
+        "summary" : "get list of entities filetered by criteria in entityFilter and return info specified by entityDetailsRequired with success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/entityGetDetailsQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,entity list",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/entityList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/resource/new" : {
+      "post" : {
+        "tags" : [ "resource" ],
+        "summary" : "create a new resource, in resourceList with given resourceDetails, returns new resource id or  error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/resourceNewQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "description" : "ID of created resource",
+                  "example" : "resourceName:xyz hospital,resourceId:54321"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/resource/modifications" : {
+      "put" : {
+        "tags" : [ "resource" ],
+        "summary" : "changes values of specific details (as given by resourceDetails) of given resource (selected by resourceFilter)in resourceList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "resourceId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "54321"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/resourceModifyQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, resource updated"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/resource" : {
+      "delete" : {
+        "tags" : [ "resource" ],
+        "summary" : "delete a predefined resource in resourceList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "resourceId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "54321"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, resource cancelled"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/resource/listDetails" : {
+      "get" : {
+        "tags" : [ "resource" ],
+        "summary" : "get list of entities filetered by criteria in resourceFilter and return info specified by resourceDetailsRequired with success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/resourceGetDetailsQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,resource list",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/resourceList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/resource/availability" : {
+      "get" : {
+        "tags" : [ "resource" ],
+        "summary" : "get details of resources matching criteria given by freeResourceFilter, that are free(unallocated) in a given date range and entity and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/resourceGetAvailabilityQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,resource  list",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/freeResourceList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/subscriber/new" : {
+      "post" : {
+        "tags" : [ "subscriber" ],
+        "summary" : "create a new subscriber, in subscriberList with given subscriberDetails, returns new subscriber id or  error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/subscriberNewQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "description" : "ID of created subscriber",
+                  "example" : "subscriberName:xyz hospital,subscriberId:12345"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/subscriber/modifications" : {
+      "put" : {
+        "tags" : [ "subscriber" ],
+        "summary" : "changes values of specific details (as given by subscriberDetails) of given subscriber (selected by subscriberFilter)in subscriberList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "subscriberId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "12345"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/subscriberModifyQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, subscriber updated"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/subscriber" : {
+      "delete" : {
+        "tags" : [ "subscriber" ],
+        "summary" : "delete a predefined subscriber in subscriberList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "subscriberId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "12345"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, subscriber cancelled"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/subscriber/listDetails" : {
+      "get" : {
+        "tags" : [ "subscriber" ],
+        "summary" : "get list of entities filetered by criteria in subscriberFilter and return info specified by subscriberDetailsRequired with success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/subscriberGetDetailsQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,message list",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/subscriberList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/message/new" : {
+      "post" : {
+        "tags" : [ "message" ],
+        "summary" : "create a new message, in messageList with given messageDetails, returns new message id or  error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/messageNewQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "description" : "ID of created message",
+                  "example" : "messageName:xyz hospital,messageId:1"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/message/modifications" : {
+      "put" : {
+        "tags" : [ "message" ],
+        "summary" : "changes values of specific details (as given by messageDetails) of given message (selected by messageFilter)in messageList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "messageId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/messageModifyQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, message updated"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/message" : {
+      "delete" : {
+        "tags" : [ "message" ],
+        "summary" : "delete a predefined message in messageList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "messageId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, message cancelled"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/message/listDetails" : {
+      "get" : {
+        "tags" : [ "message" ],
+        "summary" : "get list of entities filetered by criteria in messageFilter and return info specified by messageDetailsRequired with success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/messageGetDetailsQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,message list",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/messageList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/affiliation/new" : {
+      "post" : {
+        "tags" : [ "affiliation" ],
+        "summary" : "create a new affiliation, in affiliationList with given affiliationDetails, returns new affiliation id or  error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/affiliationNewQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "description" : "ID of created affiliation",
+                  "example" : "affiliationName:xyz hospital,affiliationId:1"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/affiliation/modifications" : {
+      "put" : {
+        "tags" : [ "affiliation" ],
+        "summary" : "changes values of specific details (as given by affiliationDetails) of given affiliation (selected by affiliationFilter)in affiliationList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "affiliationId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/affiliationModifyQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, affiliation updated"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/affiliation" : {
+      "delete" : {
+        "tags" : [ "affiliation" ],
+        "summary" : "delete a predefined affiliation in affiliationList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "affiliationId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, affiliation cancelled"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/affiliation/listDetails" : {
+      "get" : {
+        "tags" : [ "affiliation" ],
+        "summary" : "get list of entities filetered by criteria in affiliationFilter and return info specified by affiliationDetailsRequired with success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/affiliationGetDetailsQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,affiliation list",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/affiliationList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/alertSchedule/new" : {
+      "post" : {
+        "tags" : [ "alertSchedule" ],
+        "summary" : "create a new alertSchedule, in alertScheduleList with given alertScheduleDetails, returns new alertSchedule id or  error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/alertScheduleNewQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "description" : "ID of created alertSchedule",
+                  "example" : "alertScheduleName:xyz hospital,alertScheduleId:1"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/alertSchedule/modifications" : {
+      "put" : {
+        "tags" : [ "alertSchedule" ],
+        "summary" : "changes values of specific details (as given by alertScheduleDetails) of given alertSchedule (selected by alertScheduleFilter)in alertScheduleList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Organizer"
+        }, {
+          "name" : "alertScheduleId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/alertScheduleModifyQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, alertSchedule updated"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/alertSchedule" : {
+      "delete" : {
+        "tags" : [ "alertSchedule" ],
+        "summary" : "delete a predefined alertSchedule in alertScheduleList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "alertScheduleId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, alertSchedule cancelled"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/alertSchedule/listDetails" : {
+      "get" : {
+        "tags" : [ "alertSchedule" ],
+        "summary" : "get list of entities filetered by criteria in alertScheduleFilter and return info specified by alertScheduleDetailsRequired with success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/alertScheduleGetDetailsQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,alertSchedule list",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/alertScheduleList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/log/new" : {
+      "post" : {
+        "tags" : [ "log" ],
+        "summary" : "create a new log, in logList with given logDetails, returns new logId or  error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/logNewQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "description" : "ID of created log",
+                  "example" : "logName:xyz hospital,logId:1"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/log/modifications" : {
+      "put" : {
+        "tags" : [ "log" ],
+        "summary" : "changes values of specific details (as given by logDetails) of given log (selected by logFilter)in logList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "logId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/logModifyQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, log updated"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/log" : {
+      "delete" : {
+        "tags" : [ "log" ],
+        "summary" : "delete a predefined log in logList and returns success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "logId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success, log cancelled"
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    },
+    "/log/listDetails" : {
+      "get" : {
+        "tags" : [ "log" ],
+        "summary" : "get list of entities filetered by criteria in logFilter and return info specified by logDetailsRequired with success or error code",
+        "parameters" : [ {
+          "name" : "requestorId",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "healthngoadmin1"
+          }
+        }, {
+          "name" : "requestToken",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "Organizer"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/logGetDetailsQuery"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success,log list",
+            "content" : {
+              "json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/logList"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request"
+          },
+          "403" : {
+            "description" : "No permission"
+          },
+          "404" : {
+            "description" : "one or more specified inputs not found"
+          },
+          "default" : {
+            "description" : "Unexpected error"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "entityList" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "entityId" : {
+              "type" : "string",
+              "example" : "67890"
+            },
+            "details" : {
+              "$ref" : "#/components/schemas/entityDetails"
+            }
+          }
+        }
+      },
+      "entityDetails" : {
+        "type" : "object",
+        "properties" : {
+          "category" : {
+            "type" : "string",
+            "example" : "hospital"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "abc"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+911234567890"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "info@xyz.com"
+          },
+          "website" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "www.abc.com"
+          }
+        }
+      },
+      "entityFilter" : {
+        "type" : "object",
+        "properties" : {
+          "entityId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[67890,12121]"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "hospital"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "abc"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+911234567890"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "info@xyz.com"
+          },
+          "website" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "www.abc.com"
+          }
+        }
+      },
+      "entityDetailsRequired" : {
+        "type" : "object",
+        "properties" : {
+          "entityId" : {
+            "type" : "boolean",
+            "example" : false
+          },
+          "category" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "name" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "phone" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "email" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "website" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "appointmentCreationDetails" : {
+        "type" : "object",
+        "properties" : {
+          "exclusive" : {
+            "type" : "boolean",
+            "example" : "true"
+          },
+          "eventIds" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[1]"
+          },
+          "participantType" : {
+            "type" : "string",
+            "example" : "subscriber"
+          },
+          "participantId" : {
+            "type" : "string",
+            "example" : "12345"
+          },
+          "participantEntityId" : {
+            "type" : "string",
+            "example" : "67890"
+          }
+        }
+      },
+      "appointmentList" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "appointmentId" : {
+              "type" : "string",
+              "example" : "1"
+            },
+            "details" : {
+              "$ref" : "#/components/schemas/appointmentDetails"
+            }
+          }
+        }
+      },
+      "appointmentDetails" : {
+        "type" : "object",
+        "properties" : {
+          "exclusive" : {
+            "type" : "boolean",
+            "example" : "true"
+          },
+          "eventId" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "participantType" : {
+            "type" : "string",
+            "example" : "subscriber"
+          },
+          "participantId" : {
+            "type" : "string",
+            "example" : "12345"
+          },
+          "statusId" : {
+            "type" : "string",
+            "example" : "confirmed"
+          },
+          "participantEntityId" : {
+            "type" : "string",
+            "example" : "67890"
+          }
+        }
+      },
+      "appointmentFilter" : {
+        "type" : "object",
+        "properties" : {
+          "exclusive" : {
+            "type" : "boolean",
+            "example" : "true"
+          },
+          "appointmentId" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "participantType" : {
+            "type" : "string",
+            "example" : "subscriber"
+          },
+          "participantId" : {
+            "type" : "string",
+            "example" : "12345"
+          },
+          "participantEntityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "confirmed"
+          },
+          "from" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T09:00:00"
+          },
+          "to" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T17:00:00"
+          }
+        }
+      },
+      "appointmentDetailsRequired" : {
+        "type" : "object",
+        "properties" : {
+          "exclusive" : {
+            "type" : "boolean",
+            "example" : "true"
+          },
+          "appointmentId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "eventDetails" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "participantType" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "participantId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "participantEntityId" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "resourceList" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "resourceId" : {
+              "type" : "string",
+              "example" : "54321"
+            },
+            "details" : {
+              "$ref" : "#/components/schemas/resourceDetails"
+            }
+          }
+        }
+      },
+      "resourceDetails" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "psrk"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "doctor"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+911234567890"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "doctor1@xyz.com"
+          },
+          "alertUrl" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "psrk@gmail.com"
+          },
+          "alertPreference" : {
+            "type" : "string",
+            "example" : "phone"
+          },
+          "statusPollUrl" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "www.doctor1.com"
+          }
+        }
+      },
+      "resourceFilter" : {
+        "type" : "object",
+        "properties" : {
+          "resourceId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[54321,31313]"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "psrk"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "doctor"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+911234567890"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "abc@gmail.com"
+          },
+          "alertUrl" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "www.doctor1.com"
+          },
+          "alertPreference" : {
+            "type" : "string",
+            "example" : " phone"
+          },
+          "statusPollUrl" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "www.doctor1.com"
+          }
+        }
+      },
+      "resourceDetailsRequired" : {
+        "type" : "object",
+        "properties" : {
+          "resourceId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "name" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "category" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "phone" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "email" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "alertUrl" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "alertPreference" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "statusPollUrl" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "subscriberList" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "subscriberId" : {
+              "type" : "string",
+              "example" : "12345"
+            },
+            "details" : {
+              "$ref" : "#/components/schemas/subscriberDetails"
+            }
+          }
+        }
+      },
+      "subscriberDetails" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "abc"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "patient"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+911234567890"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "abc@gmail.com"
+          },
+          "alertUrl" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "www.abc.com"
+          },
+          "alertPreference" : {
+            "type" : "string",
+            "example" : "phone"
+          },
+          "statusPollUrl" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "www.abc.com"
+          }
+        }
+      },
+      "subscriberFilter" : {
+        "type" : "object",
+        "properties" : {
+          "subscriberId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[12345, 41414]"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "patient"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "abc"
+          },
+          "phone" : {
+            "type" : "string",
+            "example" : "+911234567890"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "abc@gmail.com"
+          },
+          "alertUrl" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "www.abc.com"
+          },
+          "alertPreference" : {
+            "type" : "string",
+            "example" : " phone"
+          },
+          "statusPollUrl" : {
+            "type" : "string",
+            "format" : "url",
+            "example" : "www.abc.com"
+          }
+        }
+      },
+      "subscriberDetailsRequired" : {
+        "type" : "object",
+        "properties" : {
+          "subscriberId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "category" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "name" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "phone" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "email" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "alertUrl" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "alertPreference" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "statusPollUrl" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "eventCreationDetails" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "abc medical camp"
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "medical camp for senior citizens"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "doctor_consultation"
+          },
+          "hostEntityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "slots" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "from" : {
+                  "type" : "string",
+                  "format" : "date-time",
+                  "example" : "2018-02-15T11:00:00"
+                },
+                "to" : {
+                  "type" : "string",
+                  "format" : "date-time",
+                  "example" : "2018-02-15T11:30:00"
+                }
+              }
+            }
+          },
+          "deadline" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T11:10:00"
+          },
+          "subscriberLimit" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "terms" : {
+            "type" : "string",
+            "example" : "non refundable"
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "open"
+          },
+          "venue" : {
+            "$ref" : "#/components/schemas/venue"
+          }
+        }
+      },
+      "eventList" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "eventId" : {
+              "type" : "string",
+              "example" : "12345"
+            },
+            "details" : {
+              "$ref" : "#/components/schemas/eventDetails"
+            }
+          }
+        }
+      },
+      "eventDetails" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "abc medical camp"
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "medical camp for senior citizens"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "doctor_consultation"
+          },
+          "hostEntityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "from" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T11:00:00"
+          },
+          "to" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T11:30:00"
+          },
+          "deadline" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T11:10:00"
+          },
+          "subscriberLimit" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "terms" : {
+            "type" : "string",
+            "example" : "non refundable"
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "open"
+          },
+          "venue" : {
+            "$ref" : "#/components/schemas/venue"
+          }
+        }
+      },
+      "eventFilter" : {
+        "type" : "object",
+        "properties" : {
+          "eventId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[12345,51515]"
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "medical camp for senior citizens"
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "doctor_consultation"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "opd_physician_consultation"
+          },
+          "hostEntityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "subscriberLimit" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "terms" : {
+            "type" : "string",
+            "example" : "non refundable"
+          },
+          "from" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T09:00:00"
+          },
+          "to" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T17:00:00"
+          },
+          "venue" : {
+            "$ref" : "#/components/schemas/venue"
+          }
+        }
+      },
+      "eventDetailsRequired" : {
+        "type" : "object",
+        "properties" : {
+          "eventId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "description" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "name" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "category" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "hostEntityId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "period" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "venue" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "deadline" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "subscriberLimit" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "terms" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "status" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "affiliationList" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "affiliationId" : {
+              "type" : "string",
+              "example" : "1"
+            },
+            "details" : {
+              "$ref" : "#/components/schemas/affiliationDetails"
+            }
+          }
+        }
+      },
+      "affiliationDetails" : {
+        "type" : "object",
+        "properties" : {
+          "resourceId" : {
+            "type" : "string",
+            "example" : "12345"
+          },
+          "entityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "resourceCategory" : {
+            "type" : "string",
+            "example" : "physician"
+          },
+          "workDaysHours" : {
+            "$ref" : "#/components/schemas/daysHours"
+          }
+        }
+      },
+      "daysHours" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "dayOfWeek" : {
+              "type" : "string",
+              "example" : "[monday"
+            },
+            "startTime" : {
+              "type" : "string",
+              "example" : "09:00:00"
+            },
+            "endTime" : {
+              "type" : "string",
+              "example" : "17:00:00"
+            }
+          }
+        }
+      },
+      "affiliationFilter" : {
+        "type" : "object",
+        "properties" : {
+          "affiliationId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[1,2]"
+          },
+          "resourceId" : {
+            "type" : "string",
+            "example" : "12345"
+          },
+          "entityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "physician"
+          },
+          "from" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T09:00:00"
+          },
+          "to" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T17:00:00"
+          }
+        }
+      },
+      "affiliationDetailsRequired" : {
+        "type" : "object",
+        "properties" : {
+          "affiliationId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "resourceId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "entityId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "category" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "workDaysHours" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "alertScheduleList" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "alertScheduleId" : {
+              "type" : "string",
+              "example" : "1"
+            },
+            "details" : {
+              "$ref" : "#/components/schemas/alertScheduleDetails"
+            }
+          }
+        }
+      },
+      "alertScheduleDetails" : {
+        "type" : "object",
+        "properties" : {
+          "eventId" : {
+            "type" : "string",
+            "example" : "12345"
+          },
+          "targetCategory" : {
+            "type" : "string",
+            "example" : "subscriber"
+          },
+          "messageId" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "alertDatetime" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T09:00:00"
+          }
+        }
+      },
+      "alertScheduleFilter" : {
+        "type" : "object",
+        "properties" : {
+          "alertScheduleId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[1,2]"
+          },
+          "entityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "targetCategory" : {
+            "type" : "string",
+            "example" : "subscriber"
+          },
+          "messageId" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "from" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T09:00:00"
+          },
+          "to" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T13:30:00"
+          }
+        }
+      },
+      "alertScheduleDetailsRequired" : {
+        "type" : "object",
+        "properties" : {
+          "alertScheduleId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "entityId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "messageId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "alertDatetime" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "messageList" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "messageId" : {
+              "type" : "string",
+              "example" : "1"
+            },
+            "details" : {
+              "$ref" : "#/components/schemas/messageDetails"
+            }
+          }
+        }
+      },
+      "messageDetails" : {
+        "type" : "object",
+        "properties" : {
+          "entityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "reminder"
+          },
+          "messageBody" : {
+            "type" : "string",
+            "example" : "you have doctor consultation today"
+          }
+        }
+      },
+      "messageFilter" : {
+        "type" : "object",
+        "properties" : {
+          "messageId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[1,2]"
+          },
+          "entityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "reminder"
+          },
+          "messageBody" : {
+            "type" : "string",
+            "example" : "you have doctor consultation today"
+          }
+        }
+      },
+      "messageDetailsRequired" : {
+        "type" : "object",
+        "properties" : {
+          "messageId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "entityId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "category" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "messageBody" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "logList" : {
+        "type" : "array",
+        "items" : {
+          "type" : "object",
+          "properties" : {
+            "logId" : {
+              "type" : "string",
+              "example" : "1"
+            },
+            "details" : {
+              "$ref" : "#/components/schemas/logDetails"
+            }
+          }
+        }
+      },
+      "logDetails" : {
+        "type" : "object",
+        "properties" : {
+          "loggerRole" : {
+            "type" : "string",
+            "example" : "resource"
+          },
+          "loggerId" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "entityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "logCategory" : {
+            "type" : "string",
+            "example" : "attendance"
+          },
+          "datetime" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T11:00:00"
+          },
+          "logData" : {
+            "type" : "string",
+            "example" : "eventId:12345,subscriberId:1,token:a2s3x2fer,status:attended"
+          }
+        }
+      },
+      "logFilter" : {
+        "type" : "object",
+        "properties" : {
+          "logId" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[1,2]"
+          },
+          "entityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "attendance"
+          },
+          "from" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T11:00:00"
+          },
+          "to" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T11:30:00"
+          }
+        }
+      },
+      "logDetailsRequired" : {
+        "type" : "object",
+        "properties" : {
+          "logId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "loggerCategory" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "loggerId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "entityId" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "logCategory" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "datetime" : {
+            "type" : "boolean",
+            "example" : true
+          },
+          "logData" : {
+            "type" : "boolean",
+            "example" : true
+          }
+        }
+      },
+      "freeResourceList" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/freeResourceDetails"
+        }
+      },
+      "freeResourceDetails" : {
+        "type" : "object",
+        "properties" : {
+          "resourceId" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "resourceName" : {
+            "type" : "string",
+            "example" : "abc"
+          },
+          "freeSlots" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "example" : "{[2018-02-15T11:00:00to2018-02-15T11:09:00:00],[2018-02-22T11:00:00to2018-02-22T11:17:00:00]}"
+            }
+          }
+        }
+      },
+      "freeResourceFilter" : {
+        "type" : "object",
+        "properties" : {
+          "category" : {
+            "type" : "string",
+            "example" : "doctor"
+          },
+          "entityId" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "from" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-14T09:00:00"
+          },
+          "to" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-18T13:30:00"
+          },
+          "resourceId" : {
+            "type" : "string",
+            "example" : "1"
+          }
+        }
+      },
+      "venue" : {
+        "type" : "object",
+        "properties" : {
+          "building" : {
+            "type" : "string",
+            "example" : "xyz"
+          },
+          "street" : {
+            "type" : "string",
+            "example" : "7th main"
+          },
+          "area" : {
+            "type" : "string",
+            "example" : "wilson garden"
+          },
+          "city" : {
+            "type" : "string",
+            "example" : "bangalore"
+          },
+          "state" : {
+            "type" : "string",
+            "example" : "karnataka"
+          },
+          "country" : {
+            "type" : "string",
+            "example" : "india"
+          },
+          "lat" : {
+            "type" : "string",
+            "example" : "0.001"
+          },
+          "long" : {
+            "type" : "string",
+            "example" : "0.002"
+          }
+        }
+      },
+      "eventNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/eventCreationDetails"
+          }
+        }
+      },
+      "eventModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/eventDetails"
+          }
+        }
+      },
+      "eventGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "eventFilter" : {
+            "$ref" : "#/components/schemas/eventFilter"
+          },
+          "eventDetailsRequired" : {
+            "$ref" : "#/components/schemas/eventDetailsRequired"
+          }
+        }
+      },
+      "entityNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/entityDetails"
+          }
+        }
+      },
+      "entityModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/entityDetails"
+          }
+        }
+      },
+      "entityGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "entityFilter" : {
+            "$ref" : "#/components/schemas/entityFilter"
+          },
+          "entityDetailsRequired" : {
+            "$ref" : "#/components/schemas/entityDetailsRequired"
+          }
+        }
+      },
+      "resourceNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "resourceDetails" : {
+            "$ref" : "#/components/schemas/resourceDetails"
+          }
+        }
+      },
+      "resourceModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/resourceDetails"
+          }
+        }
+      },
+      "resourceGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "resourceFilter" : {
+            "$ref" : "#/components/schemas/resourceFilter"
+          },
+          "resourceDetailsRequired" : {
+            "$ref" : "#/components/schemas/resourceDetailsRequired"
+          }
+        }
+      },
+      "resourceGetAvailabilityQuery" : {
+        "type" : "object",
+        "properties" : {
+          "freeResourceFilter" : {
+            "$ref" : "#/components/schemas/freeResourceFilter"
+          }
+        }
+      },
+      "subscriberNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "subscriberDetails" : {
+            "$ref" : "#/components/schemas/subscriberDetails"
+          }
+        }
+      },
+      "subscriberModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/subscriberDetails"
+          }
+        }
+      },
+      "subscriberGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "subscriberFilter" : {
+            "$ref" : "#/components/schemas/subscriberFilter"
+          },
+          "subscriberDetailsRequired" : {
+            "$ref" : "#/components/schemas/subscriberDetailsRequired"
+          }
+        }
+      },
+      "messageNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "messageDetails" : {
+            "$ref" : "#/components/schemas/messageDetails"
+          }
+        }
+      },
+      "messageModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/messageDetails"
+          }
+        }
+      },
+      "messageGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "messageFilter" : {
+            "$ref" : "#/components/schemas/messageFilter"
+          },
+          "messageDetailsRequired" : {
+            "$ref" : "#/components/schemas/messageDetailsRequired"
+          }
+        }
+      },
+      "affiliationNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "affiliationDetails" : {
+            "$ref" : "#/components/schemas/affiliationDetails"
+          }
+        }
+      },
+      "affiliationModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/affiliationDetails"
+          }
+        }
+      },
+      "affiliationGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "affiliationFilter" : {
+            "$ref" : "#/components/schemas/affiliationFilter"
+          },
+          "affiliationDetailsRequired" : {
+            "$ref" : "#/components/schemas/affiliationDetailsRequired"
+          }
+        }
+      },
+      "alertScheduleNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "alertScheduleDetails" : {
+            "$ref" : "#/components/schemas/alertScheduleDetails"
+          }
+        }
+      },
+      "alertScheduleModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/alertScheduleDetails"
+          }
+        }
+      },
+      "alertScheduleGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "alertScheduleFilter" : {
+            "$ref" : "#/components/schemas/alertScheduleFilter"
+          },
+          "alertScheduleDetailsRequired" : {
+            "$ref" : "#/components/schemas/alertScheduleDetailsRequired"
+          }
+        }
+      },
+      "logNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "logDetails" : {
+            "$ref" : "#/components/schemas/logDetails"
+          }
+        }
+      },
+      "logModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/logDetails"
+          }
+        }
+      },
+      "logGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "logFilter" : {
+            "$ref" : "#/components/schemas/logFilter"
+          },
+          "logDetailsRequired" : {
+            "$ref" : "#/components/schemas/logDetailsRequired"
+          }
+        }
+      },
+      "appointmentNewQuery" : {
+        "type" : "object",
+        "properties" : {
+          "appointmentDetails" : {
+            "$ref" : "#/components/schemas/appointmentCreationDetails"
+          }
+        }
+      },
+      "appointmentModifyQuery" : {
+        "type" : "object",
+        "properties" : {
+          "details" : {
+            "$ref" : "#/components/schemas/appointmentDetails"
+          }
+        }
+      },
+      "appointmentGetDetailsQuery" : {
+        "type" : "object",
+        "properties" : {
+          "appointmentFilter" : {
+            "$ref" : "#/components/schemas/appointmentFilter"
+          },
+          "appointmentDetailsRequired" : {
+            "$ref" : "#/components/schemas/appointmentDetailsRequired"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+mockoon-cli start --hostname 0.0.0.0 --daemon-off --data example-app-data.json --container
