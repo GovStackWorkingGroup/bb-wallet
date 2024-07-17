@@ -1,6 +1,6 @@
 # Table of contents
 
-* [\<name of building block>](README.md)
+* [Wallet Building Block](README.md)
 * [1 Version History](1-version-history.md)
 * [2 Description](2-description.md)
 * [3 Terminology](3-terminology.md)
@@ -11,3 +11,7 @@
 * [8 Service APIs](8-service-apis.md)
 * [9 Internal Workflows](9-workflows.md)
 * [10 Other Resources](10-other-resources.md)
+
+## Use Cases
+
+* [Functional Use Cases](use-cases/functional-use-cases.md)

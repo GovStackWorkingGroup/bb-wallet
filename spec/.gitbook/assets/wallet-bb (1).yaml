@@ -1,0 +1,747 @@
+openapi: 3.1.0
+x-stoplight:
+  id: zuwnermy784i3
+info:
+  title: Wallet Building Block
+  version: '1.0'
+servers:
+  - url: 'https://govstack.sandbox.com'
+    description: ''
+paths:
+  /authorize:
+    parameters: []
+    get:
+      summary: Authorization Endpoint for Issuance
+      tags: []
+      responses:
+        '200':
+          description: |-
+            OK
+
+            Loads JS application, and validates the provided query parameters using oauth-details endpoint.
+
+            Once the Holder is successfully authenticated, the `authorization_code` is shared in the query parameter of the `redirect_uri` mentioned in the authorization request.
+          content: {}
+        '302':
+          description: |
+            Found
+
+            If the request fails due to a missing, invalid, or mismatching
+               redirection URI, or if the client identifier is missing or invalid,
+               the authorization server SHOULD inform the Holder of the
+               error and MUST NOT automatically redirect the user-agent to the
+               invalid redirection URI.
+
+            The authorization server informs the client by adding the following
+               parameters to the query component of the redirection URI using the
+               `application/x-www-form-urlencoded` format.
+
+            Example:
+            https://govstack.sandbox.com?error=invalid_request&error_description=Unsupported%20response_type%20value
+
+
+
+            * `invalid_request`:
+                           The request is missing a required parameter, includes an
+                           invalid parameter value, includes a parameter more than
+                           once, or is otherwise malformed.
+            * `unauthorized_client`:
+                           The client is not authorized to request an authorization
+                           code using this method.
+            * `access_denied`:
+                           The resource owner or authorization server denied the
+                           request.
+            * `unsupported_response_type`:
+                           The authorization server does not support obtaining an
+                           authorization code using this method.
+            * `invalid_scope`:
+                           The requested scope is invalid, unknown, or malformed.
+            * `server_error`:
+                           The authorization server encountered an unexpected
+                           condition that prevented it from fulfilling the request.
+                           (This error code is needed because a 500 Internal Server
+                           Error HTTP status code cannot be returned to the client
+                           via an HTTP redirect.)
+            * `temporarily_unavailable`:
+                           The authorization server is currently unable to handle
+                           the request due to a temporary overloading or maintenance
+                           of the server.  (This error code is needed because a 503
+                           Service Unavailable HTTP status code cannot be returned
+                           to the client via an HTTP redirect.)
+          content: {}
+      operationId: authorize
+      description: |-
+        The authorization endpoint is used to interact with the Issuer's authorization server and obtain an authorization grant. The authorization server MUST first verify the identity of the Holder.  The way in which the authorization server authenticates the Holder's (e.g., username and password login, session cookies) is beyond the scope of this specification.
+
+        This endpoint could respond with a basic HTML page to load a JS application in the browser. In case of mobile wallet, it would load the JS application in the mobile browser.
+      x-stoplight:
+        id: dd5zzrdpz7h0g
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: response_type
+          description: 'The value set here determines the authorization processing flow. To use the authorization code flow, the value should be configured to "code".'
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: scope
+          description: Specifies what access privileges are being requested for Access Tokens. The scopes associated with Access Tokens determine what resources will be available when they are used to access OAuth 2.0 protected endpoints. OpenID Connect requests MUST contain the OpenID scope value.
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: client_id
+          description: Valid OAuth 2.0 client identifier in the authorization server.
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: redirect_uri
+          description: Redirection URI to which the response would be sent. This URI must match one of the redirection URI values during the client ID creation.
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: code_challenge
+          description: 'A challenge derived from the code_verifier, This is required if its a VC scoped request.'
+        - schema:
+            type: string
+          in: query
+          name: code_challenge_method
+          description: Redirection URI to which the response would be sent. This URI must match one of the redirection URI values during the client ID creation.
+      requestBody:
+        content: {}
+    servers:
+      - url: 'https://govstack.sandbox.com'
+        description: ''
+  /token:
+    post:
+      summary: Token Endpoint
+      operationId: token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - access_token
+                  - token_type
+                properties:
+                  access_token:
+                    type: string
+                    x-stoplight:
+                      id: 3fj3zrgj67cpl
+                    description: The access token issued by the issuer's authorization server.
+                  token_type:
+                    x-stoplight:
+                      id: pmet650wuyinq
+                    description: The access token type provides the wallet with the information required to successfully utilize the access token to make a protected resource request (along with type-specific attributes).  The wallet MUST NOT use an access token if it does not understand the token type.
+                    enum:
+                      - bearer
+                  expires_in:
+                    type: integer
+                    x-stoplight:
+                      id: nxtrh81vmpor9
+                    description: 'The lifetime in seconds of the access token. For example, the value "3600" denotes that the access token will expire in one hour from the time the response was generated. If omitted, the authorization server SHOULD provide the expiration time via other means or document the default value.'
+                  c_nonce:
+                    type: string
+                    x-stoplight:
+                      id: bz5wq284rzjts
+                    description: 'String containing a nonce to be used when creating a proof of possession of the key proof. When received, the Wallet MUST use this nonce value for its subsequent requests until the Credential Issuer provides a fresh nonce.'
+                  c_nonce_expires_in:
+                    type: integer
+                    x-stoplight:
+                      id: e2pwtozo89e0n
+                    description: Number denoting the lifetime in seconds of the c_nonce.
+                  authorization_details:
+                    type: array
+                    x-stoplight:
+                      id: 8ypeni76tturl
+                    description: 'When authorization_details parameter is used to request issuance of a certain credential type. It MUST NOT be used otherwise. It is an array of objects, as defined in [RFC9396](https://www.rfc-editor.org/rfc/rfc9396.html).'
+                    items:
+                      x-stoplight:
+                        id: umz1f1oniv2bz
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          x-stoplight:
+                            id: wnisn7uzny3ks
+                        credential_configuration_id:
+                          type: string
+                          x-stoplight:
+                            id: 9di4xaff7ll23
+                        credential_identifiers:
+                          type: array
+                          x-stoplight:
+                            id: mouef5mv5vorb
+                          items:
+                            x-stoplight:
+                              id: eom9lz14schlq
+                            type: string
+              examples:
+                Sample Example:
+                  value:
+                    access_token: eyJhbGciOiJSUzI1NiIsInR5cCI6Ikp..sHQ
+                    token_type: bearer
+                    expires_in: 86400
+                    c_nonce: tZignsnFbp
+                    c_nonce_expires_in: 86400
+                    authorization_details:
+                      - type: openid_credential
+                        credential_configuration_id: UniversityDegreeCredential
+                        credential_identifiers:
+                          - CivilEngineeringDegree-2023
+                          - ElectricalEngineeringDegree-2023
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - error
+                properties:
+                  error:
+                    x-stoplight:
+                      id: qbuq7j2k3ihd9
+                    enum:
+                      - invalid_request
+                      - invalid_grant
+                      - invalid_client
+                      - unauthorized_client
+                      - unsupported_grant_type
+                      - invalid_scope
+                    description: |
+                      A single ASCII error code from the following:
+                      * `invalid_request`:
+                          * The Authorization Server does not expect a Transaction Code in the Pre-Authorized Code Flow but the Client provides a Transaction Code.
+                          * The Authorization Server expects a Transaction Code in the Pre-Authorized Code Flow but the Client does not provide a Transaction Code.
+                      * `invalid_grant`:
+                          * The Authorization Server expects a Transaction Code in the Pre-Authorized Code Flow but the Client provides the wrong Transaction Code.
+                          * The End-User provides the wrong Pre-Authorized Code or the Pre-Authorized Code has expired.
+                      * `invalid_client`:
+                          * The Client tried to send a Token Request with a Pre-Authorized Code without a Client ID but the Authorization Server does not support anonymous access.
+                      * `unsupported_grant_type`:
+                          * The authorization grant type is not supported by the authorization server.
+                      * `invalid_scope`:
+                          * The requested scope is invalid, unknown, malformed, or exceeds the scope granted by the Issuer.
+                  error_description:
+                    type: string
+                    x-stoplight:
+                      id: 43he1817tyduu
+                    description: 'Human-readable ASCII text providing additional information, used to assist the client developer in understanding the error that occurred. Values for the "error_description" parameter MUST NOT include characters outside the set %x20-21 / %x23-5B / %x5D-7E.'
+                  error_uri:
+                    type: string
+                    x-stoplight:
+                      id: hmqz6oc6fov2k
+                    description: 'A URI identifying a human-readable web page with information about the error, used to provide the client developer with additional information about the error. Values for the "error_uri" parameter MUST conform to the URI-reference syntax and thus MUST NOT include characters outside the set %x21 / %x23-5B / %x5D-7E.'
+              examples:
+                Invalid Request:
+                  value:
+                    error: invalid_request
+                Invalid Grant:
+                  value:
+                    error: invalid_grant
+                Invalid Client:
+                  value:
+                    error: invalid_client
+        '401':
+          description: |
+            Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - error
+                properties:
+                  error:
+                    x-stoplight:
+                      id: bt8hqrw34koiw
+                    enum:
+                      - unauthorized_client
+                    description: |-
+                      * `unauthorized_client`:
+                          * The authenticated client is not authorized to use this authorization grant type.
+                  error_description:
+                    type: string
+                    x-stoplight:
+                      id: pw38vt1uq824b
+                    description: 'Human-readable ASCII text providing additional information, used to assist the client developer in understanding the error that occurred. Values for the "error_description" parameter MUST NOT include characters outside the set %x20-21 / %x23-5B / %x5D-7E.'
+                  error_uri:
+                    type: string
+                    x-stoplight:
+                      id: vpcomdap5tb1v
+                    description: 'A URI identifying a human-readable web page with information about the error, used to provide the client developer with additional information about the error. Values for the "error_uri" parameter MUST conform to the URI-reference syntax and thus MUST NOT include characters outside the set %x21 / %x23-5B / %x5D-7E.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - grant_type
+              properties:
+                grant_type:
+                  x-stoplight:
+                    id: 3k0t9ovjfcx7u
+                  description: |-
+                    Authorization code grant type.
+                    * `authorization_code` for authorization code flow
+                    * `urn:ietf:params:oauth:grant-type:pre-authorized_code` for pre-authorized code flow
+                  enum:
+                    - authorization_code
+                    - 'urn:ietf:params:oauth:grant-type:pre-authorized_code'
+                code:
+                  type: string
+                  x-stoplight:
+                    id: ovsro9ns9y2j0
+                  description: 'Authorization code, sent as query param in the wallet''s redirect URI. This parameter MUST only be used if the grant_type is `authorization_code`.'
+                redirect_uri:
+                  type: string
+                  x-stoplight:
+                    id: t4hd1qco8cfzb
+                  description: |
+                    REQUIRED, if the "redirect_uri" parameter was included in the authorization request, and their values MUST be identical.
+                pre-authorized_code:
+                  type: string
+                  x-stoplight:
+                    id: a0j29ww8t4dkx
+                  description: 'The code representing the authorization to obtain Credentials of a certain type. This parameter MUST be present if the grant_type is `urn:ietf:params:oauth:grant-type:pre-authorized_code`.'
+                tx_code:
+                  type: string
+                  x-stoplight:
+                    id: 2aap9se6igpsb
+                  description: 'String value containing a Transaction Code. This parameter MUST only be used if the grant_type is `urn:ietf:params:oauth:grant-type:pre-authorized_code`.'
+            examples:
+              Authorization Code Flow:
+                value:
+                  grant_type: authorization_code
+                  code: SplxlOBeZQQYbYS6WxSbIA
+                  redirect_uri: 'https://wallet.example.org/wallet'
+              Pre-authorization Code Flow:
+                value:
+                  grant_type: 'urn:ietf:params:oauth:grant-type:pre-authorized_code'
+                  pre-authorized_code: SplxlOBeZQQYbYS6WxSbIA
+                  tx_code: '493536'
+        description: ''
+      description: 'The Token Endpoint issues an Access Token and, optionally, a Refresh Token in exchange for the Authorization Code that Client obtained in a successful Authorization Response. It is used in the same manner as defined in [RFC6749](https://www.rfc-editor.org/rfc/rfc6749.html).'
+      x-stoplight:
+        id: wvzahrav3v17q
+    parameters: []
+    servers:
+      - url: 'https://govstack.sandbox.com'
+        description: ''
+  /credential:
+    post:
+      summary: Credential Endpoint
+      operationId: credential
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  credential:
+                    type: string
+                    x-stoplight:
+                      id: jutk1ecou6tty
+                    description: 'Contains issued Credential. It MUST be present when transaction_id is not returned. It MAY be a string or an object, depending on the Credential format.'
+                  transaction_id:
+                    type: string
+                    x-stoplight:
+                      id: a8goujs62pzs6
+                    description: |-
+                      String identifying a Deferred Issuance transaction. This claim is contained in the response if the Credential Issuer was unable to immediately issue the Credential. The value is subsequently used to obtain the respective Credential with the Deferred Credential Endpoint. 
+
+                      It MUST be present when the credential parameter is not returned. 
+
+                      It MUST be invalidated after the Credential for which it was meant has been obtained by the Wallet.
+                  c_nonce:
+                    type: string
+                    x-stoplight:
+                      id: b8luu8g0bueiv
+                    description: 'String containing a nonce to be used to create a proof of possession of key material when requesting a Credential. When received, the Wallet MUST use this nonce value for its subsequent Credential Requests until the Credential Issuer provides a fresh nonce.'
+                  c_nonce_expires_in:
+                    type: integer
+                    x-stoplight:
+                      id: nil0xhgah0py6
+                    description: Number denoting the lifetime in seconds of the `c_nonce`.
+              examples:
+                Immediate Issuance:
+                  value:
+                    credential: LUpixVCWJk0eOt4CXQe1NXK....WZwmhmn9OQp6YxX0a2L
+                    c_nonce: fGFF7UkhLa
+                    c_nonce_expires_in: 86400
+                Deferred Issuance:
+                  value:
+                    transaction_id: 8xLOxBtZp8
+                    c_nonce: wlbQc6pCJp
+                    c_nonce_expires_in: 86400
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - error
+                properties:
+                  error:
+                    enum:
+                      - ' invalid_credential_request'
+                      - unsupported_credential_type
+                      - unsupported_credential_format
+                      - invalid_proof
+                      - invalid_encryption_parameters
+                    description: |-
+                      A single ASCII error code from the following:
+                      * `invalid_credential_request`: The Credential Request is missing a required parameter, includes an unsupported parameter or parameter value, repeats the same parameter, or is otherwise malformed.
+                      * `unsupported_credential_type`: Requested Credential type is not supported.
+                      * `unsupported_credential_format`: Requested Credential format is not supported.
+                      * `invalid_proof`: The proof in the Credential Request is invalid. The proof field is not present or the provided key proof is invalid or not bound to a nonce provided by the Credential Issuer.
+                      * `invalid_encryption_parameters`: This error occurs when the encryption parameters in the Credential Request are either invalid or missing. In the latter case, it indicates that the Credential Issuer requires the Credential Response to be sent encrypted, but the Credential Request does not contain the necessary encryption parameters.
+                  error_description:
+                    type: string
+                    description: 'Human-readable ASCII text providing additional information, used to assist the client developer in understanding the error that occurred. Values for the "error_description" parameter MUST NOT include characters outside the set %x20-21 / %x23-5B / %x5D-7E.'
+                  error_uri:
+                    type: string
+                    description: 'A URI identifying a human-readable web page with information about the error, used to provide the client developer with additional information about the error. Values for the "error_uri" parameter MUST conform to the URI-reference syntax and thus MUST NOT include characters outside the set %x21 / %x23-5B / %x5D-7E.'
+              examples:
+                unsupported_credential_format:
+                  value:
+                    error: unsupported_credential_format
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                format:
+                  x-stoplight:
+                    id: dnxuytyt3m8be
+                  description: |
+                    REQUIRED when the `credential_identifiers` parameter was not returned from the Token Response. It MUST NOT be used otherwise. It is a String that determines the format of the Credential to be issued, which may determine the type and any other information related to the Credential to be issued. When this parameter is used, the `credential_identifier` Credential Request parameter MUST NOT be present.
+                  type: string
+                proof:
+                  type: object
+                  x-stoplight:
+                    id: svzxgdul3s11t
+                  description: 'Object containing the proof of possession of the cryptographic key material the issued Credential would be bound to. The proof object is REQUIRED if the `proof_types_supported` parameter is non-empty and present in the `credential_configurations_supported` parameter of the Issuer metadata for the requested Credential. '
+                  required:
+                    - proof_type
+                  properties:
+                    proof_type:
+                      type: string
+                      x-stoplight:
+                        id: nkfqidwrbt4p5
+                      description: String denoting the key proof type. The value of this parameter determines other parameters in the key proof object and its respective processing rules.
+                credential_identifier:
+                  type: string
+                  x-stoplight:
+                    id: 5gihum4x63iyy
+                  description: REQUIRED when `credential_identifiers` parameter was returned from the Token Response. It MUST NOT be used otherwise. It is a String that identifies a Credential that is being requested to be issued.
+                credential_response_encryption:
+                  type: object
+                  x-stoplight:
+                    id: 3nfi4tg5rbea5
+                  description: 'Object containing information for encrypting the Credential Response. If this request element is not present, the corresponding credential response returned is not encrypted.'
+                  required:
+                    - jwk
+                    - alg
+                    - enc
+                  properties:
+                    jwk:
+                      type: object
+                      x-stoplight:
+                        id: j0st0idrhg85w
+                      description: Object containing a single public key as a JWK used for encrypting the Credential Response.
+                    alg:
+                      type: string
+                      x-stoplight:
+                        id: 8o33crw9bh6ot
+                      description: JWE alg algorithm for encrypting Credential Responses.
+                    enc:
+                      type: string
+                      x-stoplight:
+                        id: jix4qvgpgbt6n
+                      description: JWE enc algorithm for encrypting Credential Responses.
+            examples:
+              Key proof_type is cwt:
+                value:
+                  format: mso_mdoc
+                  doc_type: org.iso.18013.5.1.mDL
+                  proof:
+                    proof_type: cwt
+                    cwt: ...
+              Key proof_type is jwt:
+                value:
+                  proof:
+                    proof_type: jwt
+                    jwt: eyJ0eXAiOiJvcGVuaWQ0dmNpLXByb29mK2p3dCIsImFsZyI6IkVTMjU2IiwiandrIjp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiblVXQW9BdjNYWml0aDhFN2kxOU9kYXhPTFlGT3dNLVoyRXVNMDJUaXJUNCIsInkiOiJIc2tIVThCalVpMVU5WHFpN1N3bWo4Z3dBS18weGtjRGpFV183MVNvc0VZIn19.eyJhdWQiOiJodHRwczovL2NyZWRlbnRpYWwtaXNzdWVyLmV4YW1wbGUuY29tIiwiaWF0IjoxNzAxOTYwNDQ0LCJub25jZSI6IkxhclJHU2JtVVBZdFJZTzZCUTR5bjgifQ.-a3EDsxClUB4O3LeDD5DVGEnNMT01FCQW4P6-2-BNBqc_Zxf0Qw4CWayLEpqkAomlkLb9zioZoipdP-jvh1WlA
+                  credential_identifier: CivilEngineeringDegree-2023
+              Example 1:
+                value:
+                  format: string
+                  proof:
+                    proof_type: string
+                  credential_identifier: string
+                  credential_response_encryption:
+                    jwk: {}
+                    alg: string
+                    enc: string
+                  pre-authorized_code: string
+                  tx_code: string
+        description: ''
+      description: The Credential Endpoint issues a Credential as approved by the Holder upon presentation of a valid Access Token representing this approval.
+      x-stoplight:
+        id: ortm19ucmjf20
+    parameters: []
+    servers:
+      - url: 'https://govstack.sandbox.com'
+        description: ''
+  /verify/authorize:
+    get:
+      summary: Authorization Endpoint for Presentation
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vp_token:
+                    type: string
+                  presentation_submission:
+                    type: object
+                    properties:
+                      definition_id:
+                        type: string
+                      id:
+                        type: string
+                      descriptor_map:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            path:
+                              type: string
+                            format:
+                              type: string
+                            path_nested:
+                              type: object
+                              properties:
+                                path:
+                                  type: string
+                                format:
+                                  type: string
+                x-examples:
+                  Example 1:
+                    vp_token: eyJhb...YMetA
+                    presentation_submission:
+                      definition_id: example_jwt_vc
+                      id: example_jwt_vc_presentation_submission
+                      descriptor_map:
+                        - id: id_credential
+                          path: $
+                          format: jwt_vp
+                          path_nested:
+                            path: '$.vp.verifiableCredential[0]'
+                            format: jwt_vc
+              examples:
+                Example 1:
+                  value:
+                    vp_token: eyJhb...YMetA
+                    presentation_submission:
+                      definition_id: example_jwt_vc
+                      id: example_jwt_vc_presentation_submission
+                      descriptor_map:
+                        - id: id_credential
+                          path: $
+                          format: jwt_vp
+                          path_nested:
+                            path: '$.vp.verifiableCredential[0]'
+                            format: jwt_vc
+      operationId: get-verify-authorize
+      x-stoplight:
+        id: ynpvf9plqetuw
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: presentation_definition
+          description: "A string containing a Presentation Definition JSON object. This parameter MUST be present when presentation_definition_uri parameter, or a\_scope\_value representing a Presentation Definition is not present."
+        - schema:
+            type: string
+          in: query
+          name: presentation_definition_uri
+          description: "A string containing an HTTPS URL pointing to a resource where a Presentation Definition JSON object can be retrieved. This parameter MUST be present when presentation_definition\_parameter, or a\_scope\_value representing a Presentation Definition is not present."
+        - schema:
+            type: string
+          in: query
+  /deferred_credential:
+    post:
+      summary: Deferred Credential
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    transaction_id: 8xLOxBtZp8
+                    c_nonce: wlbQc6pCJp
+                    c_nonce_expires_in: 86400
+                properties:
+                  credential:
+                    type: string
+                    x-stoplight:
+                      id: ohda2qmfx64zq
+                    description: 'Contains issued Credential. It MUST be present when transaction_id is not returned. It MAY be a string or an object, depending on the Credential format.'
+                  transaction_id:
+                    type: string
+                    description: |-
+                      String identifying a Deferred Issuance transaction. This claim is contained in the response if the Credential Issuer was unable to immediately issue the Credential. The value is subsequently used to obtain the respective Credential with the Deferred Credential Endpoint. 
+
+                      It MUST be present when the credential parameter is not returned. 
+
+                      It MUST be invalidated after the Credential for which it was meant has been obtained by the Wallet.
+                  c_nonce:
+                    type: string
+                    description: 'String containing a nonce to be used to create a proof of possession of key material when requesting a Credential. When received, the Wallet MUST use this nonce value for its subsequent Credential Requests until the Credential Issuer provides a fresh nonce.'
+                  c_nonce_expires_in:
+                    type: integer
+                    description: Number denoting the lifetime in seconds of the `c_nonce`.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                x-examples:
+                  Example 1:
+                    error: invalid_transaction_id
+              examples:
+                Error Response:
+                  value:
+                    error: invalid_transaction_id
+      operationId: deferred-credential
+      x-stoplight:
+        id: upbqrosjr64qi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - transaction_id
+              properties:
+                transaction_id:
+                  type: string
+                  x-stoplight:
+                    id: kr44wilr4n8g2
+                  description: String identifying a Deferred Issuance transaction.
+            examples:
+              Example 1:
+                value:
+                  transaction_id: 8xLOxBtZp8
+      description: |-
+        This endpoint is used to issue a Credential previously requested at the Credential Endpoint in cases where the Credential Issuer was not able to immediately issue this Credential.
+
+        The Wallet must present to the Deferred Endpoint an Access Token that is valid for the issuance of the Credential previously requested at the Credential Endpoint.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: BEARER Token
+          required: true
+  /credential_offer:
+    get:
+      summary: Credential Offer Endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    credential_issuer: 'https://credential-issuer.example.com'
+                    credential_configuration_ids:
+                      - UniversityDegreeCredential
+                      - org.iso.18013.5.1.mDL
+                    grants:
+                      'urn:ietf:params:oauth:grant-type:pre-authorized_code':
+                        pre-authorized_code: oaKazRN8I0IbtZ0C7JuMn5
+                        tx_code:
+                          length: 4
+                          input_mode: numeric
+                          description: Please provide the one-time code that was sent via e-mail
+                required:
+                  - credential_issuer
+                  - credential_configuration_ids
+                properties:
+                  credential_issuer:
+                    type: string
+                    description: 'The URL of the Credential Issuer, from which the Wallet is requested to obtain one or more Credentials. The Wallet uses it to obtain the Credential Issuer''s Metadata.'
+                  credential_configuration_ids:
+                    type: array
+                    description: "Array of unique strings that each identify one of the keys in the name/value pairs stored in the\_`credential_configurations_supported`\_Credential Issuer metadata. The Wallet uses these string values to obtain the respective object that contains information about the Credential being offered. For example, these string values can be used to obtain\_scope\_values to be used in the Authorization Request."
+                    items:
+                      type: string
+                  grants:
+                    type: object
+              examples:
+                Authorization Code Flow:
+                  value:
+                    credential_issuer: 'https://credential-issuer.example.com'
+                    credential_configuration_ids:
+                      - UniversityDegreeCredential
+                    grants:
+                      authorization_code:
+                        issuer_state: eyJhbGciOiJSU0Et...FYUaBy
+                Pre-Authorization Code Flow:
+                  value:
+                    credential_issuer: 'https://credential-issuer.example.com'
+                    credential_configuration_ids:
+                      - UniversityDegree_LDP_VC
+                    grants:
+                      'urn:ietf:params:oauth:grant-type:pre-authorized_code':
+                        pre-authorized_code: adhjhdjajkdkhjhdj
+                        tx_code: {}
+      operationId: credential-offer
+      x-stoplight:
+        id: rv7lepooflcnt
+      description: This endpoint is used by a credential issuer that is already interacting with an Holder who wishes to initiate a credential issuance. It is used to pass available information relevant for the credential issuance to ensure a convenient and secure process.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: credential_offer
+          description: Object with the Credential Offer parameters. This MUST NOT be present when the `credential_offer_uri` parameter is present.
+        - schema:
+            type: string
+          in: query
+          name: credential_offer_uri
+          description: String that is a URL using the https scheme referencing a resource containing a JSON object with the Credential Offer parameters. This MUST NOT be present when the `credential_offer` parameter is present.
+components:
+  schemas: {}
