@@ -1,10 +1,10 @@
+---
+description: >-
+  This section provides a detailed view of how this Building Block will interact
+  with other Building Blocks to support common use cases.
+---
+
 # 9 Internal Workflows
-
-{% hint style="success" %}
-This section describes standard _internal_ workflows that a building block should support. Each internal workflow must be linked to one of the Functional Requirements defined in section 6.
-
-An internal workflow describes the internal processes that a Building Block needs to execute to complete a request from an external application or Building Block to fulfill the functional requirement
-{% endhint %}
 
 ## 9.1. Credential Issuance
 
@@ -12,7 +12,7 @@ An internal workflow describes the internal processes that a Building Block need
 
 This workflow follows the authorization code flow of the OAuth 2.0 authorization framework to authenticate the Holder and then issue a Verifiable Credential.
 
-In this workflow, the Holder initiates the request using the Wallet and authenticates via the Issuer's authorization endpoint. Once authentication is completed and consent is given, the Issuer provides an authorization code, as specified in \[[RFC6749](https://www.rfc-editor.org/rfc/rfc6749.html)], to issue access tokens. The Wallet can then use the access token to retrieve the credential from the Issuer by calling the credential issuance endpoint.
+In this workflow, the Holder initiates the request using the Wallet and authenticates via the Issuer's authorization endpoint. Once authentication is completed and consent is given, the Issuer provides an authorization code, as specified in [RFC6749](https://www.rfc-editor.org/rfc/rfc6749.html) to issue access tokens. The Wallet can then use the access token to retrieve the credential from the Issuer by calling the credential issuance endpoint.
 
 <figure><img src=".gitbook/assets/credential-issuance-auth-code-flow (1).png" alt=""><figcaption></figcaption></figure>
 

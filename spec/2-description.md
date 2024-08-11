@@ -1,12 +1,8 @@
+---
+description: This section provides context for this Building Block.
+---
+
 # 2 Description
-
-
-
-{% hint style="success" %}
-Set the context of the Building Block for the reader. The description should not assume that the reader has any experience of the GovStack system other than that found on the GovStack website.
-
-If there are assumptions or context for this building block that may be needed for the reader, it can be provided in this section.
-{% endhint %}
 
 {% hint style="info" %}
 At this stage, the definition of Wallet Building Block is focused on Digital Credential Wallets.
@@ -18,12 +14,12 @@ Key characteristics of a Digital Credential Wallet include:
 
 * **Storage of Verifiable Credentials**: The primary purpose of a Digital Credential Wallet is to store and manage Verifiable Credentials issued by trusted entities. These credentials can include educational qualifications, professional certifications, government-issued IDs, and more.
 * **User Control**: Users have control over their digital credentials, deciding when and how to share them. This allows individuals to present specific credentials for verification without revealing unnecessary personal information.
-* **Presentation and Verification**: Users can present their digital credentials electronically through online channels or in-person to verifiers. For example, sharing of educational credentials as an attachment online while applying for a university, or presenting your credentials to a traffic police officer for age verification. Verifiers can independently verify the authenticity of these credentials.
+* **Presentation and Verification**: Users can present their digital credentials electronically through online channels or in person to verifiers. For example, sharing educational credentials as an attachment online while applying for a university, or presenting your credentials to a traffic police officer for age verification. Verifiers can independently verify the authenticity of these credentials.
 * **Revocation and Expiry**: Digital Credential Wallets should support the revocation and expiration of credentials. The wallet should reflect these changes if a credential becomes invalid or expires, ensuring the most up-to-date information is presented.
-* **Interoperability**: Digital Credential Wallets aim to be interoperable with various issuers and verifiers so that the issues and verifiers can work across different wallets. The wallet should support multiple standards to ensure compatibility across different systems.
+* **Interoperability**: Digital Credential Wallets aim to be interoperable with various issuers and verifiers so that the issuers and verifiers can work across different wallets. The wallet should support multiple standards to ensure compatibility across different systems.
 * **Privacy and Security**: Digital Credential Wallets prioritize the privacy and security of users' credential information. They often leverage cryptographic techniques and secure storage mechanisms to protect sensitive data.
 * **Multi-Purpose Use**: While the primary focus is on ID, educational, and professional credentials, Digital Credential Wallets can extend their functionality to include other types of verifiable information, such as health records, access permissions, travel documents, or certifications for specific skills.
-* **Support for Multiple Types of Wallets**: The specification should provide provision for different wallet formats, including cloud-based, digital lockers, vaults, or mobile wallets, to enhance accessibility and cater to varying user preferences.
+* **Support for Multiple Types of Wallets**: The specification should provide provision for different wallets, including cloud-based, web, digital lockers, vaults, or mobile wallets, to enhance accessibility and cater to varying user preferences.
 
 <figure><img src=".gitbook/assets/Wallet BB.png" alt=""><figcaption></figcaption></figure>
 

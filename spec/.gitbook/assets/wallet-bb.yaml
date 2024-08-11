@@ -8,10 +8,229 @@ servers:
   - url: 'https://govstack.sandbox.com'
     description: ''
 paths:
-  /authorize:
-    parameters: []
+  /credential_offer:
     get:
-      summary: Authorization Endpoint
+      summary: Credential Offer Endpoint
+      tags: []
+      responses:
+        '200':
+          description: |
+            The Wallet does not create a response for Credential Offer Endpoint. The UX control stays with the Wallet after completion of the process.
+          content: {}
+      operationId: credential-offer
+      x-stoplight:
+        id: rv7lepooflcnt
+      description: This endpoint is used by a credential issuer that is already interacting with a Holder who wishes to initiate a credential issuance. It is used to pass available information relevant for the credential issuance to ensure a convenient and secure process.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: credential_offer
+          description: JSON encoded Credential Offer Object with the Credential Offer parameters. This MUST NOT be present when the `credential_offer_uri` parameter is present.
+        - schema:
+            type: string
+          in: query
+          name: credential_offer_uri
+          description: String that is a URL using the https scheme referencing a resource containing a JSON object with the Credential Offer parameters. This MUST NOT be present when the `credential_offer` parameter is present.
+  /.well-known/openid-credential-issuer:
+    get:
+      summary: Credential Issuer Metadata
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  With two different credentials:
+                    credential_issuer: 'https://credential-issuer.example.com'
+                    authorization_servers:
+                      - 'https://server.example.com'
+                    credential_endpoint: 'https://credential-issuer.example.com'
+                    batch_credential_endpoint: 'https://credential-issuer.example.com/batch_credential'
+                    deferred_credential_endpoint: 'https://credential-issuer.example.com/deferred_credential'
+                    credential_response_encryption:
+                      alg_values_supported:
+                        - ECDH-ES
+                      enc_values_supported:
+                        - A128GCM
+                      encryption_required: false
+                    display:
+                      - name: Example University
+                        locale: en-US
+                      - name: Example Université
+                        locale: fr-FR
+                    credential_configurations_supported:
+                      UniversityDegreeCredential:
+                        format: jwt_vc_json
+                        scope: UniversityDegree
+                        cryptographic_binding_methods_supported:
+                          - 'did:example'
+                        credential_signing_alg_values_supported:
+                          - ES256
+                        credential_definition:
+                          type:
+                            - VerifiableCredential
+                            - UniversityDegreeCredential
+                          credentialSubject:
+                            given_name:
+                              display:
+                                - name: Given Name
+                                  locale: en-US
+                            family_name:
+                              display:
+                                - name: Surname
+                                  locale: en-US
+                            degree: {}
+                            gpa:
+                              display:
+                                - name: GPA
+                        proof_types_supported:
+                          jwt:
+                            proof_signing_alg_values_supported:
+                              - ES256
+                        display:
+                          - name: University Credential
+                            locale: en-US
+                            logo:
+                              url: 'https://university.example.edu/public/logo.png'
+                              alt_text: a square logo of a university
+                            background_color: '#12107c'
+                            text_color: '#FFFFFF'
+                required:
+                  - credential_issuer
+                  - credential_endpoint
+                properties:
+                  credential_issuer:
+                    type: string
+                    description: 'Credential Issuer''s identifier which is identified by a case sensitive URL using the HTTPS scheme that contains scheme, host and, optionally, port number and path components, but no query or fragment components.'
+                  authorization_servers:
+                    type: array
+                    description: |-
+                      Array of strings, where each string is an identifier of the OAuth 2.0 Authorization Server (as defined in [RFC8414](https://www.rfc-editor.org/rfc/rfc8414.html)) the Credential Issuer relies on for authorization. 
+
+                      If this parameter is omitted, then the Credential Issuer is also acting as the Authorization Server, i.e., the Credential Issuer's identifier is used to obtain the Authorization Server metadata. The actual OAuth 2.0 Authorization Server metadata is obtained from the `oauth-authorization-server` well-known location. 
+
+                      When there are multiple entries in the array, the Wallet may be able to determine which Authorization Server to use by querying the metadata; for example, by examining the `grant_types_supported` values, the Wallet can filter the server to use based on the grant type it plans to use. 
+
+                      When the Wallet is using `authorization_server` parameter in the Credential Offer as a hint to determine which authorization server to use out of multiple, the Wallet MUST NOT proceed with the flow if the `authorization_server` Credential Offer parameter value does not match any of the entries in the `authorization_servers` array.
+                    items:
+                      type: string
+                  credential_endpoint:
+                    type: string
+                    description: 'URL of the Credential Issuer''s [Credential Endpoint](wallet-bb.yaml/paths/~1credential/post). This URL MUST use the HTTPS scheme and MAY contain port, path, and query parameter components.'
+                  batch_credential_endpoint:
+                    type: string
+                    x-stoplight:
+                      id: 3rbr5ebfebzt3
+                    description: 'URL of the Credential Issuer''s Batch Credential Endpoint. This URL MUST use the https scheme and MAY contain port, path, and query parameter components. If omitted, the Credential Issuer does not support the Batch Credential Endpoint.'
+                  deferred_credential_endpoint:
+                    type: string
+                    description: 'URL of the Credential Issuer''s [Deferred Credential Endpoint](wallet-bb.yaml/paths/~1deferred_credential). This URL MUST use the HTTPS scheme and MAY contain port, path, and query parameter components. If omitted, it is assumed that the Credential Issuer does not support the Deferred Credential Endpoint.'
+                  notification_endpoint:
+                    type: string
+                    x-stoplight:
+                      id: xc52x4qevnd2x
+                    description: 'URL of the Credential Issuer''s Notification Endpoint. This URL MUST use the HTTPS scheme and MAY contain port, path, and query parameter components. If omitted, the Credential Issuer does not support the Notification Endpoint.'
+                  credential_response_encryption:
+                    type: object
+                    description: This object contains information about whether the Credential Issuer supports encryption of the Credential Response on top of TLS (Transport Layer Security).
+                    required:
+                      - alg_values_supported
+                      - enc_values_supported
+                      - encryption_required
+                    properties:
+                      alg_values_supported:
+                        type: array
+                        description: 'Array containing a list of the JWE [RFC7516](https://www.rfc-editor.org/rfc/rfc7516.html) encryption algorithms (alg values) [RFC7518](https://www.rfc-editor.org/rfc/rfc7518.html) supported by the Credential and Batch Credential Endpoint to encode the Credential or Batch Credential Response in a JWT [RFC7519](https://www.rfc-editor.org/rfc/rfc7519.html).'
+                        items:
+                          type: string
+                      enc_values_supported:
+                        type: array
+                        description: 'Array containing a list of the JWE [RFC7516](https://www.rfc-editor.org/rfc/rfc7516.html) encryption algorithms (enc values) [RFC7518](https://www.rfc-editor.org/rfc/rfc7518.html) supported by the Credential and Batch Credential Endpoint to encode the Credential or Batch Credential Response in a JWT [RFC7519](https://www.rfc-editor.org/rfc/rfc7519.html).'
+                        items:
+                          type: string
+                      encryption_required:
+                        type: boolean
+                        description: |-
+                          Boolean value specifying whether the Credential Issuer requires the additional encryption on top of Transport Layer Security for the Credential Response. 
+                          * If the value is `true`, the Credential Issuer requires encryption for every Credential Response and therefore the Wallet MUST provide encryption keys in the Credential Request. 
+                          * If the value is `false`, the Wallet MAY chose whether it provides encryption keys or not.
+
+                          It is recommended that the value is kept as true and every Credential Response SHOULD be encrypted on top of Transport Layer Security.
+                  credential_identifiers_supported:
+                    type: boolean
+                    x-stoplight:
+                      id: ecm8dmw9ilduh
+                    description: 'Boolean value specifying whether the Credential Issuer supports returning `credential_identifiers` parameter in the `authorization_details` Token Response parameter, with `true` indicating support. If omitted, the default value is `false`.'
+                  signed_metadata:
+                    type: string
+                    x-stoplight:
+                      id: g59fwsqdkodlg
+                    description: "String that is a signed JWT. This JWT contains Credential Issuer metadata parameters as claims. The signed metadata MUST be secured using JSON Web Signature (JWS) [RFC7515](https://www.rfc-editor.org/rfc/rfc7515.html) and MUST contain an `iat`(Issued At) claim, an `iss`(Issuer) claim denoting the party attesting to the claims in the signed metadata, and\_`sub`(Subject) claim matching the Credential Issuer identifier. If the Wallet supports signed metadata, metadata values conveyed in the signed JWT MUST take precedence over the corresponding values conveyed using plain JSON elements. If the Credential Issuer wants to enforce use of signed metadata, it omits the respective metadata parameters from the unsigned part of the Credential Issuer metadata. A\_`signed_metadata`\_metadata value MUST NOT appear as a claim in the JWT. The Wallet MUST establish trust in the signer of the metadata, and obtain the keys to validate the signature before processing the metadata."
+                  display:
+                    type: array
+                    description: 'This is an array of objects, where each object contains display properties of a Credential Issuer for a certain language.'
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: |
+                            String value of a display name for the Credential Issuer.
+                        locale:
+                          type: string
+                          description: 'String value that identifies the language of this object represented as a language tag taken from values defined in BCP47 [RFC5646](https://datatracker.ietf.org/doc/html/rfc5646). There MUST be only one object for each language identifier.'
+                        logo:
+                          type: object
+                          x-stoplight:
+                            id: p56s9d4dovn8n
+                          description: Object with information about the logo of the Credential Issuer.
+                          required:
+                            - uri
+                          properties:
+                            uri:
+                              type: string
+                              x-stoplight:
+                                id: urnb4eobpjqvi
+                              description: |
+                                String value that contains a URI where the Wallet can obtain the logo of the Credential Issuer. The Wallet needs to determine the scheme, since the URI value could use the `https:` scheme, the `data:` scheme, etc.
+                            alt_text:
+                              type: string
+                              x-stoplight:
+                                id: 40k7j9xqd2yxd
+                              description: String value of the alternative text for the logo image.
+                  credential_configurations_supported:
+                    type: object
+                    description: 'Object that describes specifics of the Credential that the Credential Issuer supports issuance of. This object contains a list of name/value pairs, where each name is a unique identifier of the supported Credential being described. This identifier is used in the Credential Offer endpoint to communicate to the Wallet which Credential is being offered. The value is an object that contains metadata about a specific Credential.'
+                    properties:
+                      named_key:
+                        $ref: '#/components/schemas/Credential-Metadata'
+                        x-stoplight:
+                          id: 4bk1fslzqf5s5
+      operationId: get-issuer-well-known
+      x-stoplight:
+        id: 3oov9zfsd909a
+      description: |
+        The Credential Issuer Metadata contains information on the Credential Issuer's technical capabilities, supported Credentials, and (internationalized) display information.
+
+        The Credential Issuer's configuration can be retrieved using the Credential Issuer Identifier. A Credential Issuer is identified by a case sensitive URL using the https scheme that contains scheme, host and, optionally, port number and path components, but no query or fragment components which is know as **Credential Issuer Identifier**.
+
+        The Credential Issuer's configuration can be retrieved using the Credential Issuer Identifier. Credential Issuers publishing metadata MUST make a JSON document available at the path formed by concatenating the string `/.well-known/openid-credential-issuer` to the Credential Issuer Identifier. If the Credential Issuer value contains a path component, any terminating / MUST be removed before appending `/.well-known/openid-credential-issuer`.
+
+        The communication with the Credential Issuer Metadata Endpoint MUST utilize TLS.
+
+        The Wallet is RECOMMENDED to send an Accept-Language Header in the HTTP GET request to indicate the language(s) preferred for display. It is up to the Credential Issuer whether to:
+
+        * send a subset the metadata containing internationalized display data for one or all of the requested languages and indicate returned languages using the HTTP Content-Language Header, or
+        * ignore the Accept-Language Header and send all supported languages or any chosen subset.
+
+        The language(s) in HTTP Accept-Language and Content-Language Headers MUST use the values defined in [RFC3066](https://www.rfc-editor.org/rfc/rfc3066.html).
+  /authorize:
+    get:
+      summary: Authorization Endpoint for Issuance
       tags: []
       responses:
         '200':
@@ -70,7 +289,7 @@ paths:
                            to the client via an HTTP redirect.)
           content: {}
       operationId: authorize
-      description: |-
+      description: |
         The authorization endpoint is used to interact with the Issuer's authorization server and obtain an authorization grant. The authorization server MUST first verify the identity of the Holder.  The way in which the authorization server authenticates the Holder's (e.g., username and password login, session cookies) is beyond the scope of this specification.
 
         This endpoint could respond with a basic HTML page to load a JS application in the browser. In case of mobile wallet, it would load the JS application in the mobile browser.
@@ -111,8 +330,14 @@ paths:
           in: query
           name: code_challenge_method
           description: Redirection URI to which the response would be sent. This URI must match one of the redirection URI values during the client ID creation.
+        - schema:
+            type: string
+          in: query
+          name: authorization_details
+          description: 'MUST be used to convey the details about the Credentials the Wallet wants to obtain when sent from the issuer to wallet. <br/>For details on authorization details [click here](wallet-bb.yaml/components/schemas/Authorization-Details).'
       requestBody:
         content: {}
+    parameters: []
     servers:
       - url: 'https://govstack.sandbox.com'
         description: ''
@@ -161,28 +386,19 @@ paths:
                     type: array
                     x-stoplight:
                       id: 8ypeni76tturl
-                    description: 'When authorization_details parameter is used to request issuance of a certain credential type. It MUST NOT be used otherwise. It is an array of objects, as defined in [RFC9396](https://www.rfc-editor.org/rfc/rfc9396.html).'
+                    description: |-
+                      When `authorization_details` parameter is used to request issuance of a certain credential type. It MUST NOT be used otherwise. It is an array of objects, as defined in [RFC9396](https://www.rfc-editor.org/rfc/rfc9396.html).
+
+                      The authorization details assigned to the access token issued in a token response are determined by the `authorization_details` parameter of the corresponding token request. If the client does not specify the `authorization_details` token request parameters, the Authorization Server determines the resulting `authorization_details` at its discretion.
                     items:
                       x-stoplight:
                         id: umz1f1oniv2bz
                       type: object
-                      properties:
-                        type:
-                          type: string
-                          x-stoplight:
-                            id: wnisn7uzny3ks
-                        credential_configuration_id:
-                          type: string
-                          x-stoplight:
-                            id: 9di4xaff7ll23
-                        credential_identifiers:
-                          type: array
-                          x-stoplight:
-                            id: mouef5mv5vorb
-                          items:
-                            x-stoplight:
-                              id: eom9lz14schlq
-                            type: string
+                  state:
+                    type: string
+                    x-stoplight:
+                      id: 5eicy5qjc758a
+                    description: REQUIRED if the "state" parameter was present in the client authorization request.  The exact value received from the client.
               examples:
                 Sample Example:
                   value:
@@ -317,6 +533,11 @@ paths:
                   x-stoplight:
                     id: 2aap9se6igpsb
                   description: 'String value containing a Transaction Code. This parameter MUST only be used if the grant_type is `urn:ietf:params:oauth:grant-type:pre-authorized_code`.'
+                client_id:
+                  type: string
+                  x-stoplight:
+                    id: 2z56ll6800q9x
+                  description: 'REQUIRED, if the client is not authenticating with the authorization server.'
             examples:
               Authorization Code Flow:
                 value:
@@ -376,8 +597,8 @@ paths:
                   notification_id:
                     type: string
                     x-stoplight:
-                      id: a7b2p98b0ypiy
-                    description: String identifying an issued Credential that the Wallet includes in the Notification Request. This parameter MUST NOT be present if credential parameter is not present.
+                      id: nua0vpowea8xy
+                    description: A string identifying an issued Credential that the Wallet includes in the Notification Request. This parameter MUST NOT be present if credential parameter is not present.
               examples:
                 Immediate Issuance:
                   value:
@@ -477,6 +698,56 @@ paths:
                       x-stoplight:
                         id: jix4qvgpgbt6n
                       description: JWE enc algorithm for encrypting Credential Responses.
+                doctype:
+                  type: string
+                  x-stoplight:
+                    id: f0d7ezxkbe375
+                  description: |-
+                    This is a string identifying the Credential type, as defined in [ISO.18013-5](https://www.iso.org/standard/69084.html).
+
+                    It is required when the  credential format identifier is set as `mso_mdoc`.   
+                vct:
+                  type: string
+                  x-stoplight:
+                    id: ir02uvmj1t7ao
+                  description: 'This is required when the format parameter is present in the Credential Meta Information. It is a string designating the type of a Credential, as defined in [I-D.ietf-oauth-sd-jwt-vc](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01). This claim contains the type value of the Credential that the Wallet requests the Credential Issuer to issue.'
+                claims:
+                  type: object
+                  x-stoplight:
+                    id: lba5fgvmah64a
+                  description: 'Object containing a list of name/value pairs, where the name is a certain namespace as defined in [ISO.18013-5](https://www.iso.org/standard/69084.html) (or any profile of it), and the value is an object. This object also contains a list of name/value pairs, where the name is a claim name value that is defined in the respective namespace and is offered in the Credential.'
+                  properties:
+                    mandatory:
+                      type: boolean
+                      x-stoplight:
+                        id: z6bdgq25gqmq9
+                      description: 'Boolean which, when set to `true`, indicates that the Credential Issuer will always include this claim in the issued Credential. If set to `false`, the claim is not included in the issued Credential if the wallet did not request the inclusion of the claim, and/or if the Credential Issuer chose to not include the claim. If the `mandatory` parameter is omitted, the default value is `false`.'
+                    value_type:
+                      type: string
+                      x-stoplight:
+                        id: h2hyjua5ijj82
+                      description: |
+                        String value determining the type of value of the claim. Valid values defined by this specification are string, number, and image media types such as image/jpeg as defined in IANA media type registry for images (https://www.iana.org/assignments/media-types/media-types.xhtml#image). Other values MAY also be used.
+                    display:
+                      type: array
+                      x-stoplight:
+                        id: ylumw7ie4k141
+                      description: 'Array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. '
+                      items:
+                        x-stoplight:
+                          id: qciebyyf4ygnk
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            x-stoplight:
+                              id: p2q2plq2arvyk
+                            description: String value of a display name for the claim.
+                          locale:
+                            type: string
+                            x-stoplight:
+                              id: 4byomrabnyns0
+                            description: 'String value that identifies language of this object represented as language tag values defined in BCP47 [RFC5646](https://www.rfc-editor.org/rfc/rfc5646.html). There MUST be only one object for each language identifier.'
             examples:
               Key proof_type is cwt:
                 value:
@@ -491,19 +762,28 @@ paths:
                     proof_type: jwt
                     jwt: eyJ0eXAiOiJvcGVuaWQ0dmNpLXByb29mK2p3dCIsImFsZyI6IkVTMjU2IiwiandrIjp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiblVXQW9BdjNYWml0aDhFN2kxOU9kYXhPTFlGT3dNLVoyRXVNMDJUaXJUNCIsInkiOiJIc2tIVThCalVpMVU5WHFpN1N3bWo4Z3dBS18weGtjRGpFV183MVNvc0VZIn19.eyJhdWQiOiJodHRwczovL2NyZWRlbnRpYWwtaXNzdWVyLmV4YW1wbGUuY29tIiwiaWF0IjoxNzAxOTYwNDQ0LCJub25jZSI6IkxhclJHU2JtVVBZdFJZTzZCUTR5bjgifQ.-a3EDsxClUB4O3LeDD5DVGEnNMT01FCQW4P6-2-BNBqc_Zxf0Qw4CWayLEpqkAomlkLb9zioZoipdP-jvh1WlA
                   credential_identifier: CivilEngineeringDegree-2023
-              Example 1:
+              IETF SD-JWT VC:
                 value:
-                  format: string
+                  format: vc+sd-jwt
+                  vct: SD_JWT_VC_example_in_OpenID4VCI
                   proof:
-                    proof_type: string
-                  credential_identifier: string
-                  credential_response_encryption:
-                    jwk: {}
-                    alg: string
-                    enc: string
-                  pre-authorized_code: string
-                  tx_code: string
-        description: ''
+                    proof_type: jwt
+                    jwt: eyJ0eXAiOiJvcGVuaWQ0dmNpLXByb29mK2p3dCIsImFsZyI6IkVTMjU2IiwiandrIjp7Imt0eSI6IkVDIiwiY3J2IjoiUC0yNTYiLCJ4IjoiblVXQW9BdjNYWml0aDhFN2kxOU9kYXhPTFlGT3dNLVoyRXVNMDJUaXJUNCIsInkiOiJIc2tIVThCalVpMVU5WHFpN1N3bWo4Z3dBS18weGtjRGpFV183MVNvc0VZIn19.eyJhdWQiOiJodHRwczovL2NyZWRlbnRpYWwtaXNzdWVyLmV4YW1wbGUuY29tIiwiaWF0IjoxNzAxOTYwNDQ0LCJub25jZSI6IkxhclJHU2JtVVBZdFJZTzZCUTR5bjgifQ.-a3EDsxClUB4O3LeDD5DVGEnNMT01FCQW4P6-2-BNBqc_Zxf0Qw4CWayLEpqkAomlkLb9zioZoipdP-jvh1WlA
+              ISO mDL:
+                value:
+                  format: mso_mdoc
+                  doctype: org.iso.18013.5.1.mDL
+                  claims:
+                    org.iso.18013.5.1:
+                      given_name: {}
+                      family_name: {}
+                      birth_date: {}
+                    org.iso.18013.5.1.aamva:
+                      organ_donor: {}
+                  proof:
+                    proof_type: jwt
+                    jwt: eyJraWQiOiJkaWQ6ZXhhbXBsZ...KPxgihac0aW9EkL1nOzM
+        description: A Client makes a Credential Request to the Credential Endpoint by sending the following parameters in the entity-body of an HTTP POST request using the `application/json` media type.
       description: The Credential Endpoint issues a Credential as approved by the Holder upon presentation of a valid Access Token representing this approval.
       x-stoplight:
         id: ortm19ucmjf20
@@ -511,5 +791,804 @@ paths:
     servers:
       - url: 'https://govstack.sandbox.com'
         description: ''
+  /verify/authorize:
+    post:
+      summary: Authorization Endpoint for Presentation
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vp_token:
+                    type: string
+                  presentation_submission:
+                    type: object
+                    properties:
+                      definition_id:
+                        type: string
+                      id:
+                        type: string
+                      descriptor_map:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            path:
+                              type: string
+                            format:
+                              type: string
+                            path_nested:
+                              type: object
+                              properties:
+                                path:
+                                  type: string
+                                format:
+                                  type: string
+                x-examples:
+                  Example 1:
+                    vp_token: eyJhb...YMetA
+                    presentation_submission:
+                      definition_id: example_jwt_vc
+                      id: example_jwt_vc_presentation_submission
+                      descriptor_map:
+                        - id: id_credential
+                          path: $
+                          format: jwt_vp
+                          path_nested:
+                            path: '$.vp.verifiableCredential[0]'
+                            format: jwt_vc
+              examples:
+                Example 1:
+                  value:
+                    vp_token: eyJhb...YMetA
+                    presentation_submission:
+                      definition_id: example_jwt_vc
+                      id: example_jwt_vc_presentation_submission
+                      descriptor_map:
+                        - id: id_credential
+                          path: $
+                          format: jwt_vp
+                          path_nested:
+                            path: '$.vp.verifiableCredential[0]'
+                            format: jwt_vc
+      operationId: get-verify-authorize
+      x-stoplight:
+        id: ynpvf9plqetuw
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: presentation_definition
+          description: "A string containing a Presentation Definition JSON object. This parameter MUST be present when presentation_definition_uri parameter, or a\_scope\_value representing a Presentation Definition is not present."
+        - schema:
+            type: string
+          in: query
+          name: presentation_definition_uri
+          description: "A string containing an HTTPS URL pointing to a resource where a Presentation Definition JSON object can be retrieved. This parameter MUST be present when presentation_definition\_parameter, or a\_scope\_value representing a Presentation Definition is not present."
+        - schema:
+            type: string
+          in: query
+  /deferred_credential:
+    post:
+      summary: Deferred Credential
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    transaction_id: 8xLOxBtZp8
+                    c_nonce: wlbQc6pCJp
+                    c_nonce_expires_in: 86400
+                properties:
+                  credential:
+                    type: string
+                    x-stoplight:
+                      id: ohda2qmfx64zq
+                    description: 'Contains issued Credential. It MUST be present when transaction_id is not returned. It MAY be a string or an object, depending on the Credential format.'
+                  transaction_id:
+                    type: string
+                    description: |-
+                      String identifying a Deferred Issuance transaction. This claim is contained in the response if the Credential Issuer was unable to immediately issue the Credential. The value is subsequently used to obtain the respective Credential with the Deferred Credential Endpoint. 
+
+                      It MUST be present when the credential parameter is not returned. 
+
+                      It MUST be invalidated after the Credential for which it was meant has been obtained by the Wallet.
+                  c_nonce:
+                    type: string
+                    description: 'String containing a nonce to be used to create a proof of possession of key material when requesting a Credential. When received, the Wallet MUST use this nonce value for its subsequent Credential Requests until the Credential Issuer provides a fresh nonce.'
+                  c_nonce_expires_in:
+                    type: integer
+                    description: Number denoting the lifetime in seconds of the `c_nonce`.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                x-examples:
+                  Example 1:
+                    error: invalid_transaction_id
+              examples:
+                Error Response:
+                  value:
+                    error: invalid_transaction_id
+      operationId: deferred-credential
+      x-stoplight:
+        id: upbqrosjr64qi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - transaction_id
+              properties:
+                transaction_id:
+                  type: string
+                  x-stoplight:
+                    id: kr44wilr4n8g2
+                  description: String identifying a Deferred Issuance transaction.
+            examples:
+              Example 1:
+                value:
+                  transaction_id: 8xLOxBtZp8
+      description: |-
+        This endpoint is used to issue a Credential previously requested at the Credential Endpoint in cases where the Credential Issuer was not able to immediately issue this Credential.
+
+        The Wallet must present to the Deferred Endpoint an Access Token that is valid for the issuance of the Credential previously requested at the Credential Endpoint.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: BEARER Token
+          required: true
+  /batch_credential:
+    post:
+      summary: Batch Credential Endpoint
+      tags: []
+      responses:
+        '200':
+          description: |
+            OK
+
+            A successful Batch Credential Response MUST contain all the requested Credentials. The Batch Credential Response MUST be sent as a JSON object using the application/json media type.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    credential_responses:
+                      - transaction_id: 8xLOxBtZp8
+                      - credential: YXNkZnNhZGZkamZqZGFza23....29tZTIzMjMyMzIzMjMy
+                    c_nonce: fGFF7UkhLa
+                    c_nonce_expires_in: 86400
+                properties:
+                  credential_responses:
+                    type: array
+                    description: 'Array that contains Credential Response objects as defined in [Credential Endpoint](), and/or Deferred Credential Response objects as defined in [Deferred Credentila Endpoint](). Every entry of the array corresponds to the Credential Request object at the same array index in the `credential_requests` parameter of the Batch Credential Request.'
+                    items:
+                      type: object
+                      properties:
+                        transaction_id:
+                          type: string
+                        credential:
+                          type: string
+                  c_nonce:
+                    type: string
+                    description: 'String containing a nonce to be used to create a proof of possession of key material when requesting a Credential. When received, the Wallet MUST use this nonce value for its subsequent Credential Requests until the Credential Issuer provides a fresh nonce.'
+                  c_nonce_expires_in:
+                    type: integer
+                    description: Number denoting the lifetime in seconds of the c_nonce.
+              examples:
+                Immediate Issuance:
+                  value:
+                    credential_responses:
+                      - credential: eyJraWQiOiJkaWQ6ZXhhbXBsZTpl...C_aZKPxgihac0aW9EkL1nOzM
+                      - credential: YXNkZnNhZGZkamZqZGFza23....29tZTIzMjMyMzIzMjMy
+                    c_nonce: fGFF7UkhLa
+                    c_nonce_expires_in: 86400
+                Deferred & Immediate Issuance:
+                  value:
+                    credential_responses:
+                      - transaction_id: 8xLOxBtZp8
+                      - credential: YXNkZnNhZGZkamZqZGFza23....29tZTIzMjMyMzIzMjMy
+                    c_nonce: fGFF7UkhLa
+                    c_nonce_expires_in: 86400
+      operationId: post-batch_credential
+      x-stoplight:
+        id: an7bxdzycm3v6
+      description: |-
+        The Batch Credential Endpoint issues multiple Credentials in one Batch Credential Response as approved by the End-User upon presentation of a valid Access Token representing this approval. Support for this endpoint is OPTIONAL.
+
+        Communication with the Batch Credential Endpoint MUST utilize TLS.
+
+        The Client can request issuance of multiple Credentials of certain types and formats in one Batch Credential Request. This includes Credentials of the same type and multiple formats, different types and one format, or both
+      requestBody:
+        description: The Batch Credential Endpoint allows a Client to send multiple Credential Request objects to request the issuance of multiple Credentials at once. A Batch Credential Request MUST be sent as a JSON object using the application/json media type.
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - credential_requests
+              properties:
+                credential_requests:
+                  type: array
+                  x-stoplight:
+                    id: 35pl458vbyrip
+                  description: Array that contains Credential Request objects.
+                  items:
+                    $ref: '#/components/schemas/Credential-Request'
+                    x-stoplight:
+                      id: 3xkqf7u511icy
+  /notification:
+    post:
+      summary: Notification Endpoint
+      tags: []
+      responses:
+        '204':
+          description: |-
+            No Content
+
+            When the Credential Issuer has successfully received the Notification Request from the Wallet, it MUST respond with an HTTP status code in the 2xx range. Use of the HTTP status code 204 (No Content) is RECOMMENDED.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    error: invalid_notification_id
+                required:
+                  - error
+                properties:
+                  error:
+                    description: |-
+                      The value of the error parameter SHOULD be one of the following ASCII error codes:
+                      * `invalid_notification_id`: The notification_id in the Notification Request was invalid.
+                      * `invalid_notification_request`: The Notification Request is missing a required parameter, includes an unsupported parameter or parameter value, repeats the same parameter, or is otherwise malformed.
+                    enum:
+                      - invalid_notification_id
+                      - invalid_notification_request
+              examples:
+                Invalid Notification ID:
+                  value:
+                    error: invalid_notification_id
+        2XX:
+          description: |-
+            Success
+
+            When the Credential Issuer has successfully received the Notification Request from the Wallet, it MUST respond with an HTTP status code in the 2xx range. Use of the HTTP status code 204 (No Content) is RECOMMENDED.
+      operationId: post-notification
+      x-stoplight:
+        id: ym9enicmzfmr8
+      requestBody:
+        description: 'The Wallet sends an HTTP POST request to the Notification Endpoint with the following parameters in the entity-body and using the application/json media type. If the Wallet supports the Notification Endpoint, the Wallet MAY send one or more Notification Requests per Credential issued.'
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  notification_id: 3fwe98js
+                  event: credential_failure
+                  event_description: Could not store the Credential. Out of storage.
+              required:
+                - notification_id
+                - event
+              properties:
+                notification_id:
+                  type: string
+                  description: String received in the Credential Response or the Batch Credential Response.
+                event:
+                  description: |-
+                    Type of the notification event. It MUST be a case sensitive string whose value is either `credential_accepted`, `credential_failure`, or `credential_deleted`. 
+
+                    * `credential_accepted` is to be used when the Credential was successfully stored in the Wallet, with or without user action. 
+                    * `credential_deleted` is to be used when the unsuccessful Credential issuance was caused by a user action. 
+                    * In all other unsuccessful cases, `credential_failure` is to be used.
+                  enum:
+                    - credential_accepted
+                    - credential_failure
+                    - credential_deleted
+                event_description:
+                  type: string
+                  description: |
+                    Human-readable ASCII text providing additional information, used to assist the Credential Issuer developer in understanding the event that occurred. Values for the event_description parameter MUST NOT include characters outside the set %x20-21 / %x23-5B / %x5D-7E.
+      description: |-
+        This endpoint is used by the Wallet to notify the Credential Issuer of certain events for issued Credentials. These events enable the Credential Issuer to take subsequent actions after issuance. The Credential Issuer needs to return one or more `notification_id` parameters in the Credential Response or the Batch Credential Response for the Wallet to be able to use this Endpoint. Support for this endpoint is OPTIONAL. The Issuer cannot assume that a notification will be sent for every issued credential since the use of this Endpoint is not mandatory for the Wallet.
+
+        A Credential Issuer that requires a request to the Notification Endpoint MUST ensure the Access Token issued by the Authorization Server is valid at the Notification Endpoint.
+
+        The notification from the Wallet is idempotent. When the Credential Issuer receives multiple identical calls from the Wallet for the same notification_id, it returns success. Due to the network errors, there are no guarantees that a Credential Issuer will receive a notification within a certain time period or at all.
+
+        Communication with the Notification Endpoint MUST utilize TLS.
 components:
-  schemas: {}
+  schemas:
+    Authorization-Details:
+      type: array
+      x-examples:
+        Example 1:
+          - type: openid_credential
+            format: vc+sd-jwt
+            vct: SD_JWT_VC_example_in_OpenID4VCI
+      title: Authorization Details
+      examples:
+        - - type: openid_credential
+            credential_configuration_id: UniversityDegreeCredential
+          - type: openid_credential
+            credential_configuration_id: org.iso.18013.5.1.mDL
+        - - type: openid_credential
+            locations:
+              - 'https://credential-issuer.example.com'
+            credential_configuration_id: UniversityDegreeCredential
+        - - type: openid_credential
+            format: vc+sd-jwt
+            vct: SD_JWT_VC_example_in_OpenID4VCI
+        - - type: openid_credential
+            credential_configuration_id: UniversityDegreeCredential
+      description: This is the non-normative representation of `authorization_details` request parameter used in authorization endpoint. The request parameter MUST be used to convey the details about the Credentials the Wallet wants to obtain when sent from the issuer to wallet.
+      items:
+        type: object
+        required:
+          - type
+        properties:
+          type:
+            description: A string that determines the authorization details type. It should be set to `openid_credential` for this specification.
+            enum:
+              - openid_credential
+          credential_configuration_id:
+            type: string
+            x-stoplight:
+              id: q6tyde5sj373e
+            description: 'This is REQUIRED when `format` parameter is not present. This is a string specifying a unique identifier of the Credential being described in the `credential_configurations_supported` map in the Credential Issuer Metadata. The referenced object in the `credential_configurations_supported` map conveys the details, such as the format, for issuance of the requested Credential. It MUST NOT be present if `format` parameter is present.'
+          format:
+            type: string
+            description: |
+              This is REQUIRED when `credential_configuration_id` parameter is not present. This is a string identifying the format of the Credential the Wallet needs. This Credential format identifier determines further claims in the authorization details object needed to identify the Credential type in the requested format. It MUST NOT be present if `credential_configuration_id` parameter is present.
+          vct:
+            type: string
+            description: 'String designating the type of a Credential, as defined in [I-D.ietf-oauth-sd-jwt-vc](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01).'
+          locations:
+            type: array
+            x-stoplight:
+              id: frqol3jf0gcjn
+            description: An array of strings representing the location of the Credential Issuer's identifier. These strings are typically URIs containing the Credential Issuer's identifier value to allow the Authorization Server to differentiate Credential Issuers.
+            items:
+              x-stoplight:
+                id: y5tium4812mgr
+              type: string
+    Credential-Offer:
+      type: object
+      x-stoplight:
+        id: 8f6749899fef0
+      x-examples:
+        Example 1:
+          credential_issuer: 'https://credential-issuer.example.com'
+          credential_configuration_ids:
+            - UniversityDegreeCredential
+            - org.iso.18013.5.1.mDL
+          grants:
+            'urn:ietf:params:oauth:grant-type:pre-authorized_code':
+              pre-authorized_code: oaKazRN8I0IbtZ0C7JuMn5
+              tx_code:
+                length: 4
+                input_mode: numeric
+                description: Please provide the one-time code that was sent via e-mail
+      examples:
+        - credential_issuer: 'https://credential-issuer.example.com'
+          credential_configuration_ids:
+            - UniversityDegreeCredential
+            - org.iso.18013.5.1.mDL
+          grants:
+            'urn:ietf:params:oauth:grant-type:pre-authorized_code':
+              pre-authorized_code: oaKazRN8I0IbtZ0C7JuMn5
+              tx_code:
+                length: 4
+                input_mode: numeric
+                description: Please provide the one-time code that was sent via e-mail
+      title: Credential Offer
+      description: |-
+        The Credential Issuer sends Credential Offer using an HTTP GET request or an HTTP redirect to the Wallet's [Credential Offer Endpoint](wallet-bb.yaml/paths/~1credential_offer/get).
+
+        The Credential Offer object, which is a JSON-encoded object with the Credential Offer parameters, can be sent by value or by reference.
+
+        The Credential Offer contains a single URI query parameter, either `credential_offer` or `credential_offer_uri`:
+
+        * `credential_offer`: Object with the Credential Offer parameters. This MUST NOT be present when the `credential_offer_uri` parameter is present.
+        * `credential_offer_uri`: String that is a URL using the https scheme referencing a resource containing a JSON object with the Credential Offer parameters. This MUST NOT be present when the `credential_offer` parameter is present.
+
+        During implementation, the Credential Issuer MAY render a QR code containing the Credential Offer that can be scanned by the End-User using a Wallet, or a link that the End-User can click.
+
+        Here the parameters for the JSON-encoded Credential Offer object are defined.
+      x-internal: false
+      required:
+        - credential_issuer
+        - credential_configuration_ids
+      properties:
+        credential_issuer:
+          type: string
+          description: |-
+            The URL of the Credential Issuer, from which the Wallet is requested to obtain one or more Credentials. The Wallet uses it to obtain the Credential Issuer's Metadata.
+
+            Here, the Credential Issuer is identified by a case sensitive URL using the HTTPS scheme that contains scheme, host and, optionally, port number and path components, but no query or fragment components.
+        credential_configuration_ids:
+          type: array
+          description: |
+            Array of unique strings that each identify one of the keys in the name/value pairs stored in the `credential_configurations_supported` Credential Issuer metadata. The Wallet uses these string values to obtain the respective object that contains information about the Credential being offered. For example, these string values can be used to obtain scope values to be used in the Authorization Request.
+          items:
+            type: string
+        grants:
+          type: object
+          description: 'Object indicating to the Wallet the Grant Types the Credential Issuer''s Authorization Server is prepared to process for this Credential Offer. Every grant is represented by a name/value pair. The name is the Grant Type identifier; the value is an object that contains parameters either determining the way the Wallet MUST use the particular grant and/or parameters the Wallet MUST send with the respective request(s). If grants is not present or is empty, the Wallet MUST determine the Grant Types the Credential Issuer''s Authorization Server supports using the respective metadata. When multiple grants are present, it is at the Wallet''s discretion which one to use.'
+          properties:
+            'urn:ietf:params:oauth:grant-type:pre-authorized_code':
+              type: object
+              description: GrantType for Pre-authorize Code Flow.
+              required:
+                - pre-authorized_code
+              properties:
+                pre-authorized_code:
+                  type: string
+                  description: 'The code representing the Credential Issuer''s authorization for the Wallet to obtain Credentials of a certain type. This code MUST be short lived and single use. If the Wallet decides to use the Pre-Authorized Code Flow, this parameter value MUST be included in the subsequent Token Request with the Pre-Authorized Code Flow.'
+                tx_code:
+                  type: object
+                  description: 'Object specifying whether the Authorization Server expects presentation of a Transaction Code by the End-User along with the Token Request in a Pre-Authorized Code Flow. If the Authorization Server does not expect a Transaction Code, this object is absent; this is the default. The Transaction Code is intended to bind the Pre-Authorized Code to a certain transaction to prevent replay of this code by an attacker that, for example, scanned the QR code while standing behind the legitimate End-User. It is RECOMMENDED to send the Transaction Code via a separate channel. If the Wallet decides to use the Pre-Authorized Code Flow, the Transaction Code value MUST be sent in the `tx_code` parameter with the respective Token Request. If no length or description is given, this object may be empty, indicating that a Transaction Code is required.'
+                  properties:
+                    length:
+                      type: integer
+                      description: Integer specifying the length of the Transaction Code. This helps the Wallet to render the input screen and improve the user experience.
+                    input_mode:
+                      type: string
+                      description: String specifying the input character set. Possible values are numeric (only digits) and text (any characters). The default is numeric.
+                    description:
+                      type: string
+                      description: 'String containing guidance for the Holder of the Wallet on how to obtain the Transaction Code, e.g., describing over which communication channel it is delivered.'
+            authorization_code:
+              type: object
+              x-stoplight:
+                id: joffkv965z1nr
+              description: GrantType for Authorization Code Flow.
+              properties:
+                issuer_state:
+                  type: string
+                  x-stoplight:
+                    id: r1bzu51qk46b2
+                  description: 'String value created by the Credential Issuer and opaque to the Wallet that is used to bind the subsequent Authorization Request with the Credential Issuer to a context set up during previous steps. If the Wallet decides to use the Authorization Code Flow and received a value for this parameter, it MUST include it in the subsequent Authorization Request to the Credential Issuer as the `issuer_state` parameter value.'
+                authorization_server:
+                  type: string
+                  x-stoplight:
+                    id: bj58gzr2xjjnz
+                  description: String that the Wallet can use to identify the Authorization Server to use with this grant type when authorization_servers parameter in the Credential Issuer metadata has multiple entries. It MUST NOT be used otherwise. The value of this parameter MUST match with one of the values in the `authorization_servers` array obtained from the Credential Issuer metadata.
+    Credential-Metadata:
+      type: object
+      x-stoplight:
+        id: 7173464754cda
+      x-examples:
+        Example 1:
+          format: jwt_vc_json
+          scope: UniversityDegree
+          cryptographic_binding_methods_supported:
+            - 'did:example'
+          credential_signing_alg_values_supported:
+            - ES256
+          credential_definition:
+            type:
+              - VerifiableCredential
+              - UniversityDegreeCredential
+            credentialSubject:
+              given_name:
+                display:
+                  - name: Given Name
+                    locale: en-US
+              family_name:
+                display:
+                  - name: Surname
+                    locale: en-US
+              degree: {}
+              gpa:
+                display:
+                  - name: GPA
+          proof_types_supported:
+            jwt:
+              proof_signing_alg_values_supported:
+                - ES256
+          display:
+            - name: University Credential
+              locale: en-US
+              logo:
+                url: 'https://university.example.edu/public/logo.png'
+                alt_text: a square logo of a university
+              background_color: '#12107c'
+              text_color: '#FFFFFF'
+      title: Credential Metadata
+      required:
+        - credential_definition
+      properties:
+        format:
+          type: string
+          description: 'A JSON string identifying the format of this Credential, i.e., `jwt_vc_json` or `ldp_vc`. Depending on the format value, the object contains further elements defining the type and (optionally) particular claims the Credential MAY contain and information about how to display the Credential.'
+        scope:
+          type: string
+          description: 'A JSON string identifying the scope value that this Credential Issuer supports for this particular Credential. The value can be the same across multiple `credential_configurations_supported` objects. The Authorization Server MUST be able to uniquely identify the Credential Issuer based on the scope value. The Wallet can use this value in the [Authorization Request](wallet-bb.yaml/paths/~1authorize/get). Scope values in this Credential Issuer metadata MAY duplicate those in the `scopes_supported` parameter of the Authorization Server.'
+        cryptographic_binding_methods_supported:
+          type: array
+          description: 'Array of case sensitive strings that identify the representation of the cryptographic key material that the issued Credential is bound to. Support for keys in JWK format [RFC7517](https://www.rfc-editor.org/rfc/rfc7517.html) is indicated by the value `jwk`. Support for keys expressed as a COSE Key object [RFC8152](https://www.rfc-editor.org/rfc/rfc8152.html) (for example, used in [ISO.18013-5](https://www.iso.org/standard/69084.html)) is indicated by the value `cose_key`. When the Cryptographic Binding Method is a DID, valid values are a did: prefix followed by a method-name using a syntax as defined in Section 3.1 of [DID-Core](https://www.w3.org/TR/did-core/), but without a :and method-specific-id. For example, support for the DID method with a method-name "example" would be represented by did:example.'
+          items:
+            type: string
+        credential_signing_alg_values_supported:
+          type: array
+          description: Array of case sensitive strings that identify the algorithms that the Issuer uses to sign the issued Credential.
+          items:
+            type: string
+        proof_types_supported:
+          type: object
+          description: |-
+            Object that describes specifics of the key proof(s) that the Credential Issuer supports. This object contains a list of name/value pairs, where each name is a unique identifier of the supported proof type(s). A few of the valid values are defined below, while other values MAY be used. This identifier is also used by the Wallet in the [Credential Request](wallet-bb.yaml/paths/~1credential/post).
+
+            Below are a few `proof_type` supported for the `proof_type` property:
+            * `jwt`: A JWT [RFC7519](https://www.rfc-editor.org/rfc/rfc7519.html) is used as proof of possession. When proof_type is jwt, a proof object MUST include a jwt claim containing a JWT.
+            * `cwt`: A CWT [RFC8392](https://www.rfc-editor.org/rfc/rfc8392.html) is used as proof of possession. When proof_type is cwt, a proof object MUST include a cwt claim containing a CWT.
+            * `ldp_vp`: A W3C Verifiable Presentation object signed using the Data Integrity Proof as defined in [VC_DATA_2.0](https://www.w3.org/TR/vc-data-model-2.0/) or [VC_DATA](https://www.w3.org/TR/vc-data-model/), and where the proof of possession MUST be done in accordance with [VC_Data_Integrity](https://w3c.github.io/vc-data-integrity/). When `proof_type` is set to `ldp_vp`, the proof object MUST include a `ldp_vp` claim containing a [W3C Verifiable Presentation](https://www.w3.org/TR/vc-data-model-2.0/#presentations-0).
+          properties:
+            jwt:
+              type: object
+              required:
+                - proof_signing_alg_values_supported
+              properties:
+                proof_signing_alg_values_supported:
+                  type: array
+                  description: Array of case sensitive strings that identify the algorithms that the Issuer supports for this proof type. The Wallet uses one of them to sign the proof. Algorithm names used are determined by the key proof types.
+                  items:
+                    type: string
+        display:
+          type: array
+          description: |-
+            Array of objects, where each object contains the display properties of the supported Credential for a certain language. 
+
+            Below is a non-exhaustive list of parameters that MAY be included.
+          items:
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+                description: String value of a display name for the Credential.
+              locale:
+                type: string
+                description: 'String value that identifies the language of this object represented as a language tag taken from values defined in BCP47 [RFC5646](https://www.rfc-editor.org/rfc/rfc5646.html). Multiple display objects MAY be included for separate languages. There MUST be only one object for each language identifier.'
+              logo:
+                type: object
+                description: Object with information about the logo of the Credential.
+                required:
+                  - url
+                properties:
+                  url:
+                    type: string
+                    description: 'String value that contains a URI where the Wallet can obtain the logo of the Credential from the Credential Issuer. The Wallet needs to determine the scheme, since the URI value could use the https: scheme, the data: scheme, etc.'
+                  alt_text:
+                    type: string
+                    description: String value of the alternative text for the logo image.
+              description:
+                type: string
+                x-stoplight:
+                  id: 3v3gjd3o19igg
+                description: |
+                  String value of a description of the Credential.
+              background_color:
+                type: string
+                description: 'String value of a background color of the Credential represented as numerical color values defined in CSS Color Module Level 37 [CSS-Color](https://www.w3.org/TR/css-color-3/).'
+              background_image:
+                type: object
+                x-stoplight:
+                  id: 3areaaojiprb0
+                description: Object with information about the background image of the Credential.
+                required:
+                  - uri
+                properties:
+                  uri:
+                    type: string
+                    x-stoplight:
+                      id: rjt8o4xrjatnw
+                    description: 'String value that contains a URI where the Wallet can obtain the background image of the Credential from the Credential Issuer. The Wallet needs to determine the scheme, since the URI value could use the `https:` scheme, the `data:` scheme, etc.'
+              text_color:
+                type: string
+                description: 'String value of a text color of the Credential represented as numerical color values defined in CSS Color Module Level 37 [CSS-Color](https://www.w3.org/TR/css-color-3/).'
+        credential_definition:
+          type: object
+          description: Object containing the detailed description of the Credential type.
+          required:
+            - type
+          properties:
+            type:
+              type: array
+              description: 'Array designating the types a certain Credential type supports, according to [VC_DATA](https://www.w3.org/TR/vc-data-model/).'
+              items:
+                type: string
+            credentialSubject:
+              type: object
+              description: 'Object containing a list of name/value pairs, where each name identifies a claim offered in the Credential. The value can be another such object (nested data structures), or an array of such objects. To express the specifics about the claim, the most deeply nested value MAY be an object that includes the following parameters defined by this specification.'
+              properties:
+                attribute_name:
+                  type: object
+                  x-stoplight:
+                    id: 2bb4z4xj641mj
+                  properties:
+                    mandatory:
+                      type: boolean
+                      x-stoplight:
+                        id: z5kdak0gwen1i
+                      description: 'Boolean which, when set to `true`, indicates that the Credential Issuer will always include this claim in the issued Credential. If set to `false`, the claim is not included in the issued Credential if the wallet did not request the inclusion of the claim, and/or if the Credential Issuer chose to not include the claim. If the mandatory parameter is omitted, the default value is `false`.'
+                    value_type:
+                      type: string
+                      x-stoplight:
+                        id: 2g12zyjgrusxf
+                      description: 'String value determining the type of value of the claim. Valid values defined by this specification are string, number, and image media types such as image/jpeg as defined in [IANA media type registry for images](https://www.iana.org/assignments/media-types/media-types.xhtml#image). Other values MAY also be used.'
+                    display:
+                      type: array
+                      description: 'Array of objects, where each object contains display properties of a certain claim in the Credential for a certain language.'
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: String value of a display name for the claim.
+                          locale:
+                            type: string
+                            description: 'String value that identifies language of this object represented as language tag values defined in BCP47 [RFC5646](https://www.rfc-editor.org/rfc/rfc5646.html). There MUST be only one object for each language identifier.'
+      description: |-
+        The `credential_configurations_supported` object in the response of [Credential Issuer Metadata Endpoint] describes the specifics of the Credential that the Credential Issuer supports issuance of. 
+
+        This object contains a list of name/value pairs, where each name is a unique identifier of the supported Credential being described. 
+
+        This identifier is used in the [Credential Offer](wallet-bb.yaml/components/schemas/Credential-Offer) to communicate to the Wallet which Credential is being offered while the value is an object that contains metadata about a specific Credential.
+
+        Here, the parameters of the credential metadata object are defined.
+    Credential-Request:
+      type: object
+      x-examples:
+        Example 1:
+          format: mso_mdoc
+          doc_type: org.iso.18013.5.1.mDL
+          proof:
+            proof_type: cwt
+            cwt: ...
+      title: Credential Request
+      properties:
+        format:
+          type: string
+          description: |
+            REQUIRED when the `credential_identifiers` parameter was not returned from the Token Response. It MUST NOT be used otherwise. It is a String that determines the format of the Credential to be issued, which may determine the type and any other information related to the Credential to be issued. When this parameter is used, the `credential_identifier` Credential Request parameter MUST NOT be present.
+        proof:
+          type: object
+          description: 'Object containing the proof of possession of the cryptographic key material the issued Credential would be bound to. The proof object is REQUIRED if the `proof_types_supported` parameter is non-empty and present in the `credential_configurations_supported` parameter of the Issuer metadata for the requested Credential. '
+          required:
+            - proof_type
+          properties:
+            proof_type:
+              type: string
+              description: |-
+                String denoting the key proof type. The value of this parameter determines other parameters in the key proof object and its respective processing rules.
+
+                Below are a few `proof_type` supported for the `proof_type` property:
+                * `jwt`: A JWT [RFC7519](https://www.rfc-editor.org/rfc/rfc7519.html) is used as proof of possession. When `proof_type` is `jwt`, a proof object MUST include a `jwt` claim containing a JWT.
+                * `cwt`: A CWT [RFC8392](https://www.rfc-editor.org/rfc/rfc8392.html) is used as proof of possession. When `proof_type` is `cwt`, a proof object MUST include a `cwt` claim containing a CWT.
+                * `ldp_vp`: A W3C Verifiable Presentation object signed using the Data Integrity Proof as defined in [VC_DATA_2.0](https://www.w3.org/TR/vc-data-model-2.0/) or [VC_DATA](https://www.w3.org/TR/vc-data-model/), and where the proof of possession MUST be done in accordance with [VC_Data_Integrity](https://w3c.github.io/vc-data-integrity/). When `proof_type` is set to `ldp_vp`, the proof object MUST include a `ldp_vp` claim containing a [W3C Verifiable Presentation](https://www.w3.org/TR/vc-data-model-2.0/#presentations-0).
+            cwt:
+              type: string
+              description: 'A CWT [RFC8392](https://www.rfc-editor.org/rfc/rfc8392.html) is used as proof of possession. When `proof_type` is `cwt`, a proof object MUST include a `cwt` claim containing a CWT.'
+            jwt:
+              type: string
+              x-stoplight:
+                id: ehka82b8zz8zv
+              description: 'A JWT [RFC7519](https://www.rfc-editor.org/rfc/rfc7519.html) is used as proof of possession. When proof_type is `jwt`, a proof object MUST include a jwt claim containing a JWT.'
+            ldp_vp:
+              type: string
+              x-stoplight:
+                id: xg273hahbbd9c
+              description: 'A W3C Verifiable Presentation object signed using the Data Integrity Proof as defined in [VC_DATA_2.0](https://www.w3.org/TR/vc-data-model-2.0/) or [VC_DATA](https://www.w3.org/TR/vc-data-model/), and where the proof of possession MUST be done in accordance with [VC_Data_Integrity](https://w3c.github.io/vc-data-integrity/). When `proof_type` is set to `ldp_vp`, the proof object MUST include a `ldp_vp` claim containing a [W3C Verifiable Presentation](https://www.w3.org/TR/vc-data-model-2.0/#presentations-0).'
+        credential_identifier:
+          type: string
+          x-stoplight:
+            id: jrse4ftxgiv11
+          description: REQUIRED when `credential_identifiers` parameter was returned from the Token Response. It MUST NOT be used otherwise. It is a String that identifies a Credential that is being requested to be issued.
+        doc_type:
+          type: string
+          description: |-
+            This is a string identifying the Credential type, as defined in [ISO.18013-5](https://www.iso.org/standard/69084.html).
+
+            It is required when the  credential format identifier is set as `mso_mdoc`.   
+        credential_response_encryption:
+          type: object
+          x-stoplight:
+            id: a3yvo36k16khy
+          description: 'Object containing information for encrypting the Credential Response. If this request element is not present, the corresponding credential response returned is not encrypted.'
+          required:
+            - jwk
+            - alg
+            - enc
+          properties:
+            jwk:
+              type: string
+              x-stoplight:
+                id: 1ykwvbzcocdns
+              description: Object containing a single public key as a JWK used for encrypting the Credential Response.
+            alg:
+              type: string
+              x-stoplight:
+                id: minfc9vkxk5ob
+              description: JWE alg algorithm for encrypting Credential Responses.
+            enc:
+              type: string
+              x-stoplight:
+                id: exuknqqtn3afc
+              description: JWE enc algorithm for encrypting Credential Responses.
+        doctype:
+          type: string
+          x-stoplight:
+            id: sylqc7h3pc19s
+          description: |-
+            This is a string identifying the Credential type, as defined in [ISO.18013-5](https://www.iso.org/standard/69084.html).
+
+            It is required when the  credential format identifier is set as `mso_mdoc`.
+        vct:
+          type: string
+          x-stoplight:
+            id: 7idolaf9x3m51
+          description: 'This is required when the format parameter is present in the Credential Meta Information. It is a string designating the type of a Credential, as defined in [I-D.ietf-oauth-sd-jwt-vc](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01). This claim contains the type value of the Credential that the Wallet requests the Credential Issuer to issue.'
+        claims:
+          type: object
+          x-stoplight:
+            id: 0j01vgcw1hw0v
+          description: 'Object containing a list of name/value pairs, where the name is a certain namespace as defined in [ISO.18013-5](https://www.iso.org/standard/69084.html) (or any profile of it), and the value is an object. This object also contains a list of name/value pairs, where the name is a claim name value that is defined in the respective namespace and is offered in the Credential.'
+          properties:
+            mandatory:
+              type: boolean
+              x-stoplight:
+                id: xwq513mi38dl6
+              description: 'Boolean which, when set to `true`, indicates that the Credential Issuer will always include this claim in the issued Credential. If set to `false`, the claim is not included in the issued Credential if the wallet did not request the inclusion of the claim, and/or if the Credential Issuer chose to not include the claim. If the `mandatory` parameter is omitted, the default value is `false`.'
+            value_type:
+              type: string
+              x-stoplight:
+                id: fllhy7rl7vuq0
+              description: |
+                String value determining the type of value of the claim. Valid values defined by this specification are string, number, and image media types such as image/jpeg as defined in IANA media type registry for images (https://www.iana.org/assignments/media-types/media-types.xhtml#image). Other values MAY also be used.
+            display:
+              type: array
+              x-stoplight:
+                id: 22ev3prcqyxul
+              description: 'Array of objects, where each object contains display properties of a certain claim in the Credential for a certain language. '
+              items:
+                x-stoplight:
+                  id: ul2ieo55ycnlq
+                type: object
+                properties:
+                  name:
+                    type: string
+                    x-stoplight:
+                      id: tvcah1lkpi8s5
+                    description: String value of a display name for the claim.
+                  locale:
+                    type: string
+                    x-stoplight:
+                      id: qcg6boxn87jh6
+                    description: 'String value that identifies language of this object represented as language tag values defined in BCP47 [RFC5646](https://www.rfc-editor.org/rfc/rfc5646.html). There MUST be only one object for each language identifier.'

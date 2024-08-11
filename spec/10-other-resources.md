@@ -1,14 +1,15 @@
+---
+description: >-
+  This section links to any external documents that may be relevant, such as
+  standards documents or other descriptions of this Building Block that may be
+  useful.
+---
+
 # 10 Other Resources
-
-{% hint style="success" %}
-This section can be used to link to any external documents that may be relevant, such as standards documents or other descriptions of this building block that may be useful
-
-This section should contain at minimum, links to the Cross-BB Workflows that have been defined for this BB, the Key Decision Log (Confluence), and Future Considerations (Confluence)
-{% endhint %}
 
 ## 10.1 Reference Specifications
 
-## 10.1.1 OpenID for Verifiable Credentials suite
+## 10.1.1 OpenID for Verifiable Credentials Suite
 
 1. Issuance\
    [https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0.html](https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0.html)
@@ -42,4 +43,6 @@ This section should contain at minimum, links to the Cross-BB Workflows that hav
 * Delegation of representing the credentials
 * Low tech wallets
 * The format of Credential Discovery
+
+## 10.3. Future Scope
 

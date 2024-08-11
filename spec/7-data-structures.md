@@ -1,30 +1,17 @@
+---
+description: >-
+  This section provides information on the core data structures/data models that
+  are used by this Building Block.
+---
+
 # 7 Data Structures
-
-{% hint style="success" %}
-This section provides information on the core data structures/data models that a Building Block uses. These data structures describe information that is exchanged between building blocks - they do not dictate internal data structures for a particular implementation. These data structures should also describe the _minimum_ set of information that should be passed in an API call. The data structures can be extended for particular use cases.
-
-Data Structures should consist of two sections. The first section should provide an overall resource model that shows the various data structures that are used by the Building Block and how these structures are interrelated.
-
-The second section provides a more detailed breakdown of each data model. For each data model, the following information should be provided:
-
-* Name
-* Description
-* Fields - the various fields in this data structure. Each field definition should contain the following:
-  * Name
-  * Type (string, Boolean, number, date, etc)
-  * Description
-  * You can also reference any standards that must be adhered to (ie. UTC standard for date/times)
-  * Comments (any notes about this field)
-
-Note that the services APIs will provide complete data structure definitions.
-{% endhint %}
 
 ## 7.1. Credential Formats
 
 The specifications should support credentials of any format, including, but not limited to,&#x20;
 
 * SD-JWT VC (Selective Disclosure JWT Verifiable Credentials) \[[I-D.ietf-oauth-sd-jwt-vc](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01)],&#x20;
-* mDL (ISO mDoc Mobile Driving License) \[[ISO.18013-5](https://www.iso.org/standard/69084.html)], and&#x20;
+* mDL (ISO mDoc Mobile Driving License) \[ISO 23220-x], and&#x20;
 * VC-DM (W3C Verifiable Credential Data Model) \[[VC\_DATA](https://www.w3.org/TR/vc-data-model-2.0/)].
 
 ### 7.1.1. W3C Verifiable Credential Data Model

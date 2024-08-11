@@ -1,12 +1,8 @@
+---
+description: Terminology used within this specification.
+---
+
 # 3 Terminology
-
-{% hint style="success" %}
-Terminology/glossary used within the specification. The terms can be laid out in a table format
-{% endhint %}
-
-### **Authenticator**
-
-An authenticator is a device, application, or system that verifies the identity of a user, often through the use of credentials such as passwords, biometrics, or security tokens.
 
 ### **BLE (Bluetooth Low Energy)**
 
@@ -19,7 +15,7 @@ A credential is a set of one or more claims made by the same entity. It may incl
 A verifiable credential is a set of claims and metadata that are tamper-resistant and that cryptographically prove who issued it.
 
 {% hint style="info" %}
-_This definition is borrowed from the W3C Verifiable Credentials Data Model specification, but it is used more broadly, including other data models such as ISO/IEC 18013-5 mDL, SD-JWT-VC, etc._
+_This definition is borrowed from the_ [_W3C Verifiable Credentials Data Model specification_](https://www.w3.org/TR/vc-data-model-2.0/)_, but it is used more broadly, including other data models such as ISO/IEC 18013-5 mDL, SD-JWT-VC, etc._
 {% endhint %}
 
 ### **Credential Holder**
@@ -28,7 +24,13 @@ The credential holder is an entity (person, device, or system) that possesses an
 
 ### **Credential Issuer**
 
-A credential issuer is an entity responsible for creating and issuing digital credentials. This entity is typically trusted to verify and confirm the identity of the subject before issuing credentials.
+A credential issuer is an entity responsible for the lifecycle management of credentials (e.g. issuance and revocation of credentials). This entity is typically trusted to verify and confirm the identity of the subject before issuing credentials.
+
+### Credential Offer
+
+A credential offer is a formal proposal from a Credential Issuer to a digital wallet user, providing detailed information about a specific verifiable credential and inviting the user to accept and receive it.
+
+The primary purpose of a credential offer is to initiate the issuance process by providing the user with enough information to make an informed decision about whether to accept the credential. It ensures that the user is aware of what the credential represents, how it can be used, and what obligations or conditions are associated with it.
 
 ### **Credential Verifier**
 
@@ -46,6 +48,10 @@ In the context of digital credentials, a digital locker refers to a secure onlin
 
 A digital vault is a secure storage system for safeguarding digital credentials, such as usernames, passwords, cryptographic keys, and other sensitive authentication information. It employs encryption and access controls to protect credentials from unauthorized access, theft, or misuse.
 
+### Holder Binding
+
+User binding refers to the property that enables verifiers to trust that the individual presenting a credential is the same individual to whom the credential was originally issued.
+
 ### **ICAO (International Civil Aviation Organisation)**
 
 ICAO is a specialized agency of the United Nations that sets international standards for aviation, including standards for machine-readable travel documents like passports.
@@ -58,7 +64,7 @@ ISO mDL refers to a digital representation of a driver's license that conforms t
 
 A low-tech wallet refers to a physical storage device or medium that lacks sophisticated digital interfaces and advanced connectivity features. These wallets typically rely on simple mechanisms such as USB connections, embedded chips, or SIM cards for accessing and managing digital credentials.
 
-Unlike high-tech digital wallets that may incorporate biometric authentication, NFC (Near Field Communication) capabilities, or cloud-based storage, low-tech wallets offer a more straightforward and often offline approach to storing digital credentials. They prioritize simplicity and physical security over advanced digital features, providing users with a tangible means of securely storing and accessing their digital credentials without extensive reliance on complex technology.
+Unlike high-tech digital wallets that may incorporate biometric authentication, NFC (Near Field Communication) capabilities or cloud-based storage, low-tech wallets offer a more straightforward and often offline approach to storing digital credentials. They prioritize simplicity and physical security over advanced digital features, providing users with a tangible means of securely storing and accessing their digital credentials without extensive reliance on complex technology.
 
 ### **NFC (Near Field Communication)**
 
@@ -104,6 +110,10 @@ A QR code is a two-dimensional barcode that can store various types of informati
 
 Repudiation (or "plausible deniability") refers to the property that allows an entity involved in an identification transaction to plausibly deny to a third party (i.e., a party not involved in the transaction) its participation in the transaction after its completion or the provision of certain data. Although "repudiation" typically denotes a single act of dispute, it is commonly used to describe the general ability to deny transactions. Importantly, this ability to deny the transaction to third parties does not affect the reliability of the transaction for the Verifier involved.
 
+{% hint style="info" %}
+_This definition is borrowed from the_ [_eIDAS 2.0 Architecture Concepts_](https://gitlab.opencode.de/bmi/eudi-wallet/eidas-2.0-architekturkonzept/-/blob/main/architecture-proposal.md?ref\_type=heads#repudiation)_._&#x20;
+{% endhint %}
+
 ### **Selective Disclosure**
 
 Selective disclosure refers to sharing only specific information or attributes from a larger set of data or credentials, rather than revealing the entire set. It allows individuals to control and limit the information they share based on the context or requirements of a particular interaction or transaction.&#x20;
@@ -116,10 +126,6 @@ SD-JWT-based Verifiable Credential is a verifiable credential encoded using the 
 \
 For details check, the draft [SD-JWT VC spec](https://datatracker.ietf.org/doc/html/draft-terbu-oauth-sd-jwt-vc).&#x20;
 
-### **SSO (Single Sign-On)**
-
-SSO is an authentication process that allows a user to access multiple applications with a single set of login credentials, reducing the need to log in separately to each application.
-
 ### Unlinkability
 
 Unlinkability refers to the property that enables not to distinguish whether two transactions are related to the same user or not.
@@ -127,10 +133,6 @@ Unlinkability refers to the property that enables not to distinguish whether two
 ### Unobservability
 
 Unobservability refers to the property where an adversary cannot discern any useful information about a communication or transaction. This ensures that sensitive data, such as message content, sender or receiver identity, or any other relevant information, remains hidden from unauthorized parties. In this context, neither Wallet Providers nor Issuers shall be able to track where a user uses their credentials or learn details concerning the attributes provided.
-
-### User Binding
-
-User Binding refers to the property that credentials are under the sole control of the user.
 
 ### **Verifiable Credentials (VCs)**
 
