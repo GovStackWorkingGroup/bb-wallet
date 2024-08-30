@@ -14,4 +14,5 @@
 
 ## Use Cases
 
+* [Business Use Cases](use-cases/business-use-cases.md)
 * [Functional Use Cases](use-cases/functional-use-cases.md)
