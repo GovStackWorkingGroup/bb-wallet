@@ -21,21 +21,27 @@ Issuance and presentation protocols should support [unlinkability](3-terminology
 
 Below are a few scenarios for unlikability.
 
-* Any outside entity should not be able to link two transactions to the same Holder
-* A verifier should not be able to link two presentations to the same holder (unless the holder's information is provided as part of the presentation)
+* A verifier should not be able to link two presentations to the same holder (unless the holder's data is provided as part of the presentation)
 * An issuer should not be able to link two issuance transactions to the same holder (unless the holder provides information as part of the holder's authentication)
 * Two verifiers should not be able to link two presentation transactions to the same holder by sharing the received presentations
-* Two issuers should not be able to link two issuance transactions to the same holder by sharing the received information during the issuance
+* Two issuers should not be able to link two issuance transactions to the same holder by sharing the received information during the issuance (data provided for holder authentication)
 * An issuer and a verifier should not be able to link an issuance and presentations session to the same holder (unless the Holder provides sufficiently identifying information as part of their authentication to the Issuer and as part of the presented credential shared with the verifier)
 
 ### 5.1.3. Repudiation
 
 Here, [repudiation](3-terminology.md#repudiation) is the ability to deny the transaction to third parties without affecting the reliability of the transaction where the verifier was involved.
 
-* **Holder deniability**\
-  After receiving a presentation the verifier should not be able to prove to any third party that the holder had presented the credentials to the verifier for identification purposes earlier.&#x20;
-* **Deniability of Data Authenticity**\
-  The verifier should not be able to prove to any third party the authenticity of the credential and the integrity of its attributes that the verifier had previously verified.
+**Holder deniability**\
+After receiving a presentation the verifier should not be able to prove to any third party that the holder had presented the credentials to the verifier for identification purposes earlier.&#x20;
+
+{% hint style="info" %}
+**Note for Implementers**
+
+Implementation can be approached using cryptographic techniques such as HMAC (Hash-based Message Authentication Code) or ECDH (Elliptic-Curve Diffie-Hellman) key derivation.
+
+* **HMAC (Hash-based Message Authentication Code)**: A unique, temporary key for each session can be generated. By hashing the credential data with a session-specific key, the holder can deny having shared their credentials, as the verifier cannot reproduce the same key or hash for a third party without the holder’s secret.
+* **ECDH (Elliptic-Curve Diffie-Hellman) Key Derivation**: ECDH can be used to establish a shared secret between the holder and verifier for each session. The credential exchange is encrypted using this shared secret, ensuring that the verifier cannot later prove the interaction to a third party, as the shared secret is ephemeral and not stored.
+{% endhint %}
 
 ### 5.1.4. Data Minimisation
 
