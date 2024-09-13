@@ -25,7 +25,7 @@ The issuer determines the method of authentication. Issuance processes can be pe
 * The credential wallet MUST have trusted hardware providing a secure environment (tamper-proof) and storage for cryptographic assets such as keys
 
 {% hint style="info" %}
-As most Android devices don't have trusted hardware at the moment, so,  a trusted execution environment (TEE) can be used for storing cryptographic assets such as keys.
+As most Android devices don't have trusted hardware,  a trusted execution environment (TEE) can be used to store cryptographic assets such as keys.
 {% endhint %}
 
 
@@ -59,7 +59,7 @@ This requirement can be fulfilled only if the presentation is not signed but sec
 * The credential verifier SHOULD NOT be able to prove to any third party the credential's authenticity and the integrity of its attributes that the verifier had previously verified. (OPTIONAL)
 
 {% hint style="info" %}
-This requirement would require using ECDH/HAMC to cryptographically protect the credential, as this process involves a public key provided by the Verifier. This requires an active, trusted component to create the credential on demand,
+This requirement would require using ECDH/HMAC to cryptographically protect the credential, as this process involves a public key provided by the Verifier. This requires an active, trusted component to create the credential on demand,
 {% endhint %}
 
 * The credential issuer and the credential verifier should not be able to link an issuance and presentation session to the same holder (unless the Holder provides sufficiently identifying information as part of their authentication to the Issuer and as part of the presented credential shared with the verifier)

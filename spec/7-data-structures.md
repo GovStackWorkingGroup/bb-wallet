@@ -11,7 +11,7 @@ description: >-
 The specifications should support credentials of any format, including, but not limited to,&#x20;
 
 * SD-JWT VC (Selective Disclosure JWT Verifiable Credentials) \[[I-D.ietf-oauth-sd-jwt-vc](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01)],&#x20;
-* mDL (ISO mDoc Mobile Driving License) \[ISO 23220-x], and&#x20;
+* mDL (ISO mDoc Mobile Driving License) \[[ISO 18013-5](https://www.iso.org/standard/69084.html)], and&#x20;
 * VC-DM (W3C Verifiable Credential Data Model) \[[VC\_DATA](https://www.w3.org/TR/vc-data-model-2.0/)].
 
 ### 7.1.1. W3C Verifiable Credential Data Model
@@ -168,13 +168,367 @@ Every credential should provide a mechanism to share credential schema that exte
 
 The core components of a verifiable credential are,
 
-* Credential metadata
-* Credential claims
-* Credential proof
+* **Credential metadata**\
+  This includes essential information about the credential, such as its type, issuer, issuance date, expiration date, and any other attributes that describe the context and purpose of the credential.
+* **Credential claims**\
+  These are the specific pieces of information being asserted by the credential, such as the subject’s name, date of birth, or other relevant attributes. Claims are the core data that the credential represents.
+* **Credential proof**\
+  The cryptographic evidence ensures the authenticity and integrity of the credential. This component verifies that the claims within the credential are valid and that it was issued by a trusted entity.
+
+The credential schema enables flexibility by defining how additional attributes or custom claims can be structured while building on these core components.
 
 ## 7.3. Key API Definition
 
-### 7.3.1. Presentation Definition
+### 7.3.1. Credential Offer Definition
+
+The Credential Issuer sends a Credential Offer using an HTTP GET request or an HTTP redirect to the Wallet's [Credential Offer Endpoint](8-service-apis.md#id-8.1.1.-credential-offer-endpoint).
+
+The Credential Offer object, which is a JSON-encoded object with the Credential Offer parameters, can be sent by value or by reference.
+
+The Credential Offer contains a single URI query parameter, either `credential_offer` or `credential_offer_uri`:
+
+* `credential_offer`: Object with the Credential Offer parameters. This MUST NOT be present when the `credential_offer_uri` parameter is present.
+* `credential_offer_uri`: String that is a URL using the HTTPS scheme referencing a resource containing a JSON object with the Credential Offer parameters. This MUST NOT be present when the `credential_offer` parameter is present.
+
+During implementation, the Credential Issuer MAY render a QR code containing the Credential Offer that can be scanned by the End-User using a Wallet, or a link that the End-User can click.
+
+Here the parameters for the JSON-encoded Credential Offer object are defined.
+
+<details>
+
+<summary>Parametrs for the JSON-encoded Credential Offer object</summary>
+
+* **credential\_issuer**<mark style="color:red;">\*</mark>\
+  The URL of the Credential Issuer, from which the Wallet is requested to obtain one or more Credentials. The Wallet uses it to obtain the Credential Issuer's Metadata.\
+  \
+  Here, the Credential Issuer is identified by a case-sensitive URL using the HTTPS scheme that contains scheme, host, and, optionally, port number and path components, but no query or fragment components.
+
+<!---->
+
+* **credential\_configuration\_ids**<mark style="color:red;">\*</mark>\
+  An array of unique strings that each identify one of the keys in the name/value pairs stored in the `credential_configurations_supported` Credential Issuer metadata. The Wallet uses these string values to obtain the respective object that contains information about the Credential being offered. For example, these string values can be used to obtain scope values to be used in the Authorization Request.
+
+<!---->
+
+* **grants**\
+  Object indicating to the Wallet the Grant Types the Credential Issuer's Authorization Server is prepared to process for this Credential Offer. Every grant is represented by a name/value pair. The name is the Grant Type identifier; the value is an object that contains parameters either determining the way the Wallet MUST use the particular grant and/or parameters the Wallet MUST send with the respective request(s). If grants are not present or are empty, the Wallet MUST determine the Grant Types the Credential Issuer's Authorization Server supports using the respective metadata. When multiple grants are present, it is at the Wallet's discretion which one to use.
+  * **urn:ietf:params:oauth:grant-type:pre-authorized\_code** \[object]\
+    GrantType for Pre-authorize Code Flow.
+    * **pre-authorized\_code**<mark style="color:red;">\*</mark> \[string]\
+      The code representing the Credential Issuer's authorization for the Wallet to obtain Credentials of a certain type. This code MUST be short lived and single use. If the Wallet decides to use the Pre-Authorized Code Flow, this parameter value MUST be included in the subsequent Token Request with the Pre-Authorized Code Flow.
+    * **tx\_code** \[object]\
+      Object specifying whether the Authorization Server expects presentation of a Transaction Code by the End-User along with the Token Request in a Pre-Authorized Code Flow. If the Authorization Server does not expect a Transaction Code, this object is absent; this is the default. The Transaction Code is intended to bind the Pre-Authorized Code to a certain transaction to prevent replay of this code by an attacker that, for example, scanned the QR code while standing behind the legitimate end user. It is RECOMMENDED to send the Transaction Code via a separate channel. If the Wallet decides to use the Pre-Authorized Code Flow, the Transaction Code value MUST be sent in the `tx_code` parameter with the respective Token Request. If no length or description is given, this object may be empty, indicating that a Transaction Code is required.
+      * **length** \[integer]\
+        Integer specifying the length of the Transaction Code. This helps the Wallet to render the input screen and improve the user experience.
+      * **input\_mode** \[string]\
+        A string specifying the input character set. Possible values are numeric (only digits) and text (any characters). The default is numeric.
+      * **description** \[string]\
+        A string containing guidance for the Holder of the Wallet on how to obtain the Transaction Code, e.g., describing over which communication channel it is delivered.
+  * **authorization\_code** \[object]\
+    GrantType for Authorization Code Flow.
+    * **issuer\_state** \[string]\
+      String value created by the Credential Issuer and opaque to the Wallet that is used to bind the subsequent Authorization Request with the Credential Issuer to a context set up during previous steps. If the Wallet decides to use the Authorization Code Flow and receives a value for this parameter, it MUST include it in the subsequent Authorization Request to the Credential Issuer as the `issuer_state` parameter value.
+    * **authorization\_server** \[string]\
+      A string that the Wallet can use to identify the Authorization Server to use with this grant type when `authorization_servers` parameter in the Credential Issuer metadata has multiple entries. It MUST NOT be used otherwise. The value of this parameter MUST match with one of the values in the `authorization_servers` array obtained from the Credential Issuer metadata.
+
+</details>
+
+Below are a few non-normative examples of a Credential Offer Object.
+
+{% tabs %}
+{% tab title="Authorized Code Flow" %}
+```json
+{
+  "credential_issuer": "https://credential-issuer.example.com",
+  "credential_configuration_ids": [
+    "UniversityDegreeCredential"
+  ],
+  "grants": {
+    "authorization_code": {
+      "issuer_state": "eyJhbGciOiJSU0Et...FYUaBy"
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Pre-authorized Code Flow" %}
+```json
+{
+  "credential_issuer": "https://credential-issuer.example.com",
+  "credential_configuration_ids": [
+    "UniversityDegree_LDP_VC"
+  ],
+  "grants": {
+    "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+      "pre-authorized_code": "adhjhdjajkdkhjhdj",
+      "tx_code": {}
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+The above specification details are taken from [OpenID4VCI - Draft 13](https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0-ID1.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0-ID1.html#name-credential-offer).
+{% endhint %}
+
+### 7.3.2. Credential Issuer Metadata
+
+The `credential_configurations_supported` object in the response of the [Credential Issuer Metadata Endpoint](8-service-apis.md#id-8.1.2.-credential-issuer-metadata) describes the specifics of the Credential that the Credential Issuer supports the issuance of.
+
+This object contains a list of name/value pairs, where each name is a unique identifier of the supported Credential being described.
+
+This identifier is used in the Credential Offer to communicate to the Wallet which Credential is being offered while the value is an object that contains metadata about a specific Credential.
+
+Here, the parameters of the credential metadata object are defined.
+
+<details>
+
+<summary>Parameters of the credential metadata object</summary>
+
+* **format** (string)\
+  A JSON string identifying the format of this Credential, i.e., `jwt_vc_json` or `ldp_vc`. Depending on the format value, the object contains further elements defining the type and (optionally) particular claims the Credential MAY contain and information about how to display the Credential.
+
+<!---->
+
+* **scope** (string)\
+  A JSON string identifying the scope value that this Credential Issuer supports for this particular Credential. The value can be the same across multiple `credential_configurations_supported` objects. The Authorization Server MUST be able to uniquely identify the Credential Issuer based on the scope value. The Wallet can use this value in the [Authorization Request](https://ooru.stoplight.io/docs/wallet/branches/main/wallet-bb.yaml/paths/\~1authorize/get). Scope values in this Credential Issuer metadata MAY duplicate those in the `scopes_supported` parameter of the Authorization Server.
+
+<!---->
+
+* **cryptographic\_binding\_methods\_supported** (array\[string])\
+  An array of case-sensitive strings that identify the representation of the cryptographic key material that the issued Credential is bound to. Support for keys in JWK format [RFC7517](https://www.rfc-editor.org/rfc/rfc7517.html) is indicated by the value `jwk`. Support for keys expressed as a COSE Key object [RFC8152](https://www.rfc-editor.org/rfc/rfc8152.html) (for example, used in [ISO.18013-5](https://www.iso.org/standard/69084.html)) is indicated by the value `cose_key`. When the Cryptographic Binding Method is a DID, valid values are a did: prefix followed by a method-name using a syntax as defined in Section 3.1 of [DID-Core](https://www.w3.org/TR/did-core/), but without a :and method-specific-id. For example, support for the DID method with a method-name "example" would be represented by did:example.
+
+<!---->
+
+* **credential\_signing\_alg\_values\_supported** (array\[string])\
+  Array of case sensitive strings that identify the algorithms that the Issuer uses to sign the issued Credential.
+
+<!---->
+
+*   **proof\_types\_supported** (object)\
+    An object that describes specifics of the key proof(s) that the Credential Issuer supports. This object contains a list of name/value pairs, where each name is a unique identifier of the supported proof type(s). A few of the valid values are defined below, while other values MAY be used. This identifier is also used by the Wallet in the [Credential Issuance Request](8-service-apis.md#id-8.2.-credential-issuance).
+
+    \
+    Below are a few `proof_type` supported for the `proof_type` property:
+
+    * `jwt`: A JWT [RFC7519](https://www.rfc-editor.org/rfc/rfc7519.html) is used as proof of possession. When proof\_type is JWT, a proof object MUST include a JWT claim containing a JWT.
+    * `cwt`: A CWT [RFC8392](https://www.rfc-editor.org/rfc/rfc8392.html) is used as proof of possession. When proof\_type is cwt, a proof object MUST include a cwt claim containing a CWT.
+    * `ldp_vp`: A W3C Verifiable Presentation object signed using the Data Integrity Proof as defined in [VC\_DATA\_2.0](https://www.w3.org/TR/vc-data-model-2.0/) or [VC\_DATA](https://www.w3.org/TR/vc-data-model/), and where the proof of possession MUST be done per [VC\_Data\_Integrity](https://w3c.github.io/vc-data-integrity/). When `proof_type` is set to `ldp_vp`, the proof object MUST include a `ldp_vp` claim containing a [W3C Verifiable Presentation](https://www.w3.org/TR/vc-data-model-2.0/#presentations-0).\
+
+    * **jwt** (object)&#x20;
+      * **proof\_signing\_alg\_values\_supported**<mark style="color:red;">\*</mark> (array\[string])\
+        An array of case-sensitive strings that identify the algorithms that the Issuer supports for this proof type. The Wallet uses one of them to sign the proof. Algorithm names used are determined by the key proof types.
+    * **display** (array\[object])\
+      An array of objects, where each object contains the display properties of the supported Credential for a certain language.\
+      \
+      Below is a non-exhaustive list of parameters that MAY be included.
+      * **name**<mark style="color:red;">\*</mark> (string)\
+        A string value of a display name for the Credential.
+      * **locale** (string)\
+        A string value that identifies the language of this object is represented as a language tag taken from values defined in BCP47 [RFC5646](https://www.rfc-editor.org/rfc/rfc5646.html). Multiple display objects MAY be included for separate languages. There MUST be only one object for each language identifier.
+      * **logo** (object)\
+        Object with information about the logo of the Credential.
+        * **url**<mark style="color:red;">\*</mark> (string)\
+          String value that contains a URI where the Wallet can obtain the logo of the Credential from the Credential Issuer. The Wallet needs to determine the scheme since the URI value could use `https: scheme`, `data: scheme`, etc.
+        * **alt\_text** (string)\
+          A string value of the alternative text for the logo image.
+      * **description** (string)\
+        A string value of a description of the Credential.
+      * **background\_color** (string)\
+        A string value of a background color of the Credential is represented as numerical color values defined in CSS Color Module Level 37 [CSS-Color](https://www.w3.org/TR/css-color-3/).
+      * **background\_image** (object)\
+        Object with information about the background image of the Credential.
+        * **uri**<mark style="color:red;">\*</mark> (string)\
+          String value that contains a URI where the Wallet can obtain the background image of the Credential from the Credential Issuer. The Wallet needs to determine the scheme since the URI value could use the `https: scheme`, `data: scheme`, etc.
+      * **text\_color** (string)\
+        A string value of a text color of the Credential is represented as numerical color values defined in CSS Color Module Level 37 [CSS-Color](https://www.w3.org/TR/css-color-3/).
+    * **credential\_definition**<mark style="color:red;">\*</mark> (object)\
+      An object containing a detailed description of the Credential type.
+      * **type**<mark style="color:red;">\*</mark> (array\[string])\
+        Array designating the types a certain Credential type supports, according to [VC\_DATA](https://www.w3.org/TR/vc-data-model/).
+      * **credentialSubject** (object)\
+        An object containing a list of name/value pairs, where each name identifies a claim offered in the Credential. The value can be another such object (nested data structures), or an array of such objects. To express the specifics about the claim, the most deeply nested value MAY be an object that includes the following parameters defined by this specification.
+        * **attribute\_name** (object)
+          * **mandatory** (boolean)\
+            Boolean which, when set to `true`, indicates that the Credential Issuer will always include this claim in the issued Credential. If set to `false`, the claim is not included in the issued Credential if the wallet did not request the inclusion of the claim, and/or if the Credential Issuer chose to not include the claim. If the mandatory parameter is omitted, the default value is `false`.
+          *   **value\_type** (string)
+
+              A String value that determines the type of value of the claim. Valid values defined by this specification are string, number, and image media types such as image/jpeg as defined in [IANA media type registry for images](https://www.iana.org/assignments/media-types/media-types.xhtml#image). Other values MAY also be used.
+          *   **display** (array\[object])
+
+              Array of objects, where each object contains display properties of a certain claim in the Credential for a certain language.
+
+              *   **name** (string)
+
+                  String value of a display name for the claim.
+              *   **locale** (string)
+
+                  String value that identifies language of this object represented as language tag values defined in BCP47 [RFC5646](https://www.rfc-editor.org/rfc/rfc5646.html). There MUST be only one object for each language identifier.
+
+</details>
+
+Below are non-normative examples of the object containing the `credential_configurations_supported` parameter for various Credential Formats.
+
+{% tabs %}
+{% tab title="ISO mDL" %}
+```json
+{
+  "credential_configurations_supported": {
+    "org.iso.18013.5.1.mDL": {
+      "format": "mso_mdoc",
+      "doctype": "org.iso.18013.5.1.mDL",
+      "cryptographic_binding_methods_supported": [
+        "cose_key"
+      ],
+      "credential_signing_alg_values_supported": [
+        "ES256",
+        "ES384",
+        "ES512"
+      ],
+      "display": [
+        {
+          "name": "Mobile Driving License",
+          "locale": "en-US",
+          "logo": {
+            "uri": "https://state.example.org/public/mdl.png",
+            "alt_text": "state mobile driving license"
+          },
+          "background_color": "#12107c",
+          "text_color": "#FFFFFF"
+        },
+        {
+          "name": "モバイル運転免許証",
+          "locale": "ja-JP",
+          "logo": {
+            "uri": "https://state.example.org/public/mdl.png",
+            "alt_text": "米国州発行のモバイル運転免許証"
+          },
+          "background_color": "#12107c",
+          "text_color": "#FFFFFF"
+        }
+      ],
+      "claims": {
+        "org.iso.18013.5.1": {
+          "given_name": {
+            "display": [
+              {
+                "name": "Given Name",
+                "locale": "en-US"
+              },
+              {
+                "name": "名前",
+                "locale": "ja-JP"
+              }
+            ]
+          },
+          "family_name": {
+            "display": [
+              {
+                "name": "Surname",
+                "locale": "en-US"
+              }
+            ]
+          },
+          "birth_date": {
+            "mandatory": true
+          }
+        },
+        "org.iso.18013.5.1.aamva": {
+          "organ_donor": {}
+        }
+      }
+    }
+  }
+}
+```
+{% endtab %}
+
+{% tab title="IETF SD-JWT VC" %}
+```
+{
+  "credential_configurations_supported": {
+    "SD_JWT_VC_example_in_OpenID4VCI": {
+      "format": "vc+sd-jwt",
+      "scope": "SD_JWT_VC_example_in_OpenID4VCI",
+      "cryptographic_binding_methods_supported": [
+        "jwk"
+      ],
+      "credential_signing_alg_values_supported": [
+        "ES256"
+      ],
+      "display": [
+        {
+          "name": "IdentityCredential",
+          "logo": {
+                    "uri": "https://university.example.edu/public/logo.png",
+                    "alt_text": "a square logo of a university"
+          },
+          "locale": "en-US",
+          "background_color": "#12107c",
+          "text_color": "#FFFFFF"
+        }
+      ],
+      "proof_types_supported": {
+        "jwt": {
+          "proof_signing_alg_values_supported": [
+            "ES256"
+          ]
+        }
+      },
+      "vct": "SD_JWT_VC_example_in_OpenID4VCI",
+      "claims": {
+        "given_name": {
+          "display": [
+            {
+              "name": "Given Name",
+              "locale": "en-US"
+            },
+            {
+              "name": "Vorname",
+              "locale": "de-DE"
+            }
+          ]
+        },
+        "family_name": {
+          "display": [
+            {
+              "name": "Surname",
+              "locale": "en-US"
+            },
+            {
+              "name": "Nachname",
+              "locale": "de-DE"
+            }
+          ]
+        },
+        "email": {},
+        "phone_number": {},
+        "address": {
+          "street_address": {},
+          "locality": {},
+          "region": {},
+          "country": {}
+        },
+        "birthdate": {},
+        "is_over_18": {},
+        "is_over_21": {},
+        "is_over_65": {}
+      }
+    }
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+The above specification details are taken from [OpenID4VCI - Draft 13](https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0-ID1.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0-ID1.html#name-credential-issuer-metadata).
+{% endhint %}
+
+### 7.3.3. Presentation Definition
 
 A Presentation Definition is a structured object used to specify the proofs a Verifier needs from a Holder. These definitions guide the Verifier in determining how to interact with the Holder.
 
@@ -345,7 +699,13 @@ The following non-normative example shows how the Verifiers can also ask for alt
 {% endtab %}
 {% endtabs %}
 
-### 7.3.2. VP Token
+{% hint style="info" %}
+The above specification details are taken from [OpenID4VP - Draft 18](https://openid.net/specs/openid-4-verifiable-presentations-1\_0-ID2.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-presentations-1\_0-ID2.html#name-presentation\_definition-par).
+
+Also, refer to the [DIF Presentation Exchange Definition](https://identity.foundation/presentation-exchange/spec/v2.1.1/).
+{% endhint %}
+
+### 7.3.4. VP Token
 
 VP Token or Verifiable Presentation Token is a JSON string or JSON object that MUST contain a single Verifiable Presentation or an array of JSON Strings and JSON objects each of them containing a Verifiable Presentation.
 
@@ -496,3 +856,7 @@ The following is a non-normative example of a VP Token containing multiple Verif
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+The above specification details are taken from [OpenID4VP - Draft 18](https://openid.net/specs/openid-4-verifiable-presentations-1\_0-ID2.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-presentations-1\_0-ID2.html#name-response-type-vp\_token).
+{% endhint %}

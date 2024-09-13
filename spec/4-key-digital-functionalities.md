@@ -25,7 +25,7 @@ Key considerations during credential issuance:
 
 The status of a credential is dynamic and is governed by the issuer or the owner of the credential.
 
-* The Issuer should be able to change the status of the credentials
+* The Issuer should be able to change the status of the credentials to revoked or suspended
 * The Issuer should provide a privacy-preserving way to check the status so that the Verifier can check if the credential is suspended or revoked
 
 ## 4.4. Credential Validity
@@ -33,7 +33,7 @@ The status of a credential is dynamic and is governed by the issuer or the owner
 The wallet and the verifier should be able to verify the validity of the credentials. Validity of credentials means, that&#x20;
 
 * The credential signature is verified
-* The credential has not expired
+* The credential has not expired or revoked
 * A trusted issuer issued the credential
 
 ## 4.5. Presenting a Credential

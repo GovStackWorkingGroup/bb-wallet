@@ -48,6 +48,14 @@ In the context of digital credentials, a digital locker refers to a secure onlin
 
 A digital vault is a secure storage system for safeguarding digital credentials, such as usernames, passwords, cryptographic keys, and other sensitive authentication information. It employs encryption and access controls to protect credentials from unauthorized access, theft, or misuse.
 
+### eIDAS (Electronic Identification, Authentication, and Trust Services)
+
+eIDAS is an EU regulation that sets standards for electronic identification and trust services for electronic transactions within the European Union’s single market. It aims to facilitate secure cross-border digital interactions for businesses, citizens, and public administrations. eIDAS provides a legal framework for the mutual recognition of electronic IDs (eIDs) and the use of trust services such as electronic signatures, electronic seals, timestamps, and website authentication to enable secure, reliable digital transactions.
+
+### Electronic Attribute Attestation (EAA)
+
+Electronic Attribute Attestation refers to the digital confirmation of specific attributes (such as age, professional status, qualifications, etc.) of an individual or entity by an authoritative source. It is part of the broader identity verification process where a trusted third party verifies and attests to the attributes digitally. The attestation can be used in electronic transactions to verify relevant attributes without revealing unnecessary personal information, improving privacy and security. These attestations can be stored in digital wallets and shared with service providers in a controlled manner, similar to [SSI](3-terminology.md#self-sovereign-identity-ssi) models.
+
 ### Holder Binding
 
 User binding refers to the property that enables verifiers to trust that the individual presenting a credential is the same individual to whom the credential was originally issued.
@@ -76,7 +84,7 @@ OpenID4VC is a protocol for exchanging verifiable credentials in a decentralized
 
 OpenID4VC supports three main use cases, i.e. Credential Issuance, Credential Presentation, and Pseudonymous User Authentication.
 
-### **OpenID4VCI (OpenID for Verified Credentials Issuer)**
+### **OpenID4VCI (OpenID for Verified Credentials Issuance)**
 
 Defines an API and corresponding OAuth-based authorization mechanisms for issuance of Verifiable Credentials.
 
@@ -111,7 +119,7 @@ A QR code is a two-dimensional barcode that can store various types of informati
 Repudiation (or "plausible deniability") refers to the property that allows an entity involved in an identification transaction to plausibly deny to a third party (i.e., a party not involved in the transaction) its participation in the transaction after its completion or the provision of certain data. Although "repudiation" typically denotes a single act of dispute, it is commonly used to describe the general ability to deny transactions. Importantly, this ability to deny the transaction to third parties does not affect the reliability of the transaction for the Verifier involved.
 
 {% hint style="info" %}
-_This definition is borrowed from the_ [_eIDAS 2.0 Architecture Concepts_](https://gitlab.opencode.de/bmi/eudi-wallet/eidas-2.0-architekturkonzept/-/blob/main/architecture-proposal.md?ref\_type=heads#repudiation)_._&#x20;
+_This definition is borrowed from the_ [_Architecture Proposal for the German eIDAS Implementation_](https://bmi.usercontent.opencode.de/eudi-wallet/eidas-2.0-architekturkonzept/#architecture-proposal-for-the-german-eidas-implementation)_._&#x20;
 {% endhint %}
 
 ### **Selective Disclosure**
@@ -125,6 +133,10 @@ Selective disclosure enhances privacy and security by minimizing the exposure of
 SD-JWT-based Verifiable Credential is a verifiable credential encoded using the Issuance format defined in \[[I-D.ietf-oauth-selective-disclosure-jwt](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-selective-disclosure-jwt-05)]. It may or may not contain selectively disclosable claims.\
 \
 For details check, the draft [SD-JWT VC spec](https://datatracker.ietf.org/doc/html/draft-terbu-oauth-sd-jwt-vc).&#x20;
+
+### Self-Sovereign Identity (SSI)
+
+Self-Sovereign Identity (SSI) is a decentralized identity model where individuals fully own, manage, and control their digital identity without relying on centralized institutions or third parties. SSI allows users to store their personal information (credentials) in a secure digital wallet and selectively share it with service providers. It leverages blockchain or distributed ledger technology to ensure trust, privacy, and security in verifying the authenticity of identity information.
 
 ### Unlinkability
 

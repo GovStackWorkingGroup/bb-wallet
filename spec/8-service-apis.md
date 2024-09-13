@@ -12,62 +12,64 @@ The [GovStack non-functional requirements document](https://govstack.gitbook.io/
 
 ## 8.1 Credential Discovery
 
-### 8.1.1. Credential Offering Endpoint
+### 8.1.1. Credential Offer Endpoint
 
-{% swagger src=".gitbook/assets/wallet-bb.yaml" path="/credential_offer" method="get" %}
-[wallet-bb.yaml](.gitbook/assets/wallet-bb.yaml)
+{% swagger src=".gitbook/assets/wallet-bb (1).yaml" path="/credential_offer" method="get" %}
+[wallet-bb (1).yaml](<.gitbook/assets/wallet-bb (1).yaml>)
 {% endswagger %}
 
 ### 8.1.2. Credential Issuer Metadata
 
-{% swagger src=".gitbook/assets/wallet-bb.yaml" path="/.well-known/openid-credential-issuer" method="get" %}
-[wallet-bb.yaml](.gitbook/assets/wallet-bb.yaml)
+{% swagger src=".gitbook/assets/wallet-bb (1).yaml" path="/.well-known/openid-credential-issuer" method="get" %}
+[wallet-bb (1).yaml](<.gitbook/assets/wallet-bb (1).yaml>)
 {% endswagger %}
 
 ### 8.2. Credential Issuance
 
 ### 8.2.1. Authorization Endpoint
 
-{% swagger src=".gitbook/assets/wallet-bb.yaml" path="/authorize" method="get" %}
-[wallet-bb.yaml](.gitbook/assets/wallet-bb.yaml)
+{% swagger src=".gitbook/assets/wallet-bb (1).yaml" path="/authorize" method="get" %}
+[wallet-bb (1).yaml](<.gitbook/assets/wallet-bb (1).yaml>)
 {% endswagger %}
 
 ### 8.2.2. Token Endpoint
 
-{% swagger src=".gitbook/assets/wallet-bb.yaml" path="/token" method="post" %}
-[wallet-bb.yaml](.gitbook/assets/wallet-bb.yaml)
+{% swagger src=".gitbook/assets/wallet-bb (1).yaml" path="/token" method="post" %}
+[wallet-bb (1).yaml](<.gitbook/assets/wallet-bb (1).yaml>)
 {% endswagger %}
 
 ### 8.2.3. Credential Endpoint
 
-{% swagger src=".gitbook/assets/wallet-bb.yaml" path="/credential" method="post" %}
-[wallet-bb.yaml](.gitbook/assets/wallet-bb.yaml)
+{% swagger src=".gitbook/assets/wallet-bb (1).yaml" path="/credential" method="post" %}
+[wallet-bb (1).yaml](<.gitbook/assets/wallet-bb (1).yaml>)
 {% endswagger %}
 
 ### 8.2.4. Batch Credential Endpoint
 
-{% swagger src=".gitbook/assets/wallet-bb.yaml" path="/batch_credential" method="post" %}
-[wallet-bb.yaml](.gitbook/assets/wallet-bb.yaml)
+{% swagger src=".gitbook/assets/wallet-bb (1).yaml" path="/batch_credential" method="post" %}
+[wallet-bb (1).yaml](<.gitbook/assets/wallet-bb (1).yaml>)
 {% endswagger %}
 
 ### 8.2.5. Deffered Credential Endpoint
 
-{% swagger src=".gitbook/assets/wallet-bb.yaml" path="/deferred_credential" method="post" %}
-[wallet-bb.yaml](.gitbook/assets/wallet-bb.yaml)
+{% swagger src=".gitbook/assets/wallet-bb (1).yaml" path="/deferred_credential" method="post" %}
+[wallet-bb (1).yaml](<.gitbook/assets/wallet-bb (1).yaml>)
 {% endswagger %}
 
 ### 8.2.6. Notification Endpoint
 
-{% swagger src=".gitbook/assets/wallet-bb.yaml" path="/notification" method="post" %}
-[wallet-bb.yaml](.gitbook/assets/wallet-bb.yaml)
+{% swagger src=".gitbook/assets/wallet-bb (1).yaml" path="/notification" method="post" %}
+[wallet-bb (1).yaml](<.gitbook/assets/wallet-bb (1).yaml>)
 {% endswagger %}
 
 ## 8.3 Credential Presentations
 
 ### 8.3.1 Authorization Request
 
-{% swagger src=".gitbook/assets/wallet-bb.yaml" path="/verify/authorize" method="post" %}
-[wallet-bb.yaml](.gitbook/assets/wallet-bb.yaml)
+
+
+{% swagger src=".gitbook/assets/wallet-bb (1).yaml" path="/verify/authorize" method="post" %}
+[wallet-bb (1).yaml](<.gitbook/assets/wallet-bb (1).yaml>)
 {% endswagger %}
 
 {% hint style="info" %}
