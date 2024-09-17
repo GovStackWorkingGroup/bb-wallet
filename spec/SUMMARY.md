@@ -15,3 +15,4 @@
 ## Use Cases
 
 * [Functional Use Cases](use-cases/functional-use-cases.md)
+* [Sectorial Use Cases](use-cases/sectorial-use-cases.md)

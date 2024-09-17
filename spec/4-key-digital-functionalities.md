@@ -28,6 +28,13 @@ The status of a credential is dynamic and is governed by the issuer or the owner
 * The Issuer should be able to change the status of the credentials to revoked or suspended
 * The Issuer should provide a privacy-preserving way to check the status so that the Verifier can check if the credential is suspended or revoked
 
+{% hint style="success" %}
+To gain a clearer understanding of credential status management, consider the following use cases:
+
+* [Suspension and Reactivation of Credentials](use-cases/functional-use-cases.md#id-5.1.-suspension-and-reactivation)
+* [Revocation of Credentials](use-cases/functional-use-cases.md#id-5.2.-revocation)
+{% endhint %}
+
 ## 4.4. Credential Validity
 
 The wallet and the verifier should be able to verify the validity of the credentials. Validity of credentials means, that&#x20;
@@ -54,6 +61,10 @@ Key considerations while sharing a presentation:
 The wallet should be able to provide a mechanism for the holder to port credentials from one device to another (when the credentials are locally stored in a device).
 
 While doing so, the credentials need to be bound in the new device, hence, the wallet should provide a mechanism to cryptographically bind the credentials to the holder in the new device.
+
+{% hint style="success" %}
+A reference use case for the portability requirement can be accessed [here](use-cases/functional-use-cases.md#id-3.-porting-credentials).
+{% endhint %}
 
 ### 4.6.2. Transaction logs
 

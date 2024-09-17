@@ -12,7 +12,7 @@ description: >-
 
 This workflow follows the authorization code flow of the OAuth 2.0 authorization framework to authenticate the Holder and then issue a Verifiable Credential.
 
-In this workflow, the Holder initiates the request using the Wallet and authenticates via the Issuer's authorization endpoint. Once authentication is completed and consent is given, the Issuer provides an authorization code, as specified in [RFC6749](https://www.rfc-editor.org/rfc/rfc6749.html) to issue access tokens. The Wallet can then use the access token to retrieve the credential from the Issuer by calling the credential issuance endpoint.
+In this workflow, the Holder initiates the request using the Wallet and authenticates via the Issuer's authorization endpoint. Once authentication is completed and consent is given, the Issuer provides an authorization code specified in [RFC6749](https://www.rfc-editor.org/rfc/rfc6749.html) to issue access tokens. The Wallet can then use the access token to retrieve the credential from the Issuer by calling the credential issuance endpoint.
 
 <figure><img src=".gitbook/assets/credential-issuance-auth-code-flow (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -85,7 +85,7 @@ Issuer -> Wallet: Credential Response \n(Credential(s) OR Transaction ID)
 
 ### 9.2.1. Presenting Credential on the Same Device
 
-In this workflow flow, the Holder presents the credential to a Verifier that is present on the same device where the Holder's Wallet resides.
+In this workflow flow, the Holder presents the credential to a Verifier on the same device where the Holder's Wallet resides.
 
 <figure><img src=".gitbook/assets/RP6n3i8W48Ptdk8ceuClqC7KEAXROumkNR0zMo8U5QunyUa5QIinRWI---xFJ-vOMkxlMkoChj72SWKdjEggq6Qm9qOhAtRmLDnE3s8y1FeijKREODrpQwnwILQ6u82F7XsBnfg-Wy4jFOB4gehC32f3pb-8w0YsI4PRWcxQG523ISnnyVJcbxek6F_uDd7JbEkFPY862LATY4PiY-GhOHpAa1UD9HKMm-mdQpBpBVAtdBW2.png" alt=""><figcaption></figcaption></figure>
 
@@ -110,9 +110,17 @@ Wallet -> Verifier: Authorization Response \n(VP Token with Verifiable Presentat
 
 </details>
 
+{% hint style="success" %}
+A reference use case for same-device sharing of credentials is available [here](use-cases/functional-use-cases.md#e-kyc-on-an-application-on-same-device).
+{% endhint %}
+
 ### 9.2.2. Presenting Credentials Cross Device
 
-In this workflow, the Holder presents the credential to a Verifier interacting with the Holder on a different device from the device where the Wallet resides.
+In this workflow, the Holder presents the credential to a Verifier interacting with the Holder on a different device from the Wallet's location.
+
+{% hint style="success" %}
+A reference use case for cross-device sharing of credentials is available [here](use-cases/functional-use-cases.md#sharing-credentials-while-entering-an-airport).
+{% endhint %}
 
 In this flow, the Verifier prepares an Authorization Request and renders it as a QR code. The User then uses the Wallet to scan the QR code to obtain the request URI. Using the request URI, the Wallet retrieves the presentation definition, authenticates the Holder, and captures consent to generate the Verifiable Presentation. The Verifiable Presentations are then sent to the Verifier.
 
