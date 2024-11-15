@@ -8,14 +8,14 @@ description: >-
 
 ## 5.1. Privacy Considerations
 
-### 5.1.1. Unobservability
+### 5.1.1. Unobservability (OPTIONAL)
 
 [Unobservability](3-terminology.md#unobservability) means that neither wallet providers nor issuers shall be able to track where a holder uses his/her credentials or learns details concerning the attributes provided.
 
-* The issuer should not be able to learn details (to whom the presentation was made, when the presentation was made, etc.) of the presentation
+* The issuer should not be able to learn details (to whom the presentation was made when the presentation was made, etc.) of the presentation
 * The wallet provider should not be able to observe how the credentials are used
 
-### 5.1.2. Unlinkability
+### 5.1.2. Unlinkability (OPTIONAL)
 
 Issuance and presentation protocols should support [unlinkability](3-terminology.md#unlinkability) and ensure that cryptographic keys and random numbers cannot be used as correlation identifiers, this also includes less obvious data fields such as timestamps or version numbers.
 
@@ -27,25 +27,13 @@ Below are a few scenarios for unlikability.
 * Two issuers should not be able to link two issuance transactions to the same holder by sharing the received information during the issuance (data provided for holder authentication)
 * An issuer and a verifier should not be able to link an issuance and presentations session to the same holder (unless the Holder provides sufficiently identifying information as part of their authentication to the Issuer and as part of the presented credential shared with the verifier)
 
-### 5.1.3. Repudiation
+### 5.1.3. **eIDAS & eIDAS2 Principles (MUST)**
 
-Here, [repudiation](3-terminology.md#repudiation) is the ability to deny the transaction to third parties without affecting the reliability of the transaction where the verifier was involved.
+The Wallet  MUST conform to eIDAS and eIDAS2 principles, including **dashboard**, **consent**, **sole control**, **non-repudiation**, and **interoperability;** if the Building Block is designed to be used as part of identification, authentication, electronic signature credentials, or consent-related services.&#x20;
 
-**Holder deniability**\
-After receiving a presentation the verifier should not be able to prove to any third party that the holder had presented the credentials to the verifier for identification purposes earlier.&#x20;
+### 5.1.4. Data Minimisation (MUST)
 
-{% hint style="info" %}
-**Note for Implementers**
-
-Implementation can be approached using cryptographic techniques such as HMAC (Hash-based Message Authentication Code) or ECDH (Elliptic-Curve Diffie-Hellman) key derivation.
-
-* **HMAC (Hash-based Message Authentication Code)**: A unique, temporary key for each session can be generated. By hashing the credential data with a session-specific key, the holder can deny having shared their credentials, as the verifier cannot reproduce the same key or hash for a third party without the holder’s secret.
-* **ECDH (Elliptic-Curve Diffie-Hellman) Key Derivation**: ECDH can be used to establish a shared secret between the holder and verifier for each session. The credential exchange is encrypted using this shared secret, ensuring that the verifier cannot later prove the interaction to a third party, as the shared secret is ephemeral and not stored.
-{% endhint %}
-
-### 5.1.4. Data Minimisation
-
-To ensure that minimal data is shared with the verifier, the wallet should incorporate various features so that the holder shares only the required data with the verifier for a specific transaction. A few of these features are,
+To ensure that minimal data is shared with the verifier, the wallet SHALL incorporate various features so that the holder shares only the required data with the verifier for a specific transaction. A few of these features are,
 
 *   **Selective Disclosure**
 
@@ -55,7 +43,7 @@ To ensure that minimal data is shared with the verifier, the wallet should incor
 
 ### 5.1.5. Consent
 
-The wallet should capture the holder's consent before the credentials are presented to any verifier.
+The wallet SHALL capture the holder's consent before the credentials are presented to any verifier.
 
 ## 5.2. Security Considerations
 
