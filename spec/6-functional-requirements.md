@@ -36,6 +36,8 @@ As most Android devices don't have trusted hardware,  a trusted execution enviro
 
 ## 6.4. Credential Validity
 
+* The wallet SHOULD verify the validity of the credential when accessed and show the status to the holder to take appropriate action
+
 ## 6.5. Presenting a Credential
 
 * The credential verifier MUST be able to trust the credential wallet before requesting the presentations
