@@ -8,6 +8,28 @@ description: Terminology used within this specification.
 
 BLE is a wireless communication technology designed for short-range communication between devices. It is commonly used for connecting devices like smartphones and wearables.
 
+### Container
+
+A Container refers to the technical medium or environment in which Verifiable Credentials (VCs) are securely stored, managed, and accessed by the holder. It ensures data protection, interoperability, access control, and portability of credentials.
+
+Examples of Containers:
+
+* Mobile wallet apps (Android/iOS)
+* Web-based wallets (browser-accessible)
+* Cloud-based credential stores
+* Hardware-based secure elements (e.g., smartcards)
+
+### Content List
+
+The Content List refers to the collection of Verifiable Credentials (VCs) and associated artifacts that are stored in or linked to the wallet [container](3-terminology.md#container). This includes both locally stored credentials and remotely referenced credentials (e.g., held in cloud wallets or [digital lockers](3-terminology.md#digital-locker)).
+
+Examples in a Content List:
+
+* Identity credentials (e.g., digital ID, driver’s license)
+* Education credentials (e.g., diploma, transcript)
+* Health credentials (e.g., vaccination record)
+* Employment or financial records (e.g., payslips, tax certificates)
+
 ### **Credential**
 
 A credential is a set of one or more claims made by the same entity. It may include an identifier to uniquely identify the credential, as well as metadata that describes properties of the credential itself such as the issuer, the expiry time, a representative image, etc.&#x20;
