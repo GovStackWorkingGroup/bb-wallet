@@ -27,11 +27,7 @@ Below are a few scenarios for unlikability.
 * Two issuers should not be able to link two issuance transactions to the same holder by sharing the received information during the issuance (data provided for holder authentication)
 * An issuer and a verifier should not be able to link an issuance and presentations session to the same holder (unless the Holder provides sufficiently identifying information as part of their authentication to the Issuer and as part of the presented credential shared with the verifier)
 
-### 5.1.3. **eIDAS & eIDAS2 Principles (MUST)**
-
-The Wallet  MUST conform to eIDAS and eIDAS2 principles, including **dashboard**, **consent**, **sole control**, **non-repudiation**, and **interoperability;** if the Building Block is designed to be used as part of identification, authentication, electronic signature credentials, or consent-related services.&#x20;
-
-### 5.1.4. Data Minimisation (MUST)
+### 5.1.3. Data Minimisation (MUST)
 
 To ensure that minimal data is shared with the verifier, the wallet SHALL incorporate various features so that the holder shares only the required data with the verifier for a specific transaction. A few of these features are,
 
@@ -41,7 +37,7 @@ To ensure that minimal data is shared with the verifier, the wallet SHALL incorp
 * **Pseudonymity**\
   The wallet should enable the holder to present a pseudonym instead of their real identity when authenticating online or presenting credentials, except in cases where legal identification is mandatory.
 
-### 5.1.5. Consent
+### 5.1.4. Consent
 
 The wallet SHALL capture the holder's consent before the credentials are presented to any verifier.
 

@@ -8,7 +8,23 @@ description: This section provides context for this Building Block.
 At this stage, the definition of Wallet Building Block is focused on Digital Credential Wallets.
 {% endhint %}
 
+Wallet as a term can mean many things depending on your background and context. However with GovStack we have chosen to use Wallet in its widest context, as a **Container** with **Content**.&#x20;
+
+Therefore the total scope and focus of the Wallet Building Block (BB) is to provide specifications which support multiple forms of Containers and Contents, we have chosen this abstraction to ensure that the Building Block remains inclusive of different formats of Wallets.
+
+We expect this specification to be enhanced both with precise guidelines for sector specific (such as Social Protection, Education, Health, Agriculture etc.) applications; standards guidance/mappings and different use-cases to be supported within the wallet, over time.
+
+At this time however we start by focusing on **Wallets for Digital Credentials**. So although this Building Block could, be considered at this stage a Digital Credentials Wallet specification, the correct construct to read this document is as a Wallet Building Block able to support the storage and exchange of decentralised verifiable digital information which is currently focused on Digital Credentials.
+
+As can be seen we aim to support different forms of media, so where as at the moment the specifications may include items that indicate a specific form (e.g. mobile wallets), other forms will be considered in future scope.
+
 A Digital Credential Wallet is a specialized digital wallet designed to securely store, manage, and present digital credentials, also known as Verifiable Credentials (VCs). These credentials represent a user's qualifications, achievements, or attributes in a digital form, such as educational qualifications, professional certifications, or government-issued IDs. Unlike physical credentials, which are prone to loss or forgery, digital credentials are stored and presented electronically, offering enhanced security and convenience.
+
+With that understanding and focus let's look at the Digital Credential Wallet.
+
+<figure><img src=".gitbook/assets/Wallet (2).png" alt=""><figcaption><p>The Wallet Abstraction</p></figcaption></figure>
+
+## Digital Credential Wallet <a href="#digital-credential-wallet" id="digital-credential-wallet"></a>
 
 ### Issuer-Holder-Verifier Model
 
