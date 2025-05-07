@@ -1,0 +1,194 @@
+name: Review
+description: Submit a Review
+labels: ["review"]
+body:
+  - type: markdown
+    attributes:
+      value: Dear Wallet Practitioner,\n
+      Thank you for taking the time to become a Reviewer for the Wallet Building Block v1.0.0-rc.\n
+      \n
+      This specification aims to guide digital architects, policy-makers and technical teams to design wallet solutions for the public sector and equip them with a minimum common understanding of concepts, requirements, data structures and workflows required to build a product that retains interoperability at scale.\n
+      \n
+      As an expert in Digital Wallets, we value your feedback regarding the exactitude, completeness, architectural design and scope of the Wallet Specification.\n 
+      \n
+      To submit your review, please consider the following texts to review:\n
+
+  - type: checkboxes
+    id: opening-questions
+    attributes:
+      label: Opening questions
+      description: These opening questions will help ensure you have not missed any things to check before reporting a problem in the specifications
+      options:
+        - label: I have read the document for [Wallet Building Block v1.0.0-rc](../issues)
+          required: true
+        - label: I have read the [Release Notes]() for Wallet Building Block v1.0.0-rc
+          required: true
+        - label: I agree to follow the [GovStack Code of Conduct](https://govstack.global/coc)
+          required: true
+  - type: markdown
+    id: deadline
+    attributes:
+        value: You may then fill the following form. We will be receiving reviews from May 8th to May 22nd.    
+  - type: textarea
+    id: 1-general-completeness
+    attributes:
+      label: Section 1. Questions regarding completeness of the specification
+      description: This version provides an initial abstraction for Digital Credentials Wallets, offering digital credential issuance, presentation, and selective disclosure. The abstraction of Container, Contents and Verifiable Credentials as described on section 2 of the specification is meant allow this document to evolve into supporting more specific use-cases and differing applications on iterating versions. 
+      placeholder: Please provide your comment
+    validations:
+      required: false
+  - type: textarea
+    id: 2-description
+    attributes:
+      label: Section 2. Description of the specification
+      description: Presents the general abstraction for Wallets and the Issuer-Holder-Verifier Model and the key Characteristics of a Digital Credentials Wallet. \n Are these features and the model conceptually complete? 
+      placeholder: [Yes] / [No], provide an explanation
+    validations:
+      required: false
+  - type: markdown
+    id: 3-terminology
+    attributes:
+        value: "##Section 3. Terminology"
+  - type: markdown
+    attributes:
+      value: This sections describes relevant concepts of a Digital Credentials Wallet.
+  - type: textarea
+    id: 3-terminology-1
+    attributes:
+      label: Are there any concepts from those listed that you would like to provide feedback on?
+      placeholder: Please provide an explanation
+    validations:
+      required: false
+  - type: textarea
+    id: 3-terminology-2
+    attributes:
+      label: Are there any concepts that are important, but not considered, on this list?
+      placeholder: Please provide an explanation
+    validations:
+      required: false
+  - type: markdown
+    id: 4-kdf
+    attributes:
+        value: "##Section 4. Key Digital Functionalities" 
+  - type: markdown
+    attributes:
+      value: Key Digital Functionalities describe the core (required) functions that this Building Block must be able to perform. It is meant to guide builders in scoping the features for a Wallet solution
+  - type: textarea
+    id: 4-kdf-1
+    attributes:
+      label: From the functionalities listed, would you like to provide feedback on their completeness?
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: textarea
+    id: 4-kdf-2
+    attributes:
+      label: Are there any functionalities related to Digital Credentials Wallet that are not considered here?
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: markdown
+    id: 5-ccr
+    attributes:
+        value: "##Section 5. Cross-Cutting Requirements" 
+  - type: markdown
+    attributes:
+      value: This section describes cross-cutting requirements that apply to this Building Block. It presents a list of Privacy and Security requirements and assigns a level of requirement for each.
+  - type: textarea
+    id: 5-ccr-1
+    attributes:
+      label: Out of the requirements listed, would you like to provide feedback on the completeness of the description of the requirements, or on the requirement level assigned? 
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: textarea
+    id: 5-ccr-2
+    attributes:
+      label: Are there any requirements that are necessary to Digital Credentials Wallet that are not considered here?
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: markdown
+    id: 6-fr
+    attributes:
+        value: "##Section 6. Functional Requirements" 
+  - type: markdown
+    attributes:
+      value: This section lists the technical capabilities of this Building Block. It is more akin to a list of broadly described features that a solution must cover and assigns a requirement level to each. It is meant to help solution builders define the user stories and technical features of their product.
+  - type: textarea
+    id: 6-fr-1
+    attributes:
+      label: Out of the requirements listed, would you like to provide feedback on the completeness of the description of the requirements, or on the requirement level assigned?
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: textarea
+    id: 6-fr-2
+    attributes:
+      label: Are there any requirements that are necessary to Digital Credentials Wallet that are not considered here?
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: markdown
+    id: 7-ds
+    attributes:
+        value: "##Section 7. Data Structures" 
+  - type: markdown
+    attributes:
+      value: This section provides information on the core data schemas that are used by this Building Block. It aims to provide a minimum complete mapping of data structures, and their formats, to enable data exchange for Wallet solutions. 
+  - type: textarea
+    id: 7-ds-1
+    attributes:
+      label: Out of the data schemas provided, would you like to provide feedback on the completeness and formats of the schema definitions? Please go into as much detail as you can
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: textarea
+    id: 7-ds-2
+    attributes:
+      label: Are there any data structures that are necessary to Digital Credentials Wallet that are not considered here?
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: markdown
+    id: 8-api
+    attributes:
+        value: "##Section 8. Service APIs" 
+  - type: markdown
+    attributes:
+      value: This section provides a reference for APIs that should be implemented by this Building Block. It is meant to provide a minimum list of possible endpoints and their verbs, as well as payloads, to aid Wallet builders in creating interoperable Wallets 
+  - type: textarea
+    id: 8-api-1
+    attributes:
+      label: Out of the API endpoints, available verbs and schemas provided, would you like to provide feedback on the completeness of them? Please go into as much detail as you can
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: textarea
+    id: 8-api-2
+    attributes:
+      label: Are there any data structures that are necessary to Digital Credentials Wallet that are not considered here?
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: markdown
+    id: 9-workflows
+    attributes:
+        value: "##Section 9. Internal Workflows" 
+  - type: markdown
+    attributes:
+      value: This section provides a detailed view of how this Building Block will interact with other Building Blocks to support common use cases. 
+  - type: textarea
+    id: 9-workflows-1
+    attributes:
+      label: Out of the available workflows, would you like to provide feedback on the completeness of them? Please go into as much detail as you can
+      placeholder: Please provide your feedback
+    validations:
+      required: false
+  - type: textarea
+    id: 9-workflow-2
+    attributes:
+      label: Are there extra workflows that are necessary to Digital Credentials Wallet that are not considered here?
+      placeholder: Please provide your feedback
+    validations:
+      required: false
