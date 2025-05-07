@@ -19,9 +19,9 @@ body:
       label: Opening questions
       description: These opening questions will help ensure you have not missed any things to check before reporting a problem in the specifications
       options:
-        - label: I have read the document for [Wallet Building Block v1.0.0-rc](../issues)
+        - label: I have read the document for [Wallet Building Block v1.0.0-rc](https://govstack.gitbook.io/bb-wallet/)
           required: true
-        - label: I have read the [Release Notes]() for Wallet Building Block v1.0.0-rc
+        - label: I have read the [Release Notes](https://govstack.gitbook.io/bb-wallet/1-version-history/release-notes-v1.0.0-rc) for Wallet Building Block v1.0.0-rc
           required: true
         - label: I agree to follow the [GovStack Code of Conduct](https://govstack.global/coc)
           required: true
