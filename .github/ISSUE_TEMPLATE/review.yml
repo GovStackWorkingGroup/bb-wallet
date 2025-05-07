@@ -37,11 +37,17 @@ body:
       placeholder: Please provide your comment
     validations:
       required: false
-  - type: textarea
+  - type: markdown
     id: 2-description
     attributes:
-      label: Section 2. Description of the specification
-      description: Presents the general abstraction for Wallets and the Issuer-Holder-Verifier Model and the key Characteristics of a Digital Credentials Wallet. \n Are these features and the model conceptually complete? 
+      value: "##Section 2. Description of the specification"
+  - type: markdown
+    attributes:
+      value: Presents the general abstraction for Wallets and the Issuer-Holder-Verifier Model and the key Characteristics of a Digital Credentials Wallet.
+  - type: textarea
+    id: 2-description-1
+    attributes:
+      label: Are these features and the model conceptually complete? 
       placeholder: [Yes] / [No], provide an explanation
     validations:
       required: false
