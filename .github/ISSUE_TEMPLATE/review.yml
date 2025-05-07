@@ -40,7 +40,7 @@ body:
   - type: markdown
     id: 2-description
     attributes:
-      value: "##Section 2. Description of the specification"
+      value: "## Section 2. Description of the specification"
   - type: markdown
     attributes:
       value: Presents the general abstraction for Wallets and the Issuer-Holder-Verifier Model and the key Characteristics of a Digital Credentials Wallet.
@@ -54,7 +54,7 @@ body:
   - type: markdown
     id: 3-terminology
     attributes:
-        value: "##Section 3. Terminology"
+        value: "## Section 3. Terminology"
   - type: markdown
     attributes:
       value: This sections describes relevant concepts of a Digital Credentials Wallet.
@@ -75,7 +75,7 @@ body:
   - type: markdown
     id: 4-kdf
     attributes:
-        value: "##Section 4. Key Digital Functionalities" 
+        value: "## Section 4. Key Digital Functionalities" 
   - type: markdown
     attributes:
       value: Key Digital Functionalities describe the core (required) functions that this Building Block must be able to perform. It is meant to guide builders in scoping the features for a Wallet solution
@@ -96,7 +96,7 @@ body:
   - type: markdown
     id: 5-ccr
     attributes:
-        value: "##Section 5. Cross-Cutting Requirements" 
+        value: "## Section 5. Cross-Cutting Requirements" 
   - type: markdown
     attributes:
       value: This section describes cross-cutting requirements that apply to this Building Block. It presents a list of Privacy and Security requirements and assigns a level of requirement for each.
@@ -117,7 +117,7 @@ body:
   - type: markdown
     id: 6-fr
     attributes:
-        value: "##Section 6. Functional Requirements" 
+        value: "## Section 6. Functional Requirements" 
   - type: markdown
     attributes:
       value: This section lists the technical capabilities of this Building Block. It is more akin to a list of broadly described features that a solution must cover and assigns a requirement level to each. It is meant to help solution builders define the user stories and technical features of their product.
@@ -138,7 +138,7 @@ body:
   - type: markdown
     id: 7-ds
     attributes:
-        value: "##Section 7. Data Structures" 
+        value: "## Section 7. Data Structures" 
   - type: markdown
     attributes:
       value: This section provides information on the core data schemas that are used by this Building Block. It aims to provide a minimum complete mapping of data structures, and their formats, to enable data exchange for Wallet solutions. 
@@ -159,7 +159,7 @@ body:
   - type: markdown
     id: 8-api
     attributes:
-        value: "##Section 8. Service APIs" 
+        value: "## Section 8. Service APIs" 
   - type: markdown
     attributes:
       value: This section provides a reference for APIs that should be implemented by this Building Block. It is meant to provide a minimum list of possible endpoints and their verbs, as well as payloads, to aid Wallet builders in creating interoperable Wallets 
@@ -180,7 +180,7 @@ body:
   - type: markdown
     id: 9-workflows
     attributes:
-        value: "##Section 9. Internal Workflows" 
+        value: "## Section 9. Internal Workflows" 
   - type: markdown
     attributes:
       value: This section provides a detailed view of how this Building Block will interact with other Building Blocks to support common use cases. 
