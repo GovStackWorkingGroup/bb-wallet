@@ -57,4 +57,4 @@ However, through discussions on this matter the Wallet Working Group, the Archit
 
 Concerns regarding the reference to specific policy frameworks were captured by the
 
-[Wallet WGDR no. 02 - Removing eIDAS as a requirement](https://govstack-global.atlassian.net/wiki/spaces/GH/pages/1267040257/Wallet+WGDR+no.+02.+-+Removing+eIDAS+as+a+requirement?atlOrigin=eyJpIjoiZmY0NDFlNjE2N2FhNGU0MjhhY2E1MjI4MjdiNmM2N2YiLCJwIjoiYyJ9)
+[Wallet WGDR no. 02 - Removing eIDAS as a requirement](../../WGDR/WALLET-WGDR-2025-05-2.md)
