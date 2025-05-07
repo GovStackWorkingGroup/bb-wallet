@@ -48,7 +48,7 @@ body:
     id: 2-description-1
     attributes:
       label: Are these features and the model conceptually complete? 
-      placeholder: [Yes] / [No], provide an explanation
+      placeholder: Please provide an explanation
     validations:
       required: false
   - type: markdown
