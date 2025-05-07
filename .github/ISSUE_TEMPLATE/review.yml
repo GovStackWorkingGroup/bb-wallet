@@ -1,17 +1,18 @@
 name: Review
 description: Submit a Review
 labels: ["review"]
+type: "Review"
 body:
   - type: markdown
     attributes:
-      value: Dear Wallet Practitioner,\n
+      value: "Dear Wallet Practitioner,\n
         Thank you for taking the time to become a Reviewer for the Wallet Building Block v1.0.0-rc.\n
         \n
         This specification aims to guide digital architects, policy-makers and technical teams to design wallet solutions for the public sector and equip them with a minimum common understanding of concepts, requirements, data structures and workflows required to build a product that retains interoperability at scale.\n
         \n
         As an expert in Digital Wallets, we value your feedback regarding the exactitude, completeness, architectural design and scope of the Wallet Specification.\n 
         \n
-        To submit your review, please consider the following texts to review:\n
+        To submit your review, please consider the following texts to review:\n"
 
   - type: checkboxes
     id: opening-questions
