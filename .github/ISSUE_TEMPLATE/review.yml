@@ -29,22 +29,14 @@ body:
   - type: markdown
     id: deadline
     attributes:
-        value: You may then fill the following form. We will be receiving reviews from May 8th to May 22nd.    
-  - type: textarea
-    id: 1-general-completeness
-    attributes:
-      label: Section 1. Questions regarding completeness of the specification
-      description: This version provides an initial abstraction for Digital Credentials Wallets, offering digital credential issuance, presentation, and selective disclosure. The abstraction of Container, Contents and Verifiable Credentials as described on section 2 of the specification is meant allow this document to evolve into supporting more specific use-cases and differing applications on iterating versions. 
-      placeholder: Please provide your comment
-    validations:
-      required: false
+        value: You may then fill the following form. We will be receiving reviews from May 8th to June 20th.
   - type: markdown
     id: 2-description
     attributes:
       value: "## Section 2. Description of the specification"
   - type: markdown
     attributes:
-      value: Presents the general abstraction for Wallets and the Issuer-Holder-Verifier Model and the key Characteristics of a Digital Credentials Wallet.
+      value: Presents the general abstraction for Wallets, Container and Contents, and the Issuer-Holder-Verifier Model and the key Characteristics of a Digital Credentials Wallet.
   - type: textarea
     id: 2-description-1
     attributes:
