@@ -1,4 +1,4 @@
-# Release Notes v1.0.0-rc
+# Release Notes
 
 _Version Date: May 2025_\
 &#xNAN;_&#x41;uthors: Ali González, David Higgins_
@@ -7,13 +7,13 @@ _Version Date: May 2025_\
 
 ## **1. Overview** <a href="#id-1.-overview" id="id-1.-overview"></a>
 
-This Release Candidate (v1.0.0-rc) version of the Wallet Building Block is published with a _Request for Comments_ for teams working on Wallet implementations for the public sector.
+This Release version of the Wallet Building Block is published following a _Request for Comments_ for teams working on Wallet implementations for the public sector.
 
-This specification was developed by the GovStack Wallet Working Group between February 2024 and April 2025. It describes a modular artifact that maps a minimum set of technical functionalities needed for Wallet implementations.
+This specification was developed by the GovStack Wallet Working Group between February 2024 and April 2025. The _Request for Comments_ phase occured between May  and July 2025. Updates following review occured in the period July-August 2025 to create this release version. It describes a modular artifact that maps a minimum set of technical functionalities needed for Wallet implementations.
 
 This version provides an initial abstraction for Digital Credentials Wallets, offering **digital credential issuance, presentation, and selective disclosure**. The abstraction of **Container**, **Contents** and **Verifiable Credentials** as described on section 2 of the specification is meant allow this document to evolve into supporting more specific use-cases and differing applications on iterating versions.
 
-This release candidate aims to enable **structured feedback**, scope validation, and identification of key implementation and governance gaps for both complementing the first official release, and for gathering input from Wallet practitioners to identify the features for the subsequent versions of this release.
+This release version, will be built upon by the Wallet Working Group to enhance with additional features for the subsequent versions of this release.
 
 ## **2. Purpose and Scope** <a href="#id-2.-purpose-and-scope" id="id-2.-purpose-and-scope"></a>
 
@@ -37,6 +37,19 @@ Whilst some aspects of the Wallet are future scope, it is important to highlight
 
 We expect this specification to be enhanced both with precise guidelines for sector specific (such as Social Protection, Education, Health, Agriculture etc.) applications; standards guidance/mappings and different use-cases to be supported within the wallet, over time.
 
+#### Considerations
+
+The following considerations have been noted during the release review process for consideration in future releases:
+
+* Providing details on how Trust can be established and maintained (this will be looked at across all Identity related BBs).
+* Review and enhance repudiation definition with how the verifier is involved
+* How system recovery from security breaches occurs
+* Internationalisation of Digital Credential Wallets
+* Auditability of Digital Credential Wallets
+* Requirements for interoperability between Wallet Solutions
+* Updated Data-Structures supporting Audit logs, User preferences, and backup/restore information.
+* Outline the core DID document structure.
+
 #### Functionality <a href="#functionality" id="functionality"></a>
 
 This Wallet Building Block is intentionally scoped to Digital Credentials for identity-related use cases. It does not currently extend to payment wallets or sector-specific credential ecosystems, though future iterations shall expand the coverage based on Working Group consensus and implementation needs.
@@ -45,6 +58,15 @@ Although this version includes an initial set of functionalities for Digital Cre
 
 * Credential lifecycle governance (issuance, revocation, re-issuance, auditability).
 * Institutional trust model, certification, or liability definitions.
+* How Biometric Binding and Authentication can strengthen security
+* Zero-knowledge proof
+* Key Management
+* Key Rotation considerations and how this could enhance tamper resistance
+* How Trust Lists could be maintained of trusted issuers and verifiers (this will be looked at across all Identity related BBs).
+* Revocation Mechanism to invalidate issued credentials
+* Backup and Restore/Recovery capabilities
+* Wallet Synchronisation, including Multi-Device and Multi-Wallet synchronisation considerations.
+* Cryptographic Key recovery
 
 #### Policy mapping <a href="#policy-mapping" id="policy-mapping"></a>
 
