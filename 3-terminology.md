@@ -50,7 +50,7 @@ The credential holder is an entity (person, device, or system) that possesses an
 
 ### **Credential Issuer**
 
-A credential issuer is an entity responsible for the lifecycle management of credentials (e.g. issuance and revocation of credentials). This entity is typically trusted to verify and confirm the identity of the subject before issuing credentials.
+A credential issuer is an entity responsible for the lifecycle management of credentials (e.g. issuance and revocation of credentials). This entity is typically trusted to verify and confirm the identity of the credential holder before issuing credentials.
 
 ### Credential Offer
 
