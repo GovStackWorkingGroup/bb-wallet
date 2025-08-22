@@ -40,6 +40,10 @@ A verifiable credential is a set of claims and metadata that are tamper-resistan
 _This definition is borrowed from the_ [_W3C Verifiable Credentials Data Model specification_](https://www.w3.org/TR/vc-data-model-2.0/)_, but it is used more broadly, including other data models such as ISO/IEC 18013-5 mDL, SD-JWT-VC, etc._
 {% endhint %}
 
+{% hint style="info" %}
+See also related terminology for [Digital Credential](3-terminology.md#digital-credential) and [Verifiable Credentials](3-terminology.md#verifiable-credentials-vcs)
+{% endhint %}
+
 ### **Credential Holder**
 
 The credential holder is an entity (person, device, or system) that possesses and manages digital credentials within a system or framework.
@@ -57,6 +61,14 @@ The primary purpose of a credential offer is to initiate the issuance process by
 ### **Credential Verifier**
 
 The credential verifier is an entity responsible for checking the authenticity and validity of digital credentials presented by a credential holder.
+
+### Digital Credential
+
+A Digital Credential (also known as a verifiable credential) is a digitally-issued and verifiable form of a claim or a set of claims made by a (single) issuer.  Digital Credentials can be shared, verified, and stored securely offering advantages over physical equivalents. Digital Credentials are often cryptographically verifiable meaning their authenticity can be easily checked by Verifiers.
+
+{% hint style="info" %}
+See also related terminology for [Credential](3-terminology.md#credential) and [Verifiable Credentials](3-terminology.md#verifiable-credentials-vcs).
+{% endhint %}
 
 ### **Digital Credential Wallet**
 
@@ -171,6 +183,10 @@ Unobservability refers to the property where an adversary cannot discern any use
 ### **Verifiable Credentials (VCs)**
 
 Verifiable credentials are digital statements that attest to the truth of certain claims. They are issued, held, and presented in a secure and privacy-preserving manner.
+
+{% hint style="info" %}
+See also related terminology for [Credential ](3-terminology.md#credential)and [Digital Credential](3-terminology.md#digital-credential).
+{% endhint %}
 
 ### **Verifiable Presentations (VPs)**
 
