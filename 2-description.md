@@ -8,6 +8,14 @@ description: This section provides context for this Building Block.
 At this stage, the definition of Wallet Building Block is focused on Digital Credential Wallets.
 {% endhint %}
 
+{% hint style="info" %}
+GovStack Technical Specifications are open to multiple internationally common regulations. They do not aim for compliance to a specific regulation and allow for the freedom of local regulatory sovereignty.
+
+Accordingly we do not within this Wallet Specification align to or preclude a particular regulatory or legal framework.
+
+Therefore we recognise this seperation of technical and regulatory requirements by implication means that an implementor will need to be aware of the need appropriate regulatory capabilities and requirements and consider these with our technical requirements at the point of implementation.
+{% endhint %}
+
 Wallet as a term can mean many things depending on your background and context. However with GovStack we have chosen to use Wallet in its widest context, as a **Container** with **Content**.&#x20;
 
 Therefore the total scope and focus of the Wallet Building Block (BB) is to provide specifications which support multiple forms of Containers and Contents, we have chosen this abstraction to ensure that the Building Block remains inclusive of different formats of Wallets.
