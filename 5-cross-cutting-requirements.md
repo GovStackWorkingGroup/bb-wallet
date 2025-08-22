@@ -78,7 +78,7 @@ The wallet must provide a secure environment to,
 
 In a digital credentialing ecosystem, the trust infrastructure is vital for ensuring trust and transparency within the trust triangle (Issuer-Holder-Verifier).
 
-<figure><img src=".gitbook/assets/trust-triangle.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Wallet Building Block-Page-6 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 * The issuer should be able to verify that the credential is shared with a trusted Wallet
 * The wallet must verify that a trusted Issuer issued the credentials
