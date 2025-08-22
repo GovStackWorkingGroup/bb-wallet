@@ -10,6 +10,10 @@ This section provides a reference for APIs that this Building Block should imple
 
 The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adaptors' may be used to translate an existing API to the patterns described here. This section also guides how candidate products are tested and how GovStack validates a product's API against the API specifications defined here.
 
+
+
+Consideration should be made of the GovStack cross cutting Security considerations at: [https://specs.govstack.global/security-requirements](https://specs.govstack.global/security-requirements)
+
 ## 8.1 Credential Discovery
 
 ### 8.1.1. Credential Offer Endpoint
