@@ -2,6 +2,20 @@
 description: >-
   This section provides a reference for APIs that should be implemented by this
   Building Block.
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
 ---
 
 # 8 Service APIs
