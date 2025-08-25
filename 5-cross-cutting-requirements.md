@@ -8,38 +8,46 @@ description: >-
 
 ## 5.1. Privacy Considerations
 
-### 5.1.1. Unobservability (OPTIONAL)
+### 5.1.1. Unobservability
 
-[Unobservability](3-terminology.md#unobservability) means that neither wallet providers nor issuers shall be able to track where a holder uses his/her credentials or learns details concerning the attributes provided.
+{% hint style="info" %}
 
-* The issuer should not be able to learn details (to whom the presentation was made when the presentation was made, etc.) of the presentation
-* The wallet provider should not be able to observe how the credentials are used
+{% endhint %}
 
-### 5.1.2. Unlinkability (OPTIONAL)
+[Unobservability](spec/3-terminology.md#unobservability) means that neither wallet providers nor issuers shall be able to track where a holder uses his/her credentials or learns details concerning the attributes provided.
 
-Issuance and presentation protocols should support [unlinkability](3-terminology.md#unlinkability) and ensure that cryptographic keys and random numbers cannot be used as correlation identifiers, this also includes less obvious data fields such as timestamps or version numbers.
+* The issuer should not be able to learn details (to whom the presentation was made when the presentation was made, etc.) of the presentation (RECOMMENDED)
+* The wallet provider should not be able to observe how the credentials are used (RECOMMENDED)
+
+### 5.1.2. Unlinkability&#x20;
+
+{% hint style="info" %}
+
+{% endhint %}
+
+Issuance and presentation protocols should support [unlinkability](spec/3-terminology.md#unlinkability) and ensure that cryptographic keys and random numbers cannot be used as correlation identifiers, this also includes less obvious data fields such as timestamps or version numbers.
 
 Below are a few scenarios for unlikability.
 
-* A verifier should not be able to link two presentations to the same holder (unless the holder's data is provided as part of the presentation)
-* An issuer should not be able to link two issuance transactions to the same holder (unless the holder provides information as part of the holder's authentication)
-* Two verifiers should not be able to link two presentation transactions to the same holder by sharing the received presentations
-* Two issuers should not be able to link two issuance transactions to the same holder by sharing the received information during the issuance (data provided for holder authentication)
-* An issuer and a verifier should not be able to link an issuance and presentations session to the same holder (unless the Holder provides sufficiently identifying information as part of their authentication to the Issuer and as part of the presented credential shared with the verifier)
+* A verifier should not be able to link two presentations to the same holder (unless the holder's data is provided as part of the presentation) (RECOMMENDED)
+* An issuer should not be able to link two issuance transactions to the same holder (unless the holder provides information as part of the holder's authentication) (RECOMMENDED)
+* Two verifiers should not be able to link two presentation transactions to the same holder by sharing the received presentations (RECOMMENDED)
+* Two issuers should not be able to link two issuance transactions to the same holder by sharing the received information during the issuance (data provided for holder authentication) (RECOMMENDED)
+* An issuer and a verifier should not be able to link an issuance and presentations session to the same holder (unless the Holder provides sufficiently identifying information as part of their authentication to the Issuer and as part of the presented credential shared with the verifier) (RECOMMENDED)
 
-### 5.1.3. Data Minimisation (MUST)
+### 5.1.3. Data Minimisation&#x20;
 
 To ensure that minimal data is shared with the verifier, the wallet SHALL incorporate various features so that the holder shares only the required data with the verifier for a specific transaction. A few of these features are,
 
-*   **Selective Disclosure**
+*   **Selective Disclosure** (REQUIRED)
 
     The wallet (with the holder's consent) should be able to present a selected subset of the data fields (claims) from a credential while other fields are not revealed to the verifier.
-* **Pseudonymity**\
+* **Pseudonymity** (REQUIRED)\
   The wallet should enable the holder to present a pseudonym instead of their real identity when authenticating online or presenting credentials, except in cases where legal identification is mandatory.
 
-### 5.1.4. Consent
+### 5.1.4. Consent&#x20;
 
-The wallet SHALL capture the holder's consent before the credentials are presented to any verifier.
+* The wallet SHALL capture the holder's consent before the credentials are presented to any verifier. (REQUIRED)
 
 ## 5.2. Security Considerations
 
@@ -78,7 +86,7 @@ The wallet must provide a secure environment to,
 
 In a digital credentialing ecosystem, the trust infrastructure is vital for ensuring trust and transparency within the trust triangle (Issuer-Holder-Verifier).
 
-<figure><img src=".gitbook/assets/Wallet Building Block-Page-6 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="spec/.gitbook/assets/Wallet Building Block-Page-6 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 * The issuer should be able to verify that the credential is shared with a trusted Wallet
 * The wallet must verify that a trusted Issuer issued the credentials

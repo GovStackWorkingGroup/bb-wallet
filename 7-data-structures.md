@@ -181,7 +181,7 @@ The credential schema enables flexibility by defining how additional attributes 
 
 ### 7.3.1. Credential Offer Definition
 
-The Credential Issuer sends a Credential Offer using an HTTP GET request or an HTTP redirect to the Wallet's [Credential Offer Endpoint](8-service-apis.md#id-8.1.1.-credential-offer-endpoint).
+The Credential Issuer sends a Credential Offer using an HTTP GET request or an HTTP redirect to the Wallet's [Credential Offer Endpoint](spec/8-service-apis.md#id-8.1.1.-credential-offer-endpoint).
 
 The Credential Offer object, which is a JSON-encoded object with the Credential Offer parameters, can be sent by value or by reference.
 
@@ -196,7 +196,7 @@ Here the parameters for the JSON-encoded Credential Offer object are defined.
 
 <details>
 
-<summary>Parametrs for the JSON-encoded Credential Offer object</summary>
+<summary>Parameters for the JSON-encoded Credential Offer object</summary>
 
 * **credential\_issuer**<mark style="color:red;">\*</mark>\
   The URL of the Credential Issuer, from which the Wallet is requested to obtain one or more Credentials. The Wallet uses it to obtain the Credential Issuer's Metadata.\
@@ -272,7 +272,7 @@ The above specification details are taken from [OpenID4VCI - Draft 13](https://o
 
 ### 7.3.2. Credential Issuer Metadata
 
-The `credential_configurations_supported` object in the response of the [Credential Issuer Metadata Endpoint](8-service-apis.md#id-8.1.2.-credential-issuer-metadata) describes the specifics of the Credential that the Credential Issuer supports the issuance of.
+The `credential_configurations_supported` object in the response of the [Credential Issuer Metadata Endpoint](spec/8-service-apis.md#id-8.1.2.-credential-issuer-metadata) describes the specifics of the Credential that the Credential Issuer supports the issuance of.
 
 This object contains a list of name/value pairs, where each name is a unique identifier of the supported Credential being described.
 
@@ -297,7 +297,7 @@ Here, the parameters of the credential metadata object are defined.
   Array of case sensitive strings that identify the algorithms that the Issuer uses to sign the issued Credential.
 
 *   **proof\_types\_supported** (object)\
-    An object that describes specifics of the key proof(s) that the Credential Issuer supports. This object contains a list of name/value pairs, where each name is a unique identifier of the supported proof type(s). A few of the valid values are defined below, while other values MAY be used. This identifier is also used by the Wallet in the [Credential Issuance Request](8-service-apis.md#id-8.2.-credential-issuance).
+    An object that describes specifics of the key proof(s) that the Credential Issuer supports. This object contains a list of name/value pairs, where each name is a unique identifier of the supported proof type(s). A few of the valid values are defined below, while other values MAY be used. This identifier is also used by the Wallet in the [Credential Issuance Request](spec/8-service-apis.md#id-8.2.-credential-issuance).
 
     \
     Below are a few `proof_type` supported for the `proof_type` property:
