@@ -2,7 +2,7 @@
 
 * [Wallet Building Block](README.md)
 * [1 Version History](1-version-history/README.md)
-  * [Release Notes v1.0.0](1-version-history/release-notes-v1.0.0.md)
+  * [Release Notes](1-version-history/release-notes.md)
 * [2 Description](2-description.md)
 * [3 Terminology](3-terminology.md)
 * [4 Key Digital Functionalities](4-key-digital-functionalities.md)
