@@ -49,7 +49,7 @@ description: >-
       <td>
         Externally reviewed and approved version 
         <br>
-        See <a href="release-notes-v1.0.0.md">Release Notes</a>
+        See <a href="release-notes.md">Release Notes</a>
       </td>
     </tr>
   </tbody>
