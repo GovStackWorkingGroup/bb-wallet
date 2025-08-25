@@ -203,12 +203,8 @@ Here the parameters for the JSON-encoded Credential Offer object are defined.
   \
   Here, the Credential Issuer is identified by a case-sensitive URL using the HTTPS scheme that contains scheme, host, and, optionally, port number and path components, but no query or fragment components.
 
-<!---->
-
-* **credential\_configuration\_ids**<mark style="color:red;">\*</mark>\
+- **credential\_configuration\_ids**<mark style="color:red;">\*</mark>\
   An array of unique strings that each identify one of the keys in the name/value pairs stored in the `credential_configurations_supported` Credential Issuer metadata. The Wallet uses these string values to obtain the respective object that contains information about the Credential being offered. For example, these string values can be used to obtain scope values to be used in the Authorization Request.
-
-<!---->
 
 * **grants**\
   Object indicating to the Wallet the Grant Types the Credential Issuer's Authorization Server is prepared to process for this Credential Offer. Every grant is represented by a name/value pair. The name is the Grant Type identifier; the value is an object that contains parameters either determining the way the Wallet MUST use the particular grant and/or parameters the Wallet MUST send with the respective request(s). If grants are not present or are empty, the Wallet MUST determine the Grant Types the Credential Issuer's Authorization Server supports using the respective metadata. When multiple grants are present, it is at the Wallet's discretion which one to use.
@@ -271,7 +267,7 @@ Below are a few non-normative examples of a Credential Offer Object.
 {% endtabs %}
 
 {% hint style="info" %}
-The above specification details are taken from [OpenID4VCI - Draft 13](https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0-ID1.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0-ID1.html#name-credential-offer).
+The above specification details are taken from [OpenID4VCI - Draft 13](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html#name-credential-offer).
 {% endhint %}
 
 ### 7.3.2. Credential Issuer Metadata
@@ -291,22 +287,14 @@ Here, the parameters of the credential metadata object are defined.
 * **format** (string)\
   A JSON string identifying the format of this Credential, i.e., `jwt_vc_json` or `ldp_vc`. Depending on the format value, the object contains further elements defining the type and (optionally) particular claims the Credential MAY contain and information about how to display the Credential.
 
-<!---->
-
-* **scope** (string)\
-  A JSON string identifying the scope value that this Credential Issuer supports for this particular Credential. The value can be the same across multiple `credential_configurations_supported` objects. The Authorization Server MUST be able to uniquely identify the Credential Issuer based on the scope value. The Wallet can use this value in the [Authorization Request](https://ooru.stoplight.io/docs/wallet/branches/main/wallet-bb.yaml/paths/\~1authorize/get). Scope values in this Credential Issuer metadata MAY duplicate those in the `scopes_supported` parameter of the Authorization Server.
-
-<!---->
+- **scope** (string)\
+  A JSON string identifying the scope value that this Credential Issuer supports for this particular Credential. The value can be the same across multiple `credential_configurations_supported` objects. The Authorization Server MUST be able to uniquely identify the Credential Issuer based on the scope value. The Wallet can use this value in the [Authorization Request](8-service-apis.md#id-8.2.1.-authorization-endpoint). Scope values in this Credential Issuer metadata MAY duplicate those in the `scopes_supported` parameter of the Authorization Server.
 
 * **cryptographic\_binding\_methods\_supported** (array\[string])\
   An array of case-sensitive strings that identify the representation of the cryptographic key material that the issued Credential is bound to. Support for keys in JWK format [RFC7517](https://www.rfc-editor.org/rfc/rfc7517.html) is indicated by the value `jwk`. Support for keys expressed as a COSE Key object [RFC8152](https://www.rfc-editor.org/rfc/rfc8152.html) (for example, used in [ISO.18013-5](https://www.iso.org/standard/69084.html)) is indicated by the value `cose_key`. When the Cryptographic Binding Method is a DID, valid values are a did: prefix followed by a method-name using a syntax as defined in Section 3.1 of [DID-Core](https://www.w3.org/TR/did-core/), but without a :and method-specific-id. For example, support for the DID method with a method-name "example" would be represented by did:example.
 
-<!---->
-
-* **credential\_signing\_alg\_values\_supported** (array\[string])\
+- **credential\_signing\_alg\_values\_supported** (array\[string])\
   Array of case sensitive strings that identify the algorithms that the Issuer uses to sign the issued Credential.
-
-<!---->
 
 *   **proof\_types\_supported** (object)\
     An object that describes specifics of the key proof(s) that the Credential Issuer supports. This object contains a list of name/value pairs, where each name is a unique identifier of the supported proof type(s). A few of the valid values are defined below, while other values MAY be used. This identifier is also used by the Wallet in the [Credential Issuance Request](8-service-apis.md#id-8.2.-credential-issuance).
@@ -525,7 +513,7 @@ Below are non-normative examples of the object containing the `credential_config
 {% endtabs %}
 
 {% hint style="info" %}
-The above specification details are taken from [OpenID4VCI - Draft 13](https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0-ID1.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-credential-issuance-1\_0-ID1.html#name-credential-issuer-metadata).
+The above specification details are taken from [OpenID4VCI - Draft 13](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html#name-credential-issuer-metadata).
 {% endhint %}
 
 ### 7.3.3. Presentation Definition
@@ -700,7 +688,7 @@ The following non-normative example shows how the Verifiers can also ask for alt
 {% endtabs %}
 
 {% hint style="info" %}
-The above specification details are taken from [OpenID4VP - Draft 18](https://openid.net/specs/openid-4-verifiable-presentations-1\_0-ID2.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-presentations-1\_0-ID2.html#name-presentation\_definition-par).
+The above specification details are taken from [OpenID4VP - Draft 18](https://openid.net/specs/openid-4-verifiable-presentations-1_0-ID2.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-presentations-1_0-ID2.html#name-presentation_definition-par).
 
 Also, refer to the [DIF Presentation Exchange Definition](https://identity.foundation/presentation-exchange/spec/v2.1.1/).
 {% endhint %}
@@ -858,5 +846,5 @@ The following is a non-normative example of a VP Token containing multiple Verif
 {% endtabs %}
 
 {% hint style="info" %}
-The above specification details are taken from [OpenID4VP - Draft 18](https://openid.net/specs/openid-4-verifiable-presentations-1\_0-ID2.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-presentations-1\_0-ID2.html#name-response-type-vp\_token).
+The above specification details are taken from [OpenID4VP - Draft 18](https://openid.net/specs/openid-4-verifiable-presentations-1_0-ID2.html) specifications, for more details go through the specifications [here](https://openid.net/specs/openid-4-verifiable-presentations-1_0-ID2.html#name-response-type-vp_token).
 {% endhint %}
