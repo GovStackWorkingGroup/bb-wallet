@@ -333,12 +333,12 @@ paths:
             type: string
           in: query
           name: code_challenge_method
-          description: Redirection URI to which the response would be sent. This URI must match one of the redirection URI values during the client ID creation.
+          description: The method of challenge this will be 'plain' or 'S256' depending on whether the challenge is the plain verifier string or the SHA256 hash of the string.
         - schema:
             type: string
           in: query
           name: authorization_details
-          description: 'MUST be used to convey the details about the Credentials the Wallet wants to obtain when sent from the issuer to wallet. <br/>For details on authorization details [click here](wallet-bb.yaml/components/schemas/Authorization-Details).'
+          description: 'MUST be used to convey the details about the Credentials the Wallet wants to obtain when sent from the issuer to wallet. <br/>For details on authorization details [click here](wallet-bb (1).yaml/components/schemas/Authorization-Details).'
       requestBody:
         content: {}
     parameters: []
