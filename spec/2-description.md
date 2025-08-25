@@ -26,7 +26,12 @@ At this time however we start by focusing on **Wallets for Digital Credentials**
 
 As can be seen we aim to support different forms of media, so where as at the moment the specifications may include items that indicate a specific form (e.g. mobile wallets), other forms will be considered in future scope.
 
-<figure><picture><source srcset=".gitbook/assets/wallet-abstraction-DARKMODE (3).png" media="(prefers-color-scheme: dark)"><img src=".gitbook/assets/wallet-abstraction (1).png" alt=""></picture><figcaption><p>The Wallet Abstraction</p></figcaption></figure>
+<figure>
+  <picture>
+    <source srcset=".gitbook/assets/wallet-abstraction-DARKMODE (3).png" media="(prefers-color-scheme: dark)"><img src=".gitbook/assets/wallet-abstraction (1).png" alt="">
+  </picture>
+  <figcaption><p>The Wallet Abstraction</p></figcaption>
+</figure>
 
 A Digital Credential Wallet is a specialized digital wallet designed to securely store, manage, and present digital credentials, also known as **Verifiable Credentials (VCs)**. These credentials represent a user's qualifications, achievements, or attributes in a digital form, such as educational qualifications, professional certifications, or government-issued IDs. Unlike physical credentials, which are prone to loss or forgery, digital credentials are stored and presented electronically, offering enhanced security and convenience.
 
@@ -40,7 +45,10 @@ With that understanding and focus let's look at the Digital Credential Wallet.
 
 Digital Credential Wallets play a crucial role in advancing the Issuer-Holder-Verifier model by providing efficiency, security, interoperability, privacy, and innovation. They streamline the processes of issuing, storing, and presenting credentials, making these tasks more convenient for both issuers and holders. Cryptographic signatures ensure the integrity of credentials, while biometric binding enhances security, offering a robust and trustworthy means of credential management.
 
-<figure><img src=".gitbook/assets/Wallet Building Block-Page-7.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure>
+  <img src=".gitbook/assets/Wallet Building Block-Page-7.png" alt="" width="563">
+  <figcaption>Issuer-Holder-Verifier Model</figcaption>
+</figure>
 
 The Issuer-Holder-Verifier model further enhances privacy by allowing users to share only the necessary information with verifiers, minimizing data exposure. Additionally, this model supports scalability by enabling a decentralized and interoperable framework that can accommodate an increasing number of credentials and participants across various sectors.
 
