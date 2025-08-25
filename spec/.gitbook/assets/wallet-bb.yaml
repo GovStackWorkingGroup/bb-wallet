@@ -4,6 +4,10 @@ x-stoplight:
 info:
   title: Wallet Building Block
   version: '1.0'
+  contact:
+    name: Rounak Nayak
+    url: ''
+    email: rounak@ooru.io
 servers:
   - url: 'https://govstack.sandbox.com'
     description: ''
@@ -329,7 +333,7 @@ paths:
             type: string
           in: query
           name: code_challenge_method
-          description: Redirection URI to which the response would be sent. This URI must match one of the redirection URI values during the client ID creation.
+          description: The method of challenge this will be 'plain' or 'S256' depending on whether the challenge is the plain verifier string or the SHA256 hash of the string.
         - schema:
             type: string
           in: query
@@ -865,15 +869,49 @@ paths:
             type: string
           in: query
           name: presentation_definition
-          description: "A string containing a Presentation Definition JSON object. This parameter MUST be present when presentation_definition_uri parameter, or a\_scope\_value representing a Presentation Definition is not present."
+          description: "A string containing a Presentation Definition JSON object. This parameter MUST be present when `presentation_definition_uri` parameter, or a\_scope\_value representing a Presentation Definition is not present."
+          required: true
         - schema:
             type: string
           in: query
           name: presentation_definition_uri
-          description: "A string containing an HTTPS URL pointing to a resource where a Presentation Definition JSON object can be retrieved. This parameter MUST be present when presentation_definition\_parameter, or a\_scope\_value representing a Presentation Definition is not present."
+          description: "A string containing an HTTPS URL pointing to a resource where a Presentation Definition JSON object can be retrieved. This parameter MUST be present when `presentation_definition`\_parameter, or a\_scope\_value representing a Presentation Definition is not present."
+          required: true
         - schema:
             type: string
           in: query
+          name: client_id_scheme
+          description: "A string identifying the scheme of the value in the\_`client_id`\_Authorization Request parameter (Client Identifier scheme). The\_`client_id_scheme`\_parameter namespaces the respective Client Identifier. If an Authorization Request uses the\_`client_id_scheme`\_parameter, the Wallet MUST interpret the Client Identifier of the Verifier in the context of the Client Identifier scheme. If the parameter is not present, the Wallet MUST behave as specified in\_[RFC6749](https://www.rfc-editor.org/rfc/rfc6749.html). If the same Client Identifier is used with different Client Identifier schemes, those occurrences MUST be treated as different Verifiers. Note that the Verifier needs to determine which Client Identifier schemes the Wallet supports prior to sending the Authorization Request in order to choose a supported scheme."
+        - schema:
+            type: string
+          in: query
+          name: client_metadata
+          description: A JSON object containing the Verifier metadata values. It MUST be UTF-8 encoded.
+        - schema:
+            type: string
+          in: query
+          name: request_uri_method
+          description: "A string determining the HTTP method to be used when the\_request_uri\_parameter is included in the same request. Two case-sensitive valid values are defined in this specification:\_get\_and\_post. If\_request_uri_method\_value is\_get, the Wallet MUST send the request to retrieve the Request Object using the HTTP GET method, i.e., as defined in\_[RFC9101](https://www.rfc-editor.org/rfc/rfc9101.html). If\_request_uri_method\_value is\_post, a supporting Wallet MUST send the request using the HTTP POST method. If the\_request_uri_method\_parameter is not present, the Wallet MUST process the\_request_uri\_parameter as defined in\_[RFC9101](https://www.rfc-editor.org/rfc/rfc9101.html). Wallets not supporting the\_post\_method will send a GET request to the Request URI (default behavior as defined in\_[RFC9101](https://www.rfc-editor.org/rfc/rfc9101.html)).\_request_uri_method\_parameter MUST NOT be present if a\_request_uri\_parameter is not present."
+        - schema:
+            type: string
+          in: query
+          name: nonce
+          description: 'It is used to securely bind the Verifiable Presentation(s) provided by the Wallet to the particular transaction. Values MUST only contain ASCII URL safe characters (uppercase and lowercase letters, decimal digits, hyphen, period, underscore, and tilde).'
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: scope
+          description: "Defined in\_[RFC6749](https://www.rfc-editor.org/rfc/rfc6749.html). The Wallet MAY allow Verifiers to request presentation of Verifiable Credentials by utilizing a pre-defined scope value."
+        - schema:
+            type: string
+          in: query
+          name: response_mode
+          description: "This parameter is used (through the new Response Mode\_`direct_post`) to ask the Wallet to send the response to the Verifier via an HTTPS connection. It is also used to request signing and encrypting. If the parameter is not present, the default value is\_fragment."
+      description: |-
+        The Authorization Request in this specification is based on [RFC6749](https://www.rfc-editor.org/rfc/rfc6749.html) and aligns with the security recommendations from [I-D.ietf-oauth-security-topics](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-29). The Verifier can send an Authorization Request either by value or by reference using a JWT-Secured Authorization Request (JAR) as defined in [RFC9101](https://www.rfc-editor.org/rfc/rfc9101.html). To support cases where the Wallet needs to communicate its technical capabilities, the Authorization Request can include a request_uri_method parameter with the value post. This allows the Wallet to make an HTTP POST request to the Verifier’s request_uri endpoint, providing information about its capabilities.
+
+        The Verifier can specify the requirements for requested credentials using the presentation_definition and presentation_definition_uri parameters, containing a Presentation Definition JSON object per [DIF.PresentationExchange](https://identity.foundation/presentation-exchange/spec/v2.0.0/). The Wallet is expected to process this JSON object and select suitable Verifiable Credentials based on the evaluation criteria defined. Additionally, the Verifier can use the client_id_scheme and client_metadata parameters to communicate a Client Identifier Scheme and related metadata, enabling the Wallet to interpret the Client Identifier, authenticate, and authorize accordingly. These parameters provide flexibility for deploying different mechanisms for Client metadata validation.
   /deferred_credential:
     post:
       summary: Deferred Credential

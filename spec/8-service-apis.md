@@ -33,13 +33,13 @@ Consideration should be made of the GovStack cross cutting Security consideratio
 ### 8.1.1. Credential Offer Endpoint
 
 {% openapi-operation spec="wallet-bb-api" path="/credential_offer" method="get" %}
-[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb%20\(1\).yaml)
+[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb.yaml)
 {% endopenapi-operation %}
 
 ### 8.1.2. Credential Issuer Metadata
 
 {% openapi-operation spec="wallet-bb-api" path="/.well-known/openid-credential-issuer" method="get" %}
-[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb%20\(1\).yaml)
+[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb.yaml)
 {% endopenapi-operation %}
 
 ### 8.2. Credential Issuance
@@ -47,37 +47,37 @@ Consideration should be made of the GovStack cross cutting Security consideratio
 ### 8.2.1. Authorization Endpoint
 
 {% openapi-operation spec="wallet-bb-api" path="/authorize" method="get" %}
-[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb%20\(1\).yaml)
+[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb.yaml)
 {% endopenapi-operation %}
 
 ### 8.2.2. Token Endpoint
 
 {% openapi-operation spec="wallet-bb-api" path="/token" method="post" %}
-[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb%20\(1\).yaml)
+[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb.yaml)
 {% endopenapi-operation %}
 
 ### 8.2.3. Credential Endpoint
 
 {% openapi-operation spec="wallet-bb-api" path="/credential" method="post" %}
-[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb%20\(1\).yaml)
+[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb.yaml)
 {% endopenapi-operation %}
 
 ### 8.2.4. Batch Credential Endpoint
 
 {% openapi-operation spec="wallet-bb-api" path="/batch_credential" method="post" %}
-[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb%20\(1\).yaml)
+[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb.yaml)
 {% endopenapi-operation %}
 
 ### 8.2.5. Deffered Credential Endpoint
 
 {% openapi-operation spec="wallet-bb-api" path="/deferred_credential" method="post" %}
-[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb%20\(1\).yaml)
+[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb.yaml)
 {% endopenapi-operation %}
 
 ### 8.2.6. Notification Endpoint
 
 {% openapi-operation spec="wallet-bb-api" path="/notification" method="post" %}
-[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb%20\(1\).yaml)
+[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb.yaml)
 {% endopenapi-operation %}
 
 ## 8.3 Credential Presentations
@@ -87,7 +87,7 @@ Consideration should be made of the GovStack cross cutting Security consideratio
 
 
 {% openapi-operation spec="wallet-bb-api" path="/verify/authorize" method="post" %}
-[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb%20\(1\).yaml)
+[OpenAPI wallet-bb-api](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-wallet/refs/heads/main/spec/.gitbook/assets/wallet-bb.yaml)
 {% endopenapi-operation %}
 
 {% hint style="info" %}
