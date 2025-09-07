@@ -8,17 +8,17 @@ description: >-
 
 ## 7.1. Credential Formats
 
-The specifications should support credentials of any format, including, but not limited to,
+The specifications should support credentials of any format, including, but not limited to,&#x20;
 
-* SD-JWT VC (Selective Disclosure JWT Verifiable Credentials) \[[I-D.ietf-oauth-sd-jwt-vc](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01)],
-* mDL (ISO mDoc Mobile Driving License) \[[ISO 18013-5](https://www.iso.org/standard/69084.html)], and
+* SD-JWT VC (Selective Disclosure JWT Verifiable Credentials) \[[I-D.ietf-oauth-sd-jwt-vc](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01)],&#x20;
+* mDL (ISO mDoc Mobile Driving License) \[[ISO 18013-5](https://www.iso.org/standard/69084.html)], and&#x20;
 * VC-DM (W3C Verifiable Credential Data Model) \[[VC\_DATA](https://www.w3.org/TR/vc-data-model-2.0/)].
 
 ### 7.1.1. W3C Verifiable Credential Data Model
 
 Verifiable credentials are used to express properties of one or more subjects and properties of the credential itself. The following properties are defined in this specification for a verifiable credential:
 
-<table><thead><tr><th width="192">Attribute</th><th>Description</th></tr></thead><tbody><tr><td>@context <mark style="color:red;">*</mark></td><td>The <code>@context</code> property is a fundamental aspect that ensures the credentials are interpretable and understandable across different systems. It is used to define the terms and vocabulary employed in the credential, enabling consistent data interpretation.</td></tr><tr><td>id <mark style="color:red;">*</mark></td><td><p>The <code>id</code> property in Verifiable Credentials (VC) expresses a unique identifier for a specific entity or object. This identifier is used by others to refer to the specific entity when making statements or assertions about it.</p><p>Examples of <code>id</code> values include,</p><ul><li>UUIDs (<code>urn:uuid:0c07c1ce-57cb-41af-bef2-1b932b986873</code>),</li><li>HTTP URLs (<code>https://id.example/things#123</code>), and</li><li>DIDs (<code>did:example:1234abcd</code>)</li></ul></td></tr><tr><td>type <mark style="color:red;">*</mark></td><td>The <code>type</code> property specifies the nature or category of the verifiable credential or verifiable presentation. It helps in understanding what kind of information or assertions the credential contains.<br><br>The <code>type</code> property can include multiple values, allowing a credential or presentation to be associated with more than one type. This is useful for credentials that may belong to multiple categories.</td></tr><tr><td>name</td><td>The <code>name</code> property offers a simple, readable name or title for the credential or presentation, making it easier for users to recognize and understand its content at a glance.</td></tr><tr><td>description</td><td>The <code>description</code> property gives a textual explanation that describes the content, purpose, or significance of the credential or presentation.</td></tr><tr><td>issuer <mark style="color:red;">*</mark></td><td>The <code>issuer</code> property specifies a unique identifier, typically a URL or a <a href="https://www.w3.org/TR/did-core/">Decentralized Identifier (DID)</a>, that represents the entity (e.g., an organization, institution, or individual) responsible for issuing the credential.</td></tr><tr><td>validFrom <mark style="color:red;">*</mark></td><td>The <code>validFrom</code> property indicates the exact date and time when the credential becomes valid. It is represented in the ISO 8601 date-time format.</td></tr><tr><td>validUntil <mark style="color:red;">*</mark></td><td>The <code>validUntil</code> property indicates the exact date and time when the credential ceases to be valid. It is represented in the ISO 8601 date-time format.</td></tr><tr><td>credentialStatus <mark style="color:red;">*</mark></td><td>The <code>credentialStatus</code> property specifies a URL or a JSON object that provides information about the status of the credential. It is used to indicate if the credential has been revoked, suspended, or has any other status that impacts its validity.<br><br>This property allows verifiers to dynamically check the current status of the credential by querying the provided URL or examining the JSON object.</td></tr><tr><td>credentialSchema <mark style="color:red;">*</mark></td><td>The <code>credentialSchema</code> property provides a reference to a schema that defines the structure, required fields, and validation rules for the credential.<br><br>This property allows verifiers to validate the credential against the specified schema to ensure it meets the expected format and requirements.</td></tr><tr><td>credentialSubject <mark style="color:red;">*</mark></td><td>The <code>credentialSubject</code> property identifies and describes the entity (e.g., a person, organization, or thing) that is the subject of the credential. It includes the claims or assertions made about this entity.<br><br>This property contains the claims, attributes, or statements that the credential makes about the subject. These can include various types of information, such as names, achievements, qualifications, or affiliations.</td></tr></tbody></table>
+<table><thead><tr><th width="192">Attribute</th><th>Description</th></tr></thead><tbody><tr><td>@context <mark style="color:red;">*</mark></td><td>The <code>@context</code> property is a fundamental aspect that ensures the credentials are interpretable and understandable across different systems. It is used to define the terms and vocabulary employed in the credential, enabling consistent data interpretation.</td></tr><tr><td>id <mark style="color:red;">*</mark></td><td><p>The <code>id</code> property in Verifiable Credentials (VC) expresses a unique identifier for a specific entity or object. This identifier is used by others to refer to the specific entity when making statements or assertions about it.</p><p>Examples of <code>id</code> values include, </p><ul><li>UUIDs (<code>urn:uuid:0c07c1ce-57cb-41af-bef2-1b932b986873</code>), </li><li>HTTP URLs (<code>https://id.example/things#123</code>), and </li><li>DIDs (<code>did:example:1234abcd</code>)</li></ul></td></tr><tr><td>type <mark style="color:red;">*</mark></td><td>The <code>type</code> property specifies the nature or category of the verifiable credential or verifiable presentation. It helps in understanding what kind of information or assertions the credential contains.<br><br>The <code>type</code> property can include multiple values, allowing a credential or presentation to be associated with more than one type. This is useful for credentials that may belong to multiple categories.</td></tr><tr><td>name</td><td>The <code>name</code> property offers a simple, readable name or title for the credential or presentation, making it easier for users to recognize and understand its content at a glance.</td></tr><tr><td>description</td><td>The <code>description</code> property gives a textual explanation that describes the content, purpose, or significance of the credential or presentation.</td></tr><tr><td>issuer <mark style="color:red;">*</mark></td><td>The <code>issuer</code> property specifies a unique identifier, typically a URL or a <a href="https://www.w3.org/TR/did-core/">Decentralized Identifier (DID)</a>, that represents the entity (e.g., an organization, institution, or individual) responsible for issuing the credential.</td></tr><tr><td>validFrom <mark style="color:red;">*</mark></td><td>The <code>validFrom</code> property indicates the exact date and time when the credential becomes valid. It is represented in the ISO 8601 date-time format.</td></tr><tr><td>validUntil <mark style="color:red;">*</mark></td><td>The <code>validUntil</code> property indicates the exact date and time when the credential ceases to be valid. It is represented in the ISO 8601 date-time format.</td></tr><tr><td>credentialStatus <mark style="color:red;">*</mark></td><td>The <code>credentialStatus</code> property specifies a URL or a JSON object that provides information about the status of the credential. It is used to indicate if the credential has been revoked, suspended, or has any other status that impacts its validity.<br><br>This property allows verifiers to dynamically check the current status of the credential by querying the provided URL or examining the JSON object.</td></tr><tr><td>credentialSchema <mark style="color:red;">*</mark></td><td>The <code>credentialSchema</code> property provides a reference to a schema that defines the structure, required fields, and validation rules for the credential.<br><br>This property allows verifiers to validate the credential against the specified schema to ensure it meets the expected format and requirements.</td></tr><tr><td>credentialSubject <mark style="color:red;">*</mark></td><td>The <code>credentialSubject</code> property identifies and describes the entity (e.g., a person, organization, or thing) that is the subject of the credential. It includes the claims or assertions made about this entity.<br><br>This property contains the claims, attributes, or statements that the credential makes about the subject. These can include various types of information, such as names, achievements, qualifications, or affiliations.</td></tr></tbody></table>
 
 {% hint style="info" %}
 The above specification details are taken from [VC Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/#contexts), for more details go through the specifications [here](https://www.w3.org/TR/vc-data-model-2.0/#contexts).
@@ -72,7 +72,7 @@ In W3C VC Data Model supports extension mechanisms to extend additional properti
 
 SD-JWT VCs may use any claim registered in the "JSON Web Token Claims" registry. If present, the following registered JWT claims must be included in the SD-JWT:
 
-<table><thead><tr><th width="181">Attribute</th><th>Description</th></tr></thead><tbody><tr><td>iss <mark style="color:red;">*</mark></td><td>The Issuer of the Verifiable Credential. The value of <code>iss</code> MUST be a URI.</td></tr><tr><td>iat <mark style="color:red;">*</mark></td><td>The time of issuance of the Verifiable Credential.</td></tr><tr><td>nbf</td><td>The time before which the Verifiable Credential MUST NOT be accepted before validating.</td></tr><tr><td>exp</td><td>The expiry time of the Verifiable Credential after which the Verifiable Credential is no longer valid.</td></tr><tr><td>cnf</td><td>Required when Cryptographic Key Binding is to be supported and contains the confirmation method. It is recommended that this contains a JWK. For Cryptographic Key Binding, the Key Binding JWT in the Combined Format for Presentation must be signed by the key identified in this claim.</td></tr><tr><td>vct <mark style="color:red;">*</mark></td><td><p>The type of the Verifiable Credential,</p><p>e.g., <code>https://credentials.example.com/identity_credential</code></p></td></tr><tr><td>status</td><td>The information on how to read the status of the Verifiable Credential.</td></tr><tr><td>sub</td><td>The identifier of the Subject of the Verifiable Credential. The Issuer may use it to provide the Subject identifier known by the Issuer. There is no requirement for a binding to exist between <code>sub</code> and <code>cnf</code> claims.</td></tr></tbody></table>
+<table><thead><tr><th width="181">Attribute</th><th>Description</th></tr></thead><tbody><tr><td>iss <mark style="color:red;">*</mark></td><td>The Issuer of the Verifiable Credential. The value of <code>iss</code> MUST be a URI.</td></tr><tr><td>iat <mark style="color:red;">*</mark></td><td>The time of issuance of the Verifiable Credential.</td></tr><tr><td>nbf</td><td>The time before which the Verifiable Credential MUST NOT be accepted before validating.</td></tr><tr><td>exp</td><td>The expiry time of the Verifiable Credential after which the Verifiable Credential is no longer valid.</td></tr><tr><td>cnf</td><td>Required when Cryptographic Key Binding is to be supported and contains the confirmation method. It is recommended that this contains a JWK. For Cryptographic Key Binding, the Key Binding JWT in the Combined Format for Presentation must be signed by the key identified in this claim.</td></tr><tr><td>vct <mark style="color:red;">*</mark></td><td><p>The type of the Verifiable Credential, </p><p>e.g., <code>https://credentials.example.com/identity_credential</code></p></td></tr><tr><td>status</td><td>The information on how to read the status of the Verifiable Credential.</td></tr><tr><td>sub</td><td>The identifier of the Subject of the Verifiable Credential. The Issuer may use it to provide the Subject identifier known by the Issuer. There is no requirement for a binding to exist between <code>sub</code> and <code>cnf</code> claims.</td></tr></tbody></table>
 
 {% hint style="info" %}
 The above specification details are taken from [I-D.ietf-oauth-sd-jwt-vc](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01), for more details go through the specifications [here](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01).
@@ -83,32 +83,6 @@ The above specification details are taken from [I-D.ietf-oauth-sd-jwt-vc](https:
 <summary>Example of SD JWT Verifiable Credentials</summary>
 
 ```json
-{
-  "_sd": [
-    "09vKrJMOlyTWM0sjpu_pdOBVBQ2M1y3KhpH515nXkpY",
-    "2rsjGbaC0ky8mT0pJrPioWTq0_daw1sX76poUlgCwbI",
-    "EkO8dhW0dHEJbvUHlE_VCeuC9uRELOieLZhh7XbUTtA",
-    "IlDzIKeiZdDwpqpK6ZfbyphFvz5FgnWa-sN6wqQXCiw",
-    "JzYjH4svliH0R3PyEMfeZu6Jt69u5qehZo7F7EPYlSE",
-    "PorFbpKuVu6xymJagvkFsFXAbRoc2JGlAUA2BA4o7cI",
-    "TGf4oLbgwd5JQaHyKVQZU9UdGE0w5rtDsrZzfUaomLo",
-    "jdrTE8YcbY4EifugihiAe_BPekxJQZICeiUQwY9QqxI",
-    "jsu9yVulwQQlhFlM_3JlzMaSFzglhQG0DpfayQwLUK4"
-  ],
-  "iss": "https://example.com/issuer",
-  "iat": 1683000000,
-  "exp": 1883000000,
-  "vct": "https://credentials.example.com/identity_credential",
-  "_sd_alg": "sha-256",
-  "cnf": {
-    "jwk": {
-      "kty": "EC",
-      "crv": "P-256",
-      "x": "TCAER19Zvu3OHF4j4W4vfSVoHIP1ILilDls7vCeGemc",
-      "y": "ZxjiWWbZMQGHVWKVQ4hbSIirsVfuecCE6t4jT9F2HZQ"
-    }
-  }
-}
 ```
 
 </details>
@@ -190,7 +164,7 @@ The above specification details are taken from [ISO/IEC DIS 18013-5 (mDL)](https
 
 ## 7.2. Credential Schema
 
-Every credential should provide a mechanism to share credential schema that extends the core components of a verifiable credential.
+Every credential should provide a mechanism to share credential schema that extends the core components of a verifiable credential.&#x20;
 
 The core components of a verifiable credential are,
 
@@ -207,7 +181,7 @@ The credential schema enables flexibility by defining how additional attributes 
 
 ### 7.3.1. Credential Offer Definition
 
-The Credential Issuer sends a Credential Offer using an HTTP GET request or an HTTP redirect to the Wallet's [Credential Offer Endpoint](8-service-apis.md#id-8.1.1.-credential-offer-endpoint).
+The Credential Issuer sends a Credential Offer using an HTTP GET request or an HTTP redirect to the Wallet's [Credential Offer Endpoint](spec/8-service-apis.md#id-8.1.1.-credential-offer-endpoint).
 
 The Credential Offer object, which is a JSON-encoded object with the Credential Offer parameters, can be sent by value or by reference.
 
@@ -222,7 +196,7 @@ Here the parameters for the JSON-encoded Credential Offer object are defined.
 
 <details>
 
-<summary>Parametrs for the JSON-encoded Credential Offer object</summary>
+<summary>Parameters for the JSON-encoded Credential Offer object</summary>
 
 * **credential\_issuer**<mark style="color:red;">\*</mark>\
   The URL of the Credential Issuer, from which the Wallet is requested to obtain one or more Credentials. The Wallet uses it to obtain the Credential Issuer's Metadata.\
@@ -298,7 +272,7 @@ The above specification details are taken from [OpenID4VCI - Draft 13](https://o
 
 ### 7.3.2. Credential Issuer Metadata
 
-The `credential_configurations_supported` object in the response of the [Credential Issuer Metadata Endpoint](8-service-apis.md#id-8.1.2.-credential-issuer-metadata) describes the specifics of the Credential that the Credential Issuer supports the issuance of.
+The `credential_configurations_supported` object in the response of the [Credential Issuer Metadata Endpoint](spec/8-service-apis.md#id-8.1.2.-credential-issuer-metadata) describes the specifics of the Credential that the Credential Issuer supports the issuance of.
 
 This object contains a list of name/value pairs, where each name is a unique identifier of the supported Credential being described.
 
@@ -314,7 +288,7 @@ Here, the parameters of the credential metadata object are defined.
   A JSON string identifying the format of this Credential, i.e., `jwt_vc_json` or `ldp_vc`. Depending on the format value, the object contains further elements defining the type and (optionally) particular claims the Credential MAY contain and information about how to display the Credential.
 
 - **scope** (string)\
-  A JSON string identifying the scope value that this Credential Issuer supports for this particular Credential. The value can be the same across multiple `credential_configurations_supported` objects. The Authorization Server MUST be able to uniquely identify the Credential Issuer based on the scope value. The Wallet can use this value in the [Authorization Request](8-service-apis.md#id-8.2.1.-authorization-endpoint). Scope values in this Credential Issuer metadata MAY duplicate those in the `scopes_supported` parameter of the Authorization Server.
+  A JSON string identifying the scope value that this Credential Issuer supports for this particular Credential. The value can be the same across multiple `credential_configurations_supported` objects. The Authorization Server MUST be able to uniquely identify the Credential Issuer based on the scope value. The Wallet can use this value in the [Authorization Request](https://ooru.stoplight.io/docs/wallet/branches/main/wallet-bb.yaml/paths/~1authorize/get). Scope values in this Credential Issuer metadata MAY duplicate those in the `scopes_supported` parameter of the Authorization Server.
 
 * **cryptographic\_binding\_methods\_supported** (array\[string])\
   An array of case-sensitive strings that identify the representation of the cryptographic key material that the issued Credential is bound to. Support for keys in JWK format [RFC7517](https://www.rfc-editor.org/rfc/rfc7517.html) is indicated by the value `jwk`. Support for keys expressed as a COSE Key object [RFC8152](https://www.rfc-editor.org/rfc/rfc8152.html) (for example, used in [ISO.18013-5](https://www.iso.org/standard/69084.html)) is indicated by the value `cose_key`. When the Cryptographic Binding Method is a DID, valid values are a did: prefix followed by a method-name using a syntax as defined in Section 3.1 of [DID-Core](https://www.w3.org/TR/did-core/), but without a :and method-specific-id. For example, support for the DID method with a method-name "example" would be represented by did:example.
@@ -323,15 +297,16 @@ Here, the parameters of the credential metadata object are defined.
   Array of case sensitive strings that identify the algorithms that the Issuer uses to sign the issued Credential.
 
 *   **proof\_types\_supported** (object)\
-    An object that describes specifics of the key proof(s) that the Credential Issuer supports. This object contains a list of name/value pairs, where each name is a unique identifier of the supported proof type(s). A few of the valid values are defined below, while other values MAY be used. This identifier is also used by the Wallet in the [Credential Issuance Request](8-service-apis.md#id-8.2.-credential-issuance).
+    An object that describes specifics of the key proof(s) that the Credential Issuer supports. This object contains a list of name/value pairs, where each name is a unique identifier of the supported proof type(s). A few of the valid values are defined below, while other values MAY be used. This identifier is also used by the Wallet in the [Credential Issuance Request](spec/8-service-apis.md#id-8.2.-credential-issuance).
 
     \
     Below are a few `proof_type` supported for the `proof_type` property:
 
     * `jwt`: A JWT [RFC7519](https://www.rfc-editor.org/rfc/rfc7519.html) is used as proof of possession. When proof\_type is JWT, a proof object MUST include a JWT claim containing a JWT.
     * `cwt`: A CWT [RFC8392](https://www.rfc-editor.org/rfc/rfc8392.html) is used as proof of possession. When proof\_type is cwt, a proof object MUST include a cwt claim containing a CWT.
-    * `ldp_vp`: A W3C Verifiable Presentation object signed using the Data Integrity Proof as defined in [VC\_DATA\_2.0](https://www.w3.org/TR/vc-data-model-2.0/) or [VC\_DATA](https://www.w3.org/TR/vc-data-model/), and where the proof of possession MUST be done per [VC\_Data\_Integrity](https://w3c.github.io/vc-data-integrity/). When `proof_type` is set to `ldp_vp`, the proof object MUST include a `ldp_vp` claim containing a [W3C Verifiable Presentation](https://www.w3.org/TR/vc-data-model-2.0/#presentations-0).\\
-    * **jwt** (object)
+    * `ldp_vp`: A W3C Verifiable Presentation object signed using the Data Integrity Proof as defined in [VC\_DATA\_2.0](https://www.w3.org/TR/vc-data-model-2.0/) or [VC\_DATA](https://www.w3.org/TR/vc-data-model/), and where the proof of possession MUST be done per [VC\_Data\_Integrity](https://w3c.github.io/vc-data-integrity/). When `proof_type` is set to `ldp_vp`, the proof object MUST include a `ldp_vp` claim containing a [W3C Verifiable Presentation](https://www.w3.org/TR/vc-data-model-2.0/#presentations-0).\
+
+    * **jwt** (object)&#x20;
       * **proof\_signing\_alg\_values\_supported**<mark style="color:red;">\*</mark> (array\[string])\
         An array of case-sensitive strings that identify the algorithms that the Issuer supports for this proof type. The Wallet uses one of them to sign the proof. Algorithm names used are determined by the key proof types.
     * **display** (array\[object])\
@@ -547,8 +522,8 @@ A Presentation Definition is a structured object used to specify the proofs a Ve
 
 Key Components of Presentation Definitions:
 
-* **Inputs**: These describe the forms and specifics of the required proofs.
-* **Selection Rules (optional)**: These provide flexibility, allowing Holders to use different types of proofs to satisfy a requirement.
+* **Inputs**: These describe the forms and specifics of the required proofs.&#x20;
+* **Selection Rules (optional)**: These provide flexibility, allowing Holders to use different types of proofs to satisfy a requirement.&#x20;
 
 By setting clear Presentation Definitions, Verifiers can streamline the process of verifying credentials, while Holders are given more options to meet these verification requirements.
 
