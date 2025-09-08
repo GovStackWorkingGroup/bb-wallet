@@ -34,29 +34,9 @@ Since there exist a number of Verifiable Credential standards, the Wallet abstra
 
 With that understanding and focus let's look at the Digital Credential Wallet.
 
-## Digital Credential Wallet <a href="#digital-credential-wallet" id="digital-credential-wallet"></a>
-
-Wallet as a term can mean many things depending on your background and context. However with GovStack we have chosen to use Wallet in its widest context, as a container with content.
-
-Therefore the total scope and focus of the Wallet Building Block (BB) is to provide specifications which support multiple forms of Containers and Contents, we have chosen this to ensure that we are inclusive.
-
-We expect this specification to be enhanced both with precise guidelines for sector specific (such as Social Protection, Education, Health, Agriculture etc.) applications; standards guidance/mappings and different use-cases to be supported within the wallet, over time.
-
-At this time however we start by focusing on Wallets for Digital Credentials. So although this could to some extent be considered at this stage a Digital Credentials Wallet specification the correct construct to read this specification is as a Wallet specification able to support the storage and exchange of decentralised verifiable digital information which is currently focused on Digital Credentials.
-
-As can be seen we aim to support different forms of media, so where as at the moment the specifications may include items that indicate a specific form (e.g. mobile wallets), other forms will be considered in future scope
-
-<figure><img src=".gitbook/assets/Wallet BB Description Diagram 1.png" alt=""><figcaption></figcaption></figure>
-
-
-
-Therefore with that understanding and focus let's look at the Digital Credential Wallet.
-
 ### Digital Credential Wallet
 
-A Digital Credential Wallet is a specialized digital wallet designed to securely store, manage, and present digital credentials, also known as Verifiable Credentials (VCs). These credentials represent a user's qualifications, achievements, or attributes in a digital form, such as educational qualifications, professional certifications, or government-issued IDs. Unlike physical credentials, which are prone to loss or forgery, digital credentials are stored and presented electronically, offering enhanced security and convenience.
-
-### Issuer-Holder-Verifier Model
+#### Issuer-Holder-Verifier Model
 
 Digital Credential Wallets play a crucial role in advancing the Issuer-Holder-Verifier model by providing efficiency, security, interoperability, privacy, and innovation. They streamline the processes of issuing, storing, and presenting credentials, making these tasks more convenient for both issuers and holders. Cryptographic signatures ensure the integrity of credentials, while biometric binding enhances security, offering a robust and trustworthy means of credential management.
 
@@ -64,7 +44,7 @@ Digital Credential Wallets play a crucial role in advancing the Issuer-Holder-Ve
 
 The Issuer-Holder-Verifier model further enhances privacy by allowing users to share only the necessary information with verifiers, minimizing data exposure. Additionally, this model supports scalability by enabling a decentralized and interoperable framework that can accommodate an increasing number of credentials and participants across various sectors.
 
-### Key Characteristics of a Digital Credential Wallet
+#### Key Characteristics of a Digital Credential Wallet
 
 * **Secure Storage of Verifiable Credentials**: The primary function of a Digital Credential Wallet is to store and manage Verifiable Credentials issued by trusted entities. These credentials can range from educational and professional certifications to government-issued IDs and health records.
 * **User Control and Privacy**: Users have full control over their digital credentials, deciding when and how to share them. This empowers individuals to present only the specific credentials needed for verification, without exposing unnecessary personal information, thereby enhancing privacy.
@@ -74,10 +54,10 @@ The Issuer-Holder-Verifier model further enhances privacy by allowing users to s
 * **Multi-Purpose Functionality**: Beyond ID, educational, and professional credentials, Digital Credential Wallets can manage other types of verifiable information, such as health records, access permissions, travel documents, and specific skill certifications.
 * **Support for Multiple Wallet Types**: The specification allows for the creation of different wallet types, including cloud-based, web, and mobile wallets. This flexibility enhances accessibility and caters to varying user preferences.
 
-### Future of Digital Identity Management
+#### Future of Digital Identity Management
 
 Through their interoperability and standardization across platforms, Digital Credential Wallets enable seamless verification processes. Consent management features empower individuals to control their data, reducing administrative burdens and fostering trust. As a result, these wallets pave the way for innovative applications across various sectors, shaping the future of digital identity management and verification.
 
-### The Wallet Building Block (Wallet BB)
+#### The Wallet Building Block (Wallet BB)
 
 The Wallet Building Block (Wallet BB) provides standardized specifications for building Digital Credential Wallets. This building block aims to streamline and simplify the issuance, verification, storage, and retrieval of Verifiable Credentials in a decentralized and privacy-centric manner, ensuring that digital credentialing is secure, efficient, and scalable.
