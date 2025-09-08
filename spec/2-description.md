@@ -16,7 +16,7 @@ Accordingly we do not within this Wallet Specification align to or preclude a pa
 Therefore we recognise this seperation of technical and regulatory requirements by implication means that an implementor will need to be aware of the need appropriate regulatory capabilities and requirements and consider these with our technical requirements at the point of implementation.
 {% endhint %}
 
-Wallet as a term can mean many things depending on your background and context. However with GovStack we have chosen to use Wallet in its widest context, as a **Container** with **Content**.&#x20;
+Wallet as a term can mean many things depending on your background and context. However with GovStack we have chosen to use Wallet in its widest context, as a **Container** with **Content**.
 
 Therefore the total scope and focus of the Wallet Building Block (BB) is to provide specifications which support multiple forms of Containers and Contents, we have chosen this abstraction to ensure that the Building Block remains inclusive of different formats of Wallets.
 
@@ -26,12 +26,7 @@ At this time however we start by focusing on **Wallets for Digital Credentials**
 
 As can be seen we aim to support different forms of media, so where as at the moment the specifications may include items that indicate a specific form (e.g. mobile wallets), other forms will be considered in future scope.
 
-<figure>
-  <picture>
-    <source srcset=".gitbook/assets/wallet-abstraction-DARKMODE (3).png" media="(prefers-color-scheme: dark)"><img src=".gitbook/assets/wallet-abstraction (1).png" alt="">
-  </picture>
-  <figcaption><p>The Wallet Abstraction</p></figcaption>
-</figure>
+<figure><picture><source srcset=".gitbook/assets/wallet-abstraction-DARKMODE (3).png" media="(prefers-color-scheme: dark)"><img src=".gitbook/assets/wallet-abstraction (1).png" alt=""></picture><figcaption><p>The Wallet Abstraction</p></figcaption></figure>
 
 A Digital Credential Wallet is a specialized digital wallet designed to securely store, manage, and present digital credentials, also known as **Verifiable Credentials (VCs)**. These credentials represent a user's qualifications, achievements, or attributes in a digital form, such as educational qualifications, professional certifications, or government-issued IDs. Unlike physical credentials, which are prone to loss or forgery, digital credentials are stored and presented electronically, offering enhanced security and convenience.
 
@@ -41,14 +36,31 @@ With that understanding and focus let's look at the Digital Credential Wallet.
 
 ## Digital Credential Wallet <a href="#digital-credential-wallet" id="digital-credential-wallet"></a>
 
+Wallet as a term can mean many things depending on your background and context. However with GovStack we have chosen to use Wallet in its widest context, as a container with content.
+
+Therefore the total scope and focus of the Wallet Building Block (BB) is to provide specifications which support multiple forms of Containers and Contents, we have chosen this to ensure that we are inclusive.
+
+We expect this specification to be enhanced both with precise guidelines for sector specific (such as Social Protection, Education, Health, Agriculture etc.) applications; standards guidance/mappings and different use-cases to be supported within the wallet, over time.
+
+At this time however we start by focusing on Wallets for Digital Credentials. So although this could to some extent be considered at this stage a Digital Credentials Wallet specification the correct construct to read this specification is as a Wallet specification able to support the storage and exchange of decentralised verifiable digital information which is currently focused on Digital Credentials.
+
+As can be seen we aim to support different forms of media, so where as at the moment the specifications may include items that indicate a specific form (e.g. mobile wallets), other forms will be considered in future scope
+
+<figure><img src=".gitbook/assets/Wallet BB Description Diagram 1.png" alt=""><figcaption></figcaption></figure>
+
+
+
+Therefore with that understanding and focus let's look at the Digital Credential Wallet.
+
+### Digital Credential Wallet
+
+A Digital Credential Wallet is a specialized digital wallet designed to securely store, manage, and present digital credentials, also known as Verifiable Credentials (VCs). These credentials represent a user's qualifications, achievements, or attributes in a digital form, such as educational qualifications, professional certifications, or government-issued IDs. Unlike physical credentials, which are prone to loss or forgery, digital credentials are stored and presented electronically, offering enhanced security and convenience.
+
 ### Issuer-Holder-Verifier Model
 
 Digital Credential Wallets play a crucial role in advancing the Issuer-Holder-Verifier model by providing efficiency, security, interoperability, privacy, and innovation. They streamline the processes of issuing, storing, and presenting credentials, making these tasks more convenient for both issuers and holders. Cryptographic signatures ensure the integrity of credentials, while biometric binding enhances security, offering a robust and trustworthy means of credential management.
 
-<figure>
-  <img src=".gitbook/assets/Wallet Building Block-Page-7.png" alt="" width="563">
-  <figcaption>Issuer-Holder-Verifier Model</figcaption>
-</figure>
+<figure><img src=".gitbook/assets/Wallet Building Block-Page-7.png" alt="" width="563"><figcaption><p>Issuer-Holder-Verifier Model</p></figcaption></figure>
 
 The Issuer-Holder-Verifier model further enhances privacy by allowing users to share only the necessary information with verifiers, minimizing data exposure. Additionally, this model supports scalability by enabling a decentralized and interoperable framework that can accommodate an increasing number of credentials and participants across various sectors.
 
