@@ -47,7 +47,7 @@ To ensure that minimal data is shared with the verifier, the wallet SHALL incorp
 
 ### 5.1.4. Consent
 
-* The wallet SHALL capture the holder's consent before the credentials are presented to any verifier. (REQUIRED)
+* The wallet SHALL capture the holder's approval before the credentials are presented to any verifier. (REQUIRED)
 
 ## 5.2. Security Considerations
 
@@ -75,12 +75,12 @@ In biometrics-based binding, the Verifier should be able to authenticate the Hol
 
 ### 5.2.2. Secure Storage
 
-The wallet must provide a secure environment to,
+The wallet MUST provide a secure environment to,
 
-* Store sensitive credential information by implementing secure cryptographic techniques
+* Store sensitive credential information by implementing secure cryptographic techniques (REQUIRED)
 * Store the keys
-  * Used for encrypting the credential data
-  * Used for cryptographically binding the holder with the credentials
+  * Used for encrypting the credential data (REQUIRED)
+  * Used for cryptographically binding the holder with the credentials (REQUIRED)
 
 ### 5.2.3. Trust Infrastructure
 
@@ -88,10 +88,10 @@ In a digital credentialing ecosystem, the trust infrastructure is vital for ensu
 
 <figure><img src="spec/.gitbook/assets/Wallet%20Building%20Block-Page-6%20(1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-* The issuer should be able to verify that the credential is shared with a trusted Wallet
-* The wallet must verify that a trusted Issuer issued the credentials
-* The wallet should be able to verify that the presentation is shared with a trusted verifier
-* The verifier must verify that a trusted Issuer issued the credentials
+* The issuer SHOULD be able to verify that the credential is shared with a trusted Wallet (RECOMMENDED)
+* The wallet MUST verify that a trusted Issuer issued the credentials (REQUIRED)
+* The wallet SHOULD be able to verify that the presentation is shared with a trusted verifier (RECOMMENDED)
+* The verifier MUST verify that a trusted Issuer issued the credentials (REQUIRED)
 
 ### 5.2.4. Handle Replay Attacks
 

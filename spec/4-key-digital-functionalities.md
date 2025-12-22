@@ -8,7 +8,7 @@ description: >-
 
 ## 4.1. Credential Discovery <a href="#id-1.1.-importing-credentials-into-wallet" id="id-1.1.-importing-credentials-into-wallet"></a>
 
-A wallet holder who intends to receive credentials from an issuer should be able to get relevant information on how to obtain the credentials, so that, the process of credential issuance is convenient and secure.
+A wallet holder who intends to receive credentials from an issuer should be able to get relevant information on how to obtain the credentials, so that the process of credential issuance is convenient and secure.
 
 ## 4.2. Credential Issuance <a href="#id-1.1.-importing-credentials-into-wallet" id="id-1.1.-importing-credentials-into-wallet"></a>
 
@@ -17,7 +17,7 @@ An Issuer should be able to issue digitally verifiable credentials to a trusted 
 Key considerations during credential issuance:
 
 * The Issuer should trust the wallet before sharing the credentials
-* The Issuer should verify the holder's details before issuing credentials
+* The Issuer should verify the holder's identity and presented details before issuing credentials
 * The wallet should validate the issuer's details before requesting the credentials
 * The wallet should validate the received credentials before storing the credentials
 

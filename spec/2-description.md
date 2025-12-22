@@ -13,7 +13,7 @@ GovStack Technical Specifications are open to multiple internationally common re
 
 Accordingly we do not within this Wallet Specification align to or preclude a particular regulatory or legal framework.
 
-Therefore we recognise this seperation of technical and regulatory requirements by implication means that an implementor will need to be aware of the need appropriate regulatory capabilities and requirements and consider these with our technical requirements at the point of implementation.
+Therefore we recognise this separation of technical and regulatory requirements by implication means that an implementor will need to be aware of the need for appropriate regulatory capabilities and requirements and consider these with our technical requirements at the point of implementation.
 {% endhint %}
 
 Wallet as a term can mean many things depending on your background and context. However with GovStack we have chosen to use Wallet in its widest context, as a **Container** with **Content**.
@@ -22,7 +22,7 @@ Therefore the total scope and focus of the Wallet Building Block (BB) is to prov
 
 We expect this specification to be enhanced both with precise guidelines for sector specific (such as Social Protection, Education, Health, Agriculture etc.) applications; standards guidance/mappings and different use-cases to be supported within the wallet, over time.
 
-At this time however we start by focusing on **Wallets for Digital Credentials**. So although this Building Block could, be considered at this stage a Digital Credentials Wallet specification, the correct construct to read this document is as a Wallet Building Block able to support the storage and exchange of decentralised verifiable digital information which is currently focused on Digital Credentials.
+At this time however we start by focusing on **Wallets for Digital Credentials**. So although this Building Block could be considered at this stage a Digital Credentials Wallet specification, the correct construct to read this document is as a Wallet Building Block able to support the storage and exchange of decentralised verifiable digital information which is currently focused on Digital Credentials.
 
 As can be seen we aim to support different forms of media, so where as at the moment the specifications may include items that indicate a specific form (e.g. mobile wallets), other forms will be considered in future scope.
 
@@ -56,7 +56,7 @@ The Issuer-Holder-Verifier model further enhances privacy by allowing users to s
 
 #### Future of Digital Identity Management
 
-Through their interoperability and standardization across platforms, Digital Credential Wallets enable seamless verification processes. Consent management features empower individuals to control their data, reducing administrative burdens and fostering trust. As a result, these wallets pave the way for innovative applications across various sectors, shaping the future of digital identity management and verification.
+Through their interoperability and standardization across platforms, Digital Credential Wallets enable seamless verification processes. User approval for credential presentation  empowers individuals to control their data, reducing administrative burdens and fostering trust. As a result, these wallets pave the way for innovative applications across various sectors, shaping the future of digital identity management and verification.
 
 #### The Wallet Building Block (Wallet BB)
 
