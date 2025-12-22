@@ -1,5 +1,7 @@
 # Release Notes
 
+## &#x76;_&#x31;.0.0_
+
 _Version Date: May 2025_\
 &#xNAN;_&#x41;uthors: Ali González, David Higgins_
 
@@ -80,3 +82,31 @@ However, through discussions on this matter the Wallet Working Group, the Archit
 Concerns regarding the reference to specific policy frameworks were captured by the
 
 [Wallet WGDR no. 02 - Removing eIDAS as a requirement](../../WGDR/WALLET-WGDR-2025-05-2.md)
+
+
+
+## _v1.1.0_
+
+_Version Date: December 2025_\
+&#xNAN;_&#x41;uthors: David Higgins_
+
+***
+
+**Section 1 - Version History**
+
+* Update to Authors
+* Addition of Release notes for release
+
+**Section 2 - Description**
+
+* Minor Gramatical / Typo corrections
+
+**Section 3 - Terminology**
+
+* Reflect Common ID terminology
+* Removal of conflicting terms
+
+**Section 4 - Key Digital Functionality**
+
+* Changes to ensure all requirements meet GovSpecs 2.0 standards of (Required/Recommended)
+
