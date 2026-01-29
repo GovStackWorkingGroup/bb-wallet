@@ -4,12 +4,12 @@ description: This section lists the technical capabilities of this Building Bloc
 
 # 6 Functional Requirements
 
-## 6.1. Credential Discovery
+## **6.1. Credential Discovery**
 
 * The credential wallet should host the credential offering endpoint that the credential issuer should call to share the [credential offer](spec/3-terminology.md) (RECOMMENDED)
 * The credential issuer MUST expose an endpoint that provides relevant information to ensure a convenient and secure credential issuance. (REQUIRED)
 
-## 6.2. Credential Issuance
+## **6.2. Credential Issuance**
 
 * The credential issuer SHOULD be able to validate the wallet before issuing the credentials (RECOMMENDED)
 * The credential issuer MUST authenticate the holder before issuing the credentials (REQUIRED)
@@ -25,20 +25,18 @@ The issuer determines the method of authentication. Issuance processes can be pe
 * The credential wallet MUST have trusted hardware providing a secure environment (tamper-proof) and storage for cryptographic assets such as keys (REQUIRED)
 
 {% hint style="info" %}
-As most Android devices don't have trusted hardware,  a trusted execution environment (TEE) can be used to store cryptographic assets such as keys.
+As most Android devices don't have trusted hardware, a trusted execution environment (TEE) can be used to store cryptographic assets such as keys.
 {% endhint %}
 
-
-
-## 6.3. Credential Statuses
+## **6.3. Credential Statuses**
 
 * The credential issuer SHOULD NOT be able to learn details of the presentation when there is a status check of the credentials by a verifier (RECOMMENDED)
 
-## 6.4. Credential Validity
+## **6.4. Credential Validity**
 
 * The wallet SHOULD verify the validity of the credential when accessed and show the status to the holder to take appropriate action (RECOMMENDED)
 
-## 6.5. Presenting a Credential
+## **6.5. Presenting a Credential**
 
 * The credential verifier MUST be able to trust the credential wallet before requesting the presentations (REQUIRED)
 * The credential verifier MUST be able to request a verifiable presentation (REQUIRED)

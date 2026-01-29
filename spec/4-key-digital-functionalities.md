@@ -6,11 +6,11 @@ description: >-
 
 # 4 Key Digital Functionalities
 
-## 4.1. Credential Discovery <a href="#id-1.1.-importing-credentials-into-wallet" id="id-1.1.-importing-credentials-into-wallet"></a>
+## **4.1. Credential Discovery** <a href="#id-1.1.-importing-credentials-into-wallet" id="id-1.1.-importing-credentials-into-wallet"></a>
 
 A wallet holder who intends to receive credentials from an issuer should be able to get relevant information on how to obtain the credentials, so that the process of credential issuance is convenient and secure.
 
-## 4.2. Credential Issuance <a href="#id-1.1.-importing-credentials-into-wallet" id="id-1.1.-importing-credentials-into-wallet"></a>
+## **4.2. Credential Issuance** <a href="#id-1.1.-importing-credentials-into-wallet" id="id-1.1.-importing-credentials-into-wallet"></a>
 
 An Issuer should be able to issue digitally verifiable credentials to a trusted Wallet.
 
@@ -21,7 +21,7 @@ Key considerations during credential issuance:
 * The wallet should validate the issuer's details before requesting the credentials
 * The wallet should validate the received credentials before storing the credentials
 
-## 4.3. Credential Status Management
+## **4.3. Credential Status Management**
 
 The status of a credential is dynamic and is governed by the issuer or the owner of the credential.
 
@@ -35,7 +35,7 @@ To gain a clearer understanding of credential status management, consider the fo
 * [Revocation of Credentials](use-cases/functional-use-cases.md#id-5.2.-revocation)
 {% endhint %}
 
-## 4.4. Credential Validity
+## **4.4. Credential Validity**
 
 The wallet and the verifier should be able to verify the validity of the credentials. Validity of credentials means, that&#x20;
 
@@ -43,7 +43,7 @@ The wallet and the verifier should be able to verify the validity of the credent
 * The credential has not expired or revoked
 * A trusted issuer issued the credential
 
-## 4.5. Presenting a Credential
+## **4.5. Presenting a Credential**
 
 The wallet should be able to present a credential to a Verifier upon receiving a request from the Verifier.
 
@@ -54,7 +54,7 @@ Key considerations while sharing a presentation:
 * The wallet should collect the consent of the holder before sharing the presentation
 * The wallet should generate a fresh presentation for every request and every presentation should be bound to the transaction and the verifier.
 
-## 4.6. Other features
+## **4.6. Other features**
 
 ### 4.6.1. Portability
 
@@ -82,11 +82,11 @@ The wallet should be able to identify expired and revoked credentials and prompt
 
 The holder should be able to remove a credential from the wallet.
 
-### **4.6.5. Complaint Submission to Supervisory Body**
+### 4.6.5. Complaint Submission to Supervisory Body
 
 The wallet must provide a mechanism for users to submit complaints about a verifier to the respective supervisory body.
 
-### **4.6.6. Data Deletion Request**
+### 4.6.6. Data Deletion Request
 
 The wallet should allow the holder to request the verifier to delete the previously shared credentials.
 

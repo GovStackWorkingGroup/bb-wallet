@@ -6,7 +6,7 @@ description: >-
 
 # 7 Data Structures
 
-## 7.1. Credential Formats
+## **7.1. Credential Formats**
 
 The specifications should support credentials of any format, including, but not limited to,
 
@@ -189,7 +189,7 @@ Below are a few of the core elements in the ISO/IEC DIS 18013-5 (mDL) data model
 The above specification details are taken from [ISO/IEC DIS 18013-5 (mDL)](https://www.iso.org/standard/69084.html), for more details go through the specifications [here](https://www.iso.org/standard/69084.html).
 {% endhint %}
 
-## 7.2. Credential Schema
+## **7.2. Credential Schema**
 
 Every credential should provide a mechanism to share credential schema that extends the core components of a verifiable credential.
 
@@ -204,7 +204,7 @@ The core components of a verifiable credential are,
 
 The credential schema enables flexibility by defining how additional attributes or custom claims can be structured while building on these core components.
 
-## 7.3. Key API Definition
+## **7.3. Key API Definition**
 
 ### 7.3.1. Credential Offer Definition
 
@@ -229,10 +229,8 @@ Here the parameters for the JSON-encoded Credential Offer object are defined.
   The URL of the Credential Issuer, from which the Wallet is requested to obtain one or more Credentials. The Wallet uses it to obtain the Credential Issuer's Metadata.\
   \
   Here, the Credential Issuer is identified by a case-sensitive URL using the HTTPS scheme that contains scheme, host, and, optionally, port number and path components, but no query or fragment components.
-
-- **credential\_configuration\_ids**<mark style="color:red;">\*</mark>\
+* **credential\_configuration\_ids**<mark style="color:red;">\*</mark>\
   An array of unique strings that each identify one of the keys in the name/value pairs stored in the `credential_configurations_supported` Credential Issuer metadata. The Wallet uses these string values to obtain the respective object that contains information about the Credential being offered. For example, these string values can be used to obtain scope values to be used in the Authorization Request.
-
 * **grants**\
   Object indicating to the Wallet the Grant Types the Credential Issuer's Authorization Server is prepared to process for this Credential Offer. Every grant is represented by a name/value pair. The name is the Grant Type identifier; the value is an object that contains parameters either determining the way the Wallet MUST use the particular grant and/or parameters the Wallet MUST send with the respective request(s). If grants are not present or are empty, the Wallet MUST determine the Grant Types the Credential Issuer's Authorization Server supports using the respective metadata. When multiple grants are present, it is at the Wallet's discretion which one to use.
   * **urn:ietf:params:oauth:grant-type:pre-authorized\_code** \[object]\
@@ -313,16 +311,12 @@ Here, the parameters of the credential metadata object are defined.
 
 * **format** (string)\
   A JSON string identifying the format of this Credential, i.e., `jwt_vc_json` or `ldp_vc`. Depending on the format value, the object contains further elements defining the type and (optionally) particular claims the Credential MAY contain and information about how to display the Credential.
-
-- **scope** (string)\
+* **scope** (string)\
   A JSON string identifying the scope value that this Credential Issuer supports for this particular Credential. The value can be the same across multiple `credential_configurations_supported` objects. The Authorization Server MUST be able to uniquely identify the Credential Issuer based on the scope value. The Wallet can use this value in the [Authorization Request](https://ooru.stoplight.io/docs/wallet/branches/main/wallet-bb.yaml/paths/~1authorize/get). Scope values in this Credential Issuer metadata MAY duplicate those in the `scopes_supported` parameter of the Authorization Server.
-
 * **cryptographic\_binding\_methods\_supported** (array\[string])\
   An array of case-sensitive strings that identify the representation of the cryptographic key material that the issued Credential is bound to. Support for keys in JWK format [RFC7517](https://www.rfc-editor.org/rfc/rfc7517.html) is indicated by the value `jwk`. Support for keys expressed as a COSE Key object [RFC8152](https://www.rfc-editor.org/rfc/rfc8152.html) (for example, used in [ISO.18013-5](https://www.iso.org/standard/69084.html)) is indicated by the value `cose_key`. When the Cryptographic Binding Method is a DID, valid values are a did: prefix followed by a method-name using a syntax as defined in Section 3.1 of [DID-Core](https://www.w3.org/TR/did-core/), but without a :and method-specific-id. For example, support for the DID method with a method-name "example" would be represented by did:example.
-
-- **credential\_signing\_alg\_values\_supported** (array\[string])\
+* **credential\_signing\_alg\_values\_supported** (array\[string])\
   Array of case sensitive strings that identify the algorithms that the Issuer uses to sign the issued Credential.
-
 *   **proof\_types\_supported** (object)\
     An object that describes specifics of the key proof(s) that the Credential Issuer supports. This object contains a list of name/value pairs, where each name is a unique identifier of the supported proof type(s). A few of the valid values are defined below, while other values MAY be used. This identifier is also used by the Wallet in the [Credential Issuance Request](spec/8-service-apis.md#id-8.2.-credential-issuance).
 

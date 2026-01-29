@@ -7,9 +7,9 @@ description: >-
 
 # 10 Other Resources
 
-## 10.1 Reference Specifications
+## **10.1 Reference Specifications**
 
-## 10.1.1 OpenID for Verifiable Credentials Suite
+### 10.1.1 OpenID for Verifiable Credentials Suite
 
 1. Issuance - [OpenID4VCI - Draft 13](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html)
 2. Presentation
@@ -23,7 +23,7 @@ description: >-
 
 * Presentation in proximity (mobile driver's license)\
   [https://www.iso.org/standard/69084.html](https://www.iso.org/standard/69084.html)
-* 23220-3 Issuance for mDoc  (including OpenID4VCI profile with mDoc)
+* 23220-3 Issuance for mDoc (including OpenID4VCI profile with mDoc)
 * 23220-4 Presentation for mDoc (including OpenID4VP profile with mDoc)
 
 ### 10.1.3 W3C
@@ -39,14 +39,13 @@ description: >-
 
 * [W3C Verifiable Credential Use Cases](https://www.w3.org/TR/vc-use-cases/)
 
-## 10.2 Out-of-Scope Features
+## **10.2 Out-of-Scope Features**
 
 * Delegation of representing the credentials
 * Low tech wallets
 * The format of Credential Discovery
 
-## 10.3 Future Scope
+## **10.3 Future Scope**
 
 * Using the credential wallet as an authenticator
-* Using the credential wallet for eSignature
-
+* Using the credential wallet for [eSignature](https://app.gitbook.com/o/pxmRWOPoaU8fUAbbcrus/s/ZpypLvJhKezO3prCNVTS/)

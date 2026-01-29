@@ -1,5 +1,54 @@
 # Release Notes
 
+## **Version 1**
+
+***
+
+## _v1.1.0_
+
+_Version Date: December 2025_\
+&#xNAN;_&#x41;uthors: David Higgins_
+
+***
+
+### 1. Overview
+
+This release of the Wallet Building Block was developed between September and December, 2025 by the **Cross-Functional ID Infrastructure Working Group**, a super-group of all the key Identity and Trust-related Building Blocks in GovStack (e-signature, identity, Wallet, Consent).
+
+Release 1.1 of Wallet is the result of a review of all 4 specifications to ensure their are aligned and consistent to a single Identity Universe. As a result, a shared ID Terminology reference document was created and some terms from this Building Blocked were moved there.
+
+This release also removed the entries for `Digital Locker`, `Digital Vault`, and `Electronic Attribute Attestation (EAA)` from the Terminology. \<insert here the logic behind this change>
+
+### 2. Changes
+
+#### **Section 1 - Version History**
+
+* Update to Authors
+* Addition of Release notes for release
+
+#### **Section 2 - Description**
+
+* Minor Grammatical / Typo corrections
+
+#### **Section 3 - Terminology**
+
+* Link to Common ID terminology
+* Moved the following terms to the Common ID Terminology:
+  * Credential
+  * Digital Credential
+  * Verifiable Credentials (VCs)
+  * PII (Personally Identifiable Information)&#x20;
+* Removed the following terms:
+  * Digital Locker
+  * Digital Vault
+  * Electronic Attribute Attestation (EAA)
+
+#### **Section 4 - Key Digital Functionality**
+
+* Changes to ensure all requirements meet GovSpecs 2.0 standards of (Required/Recommended)
+
+***
+
 ## &#x76;_&#x31;.0.0_
 
 _Version Date: May 2025_\
@@ -84,29 +133,4 @@ Concerns regarding the reference to specific policy frameworks were captured by 
 [Wallet WGDR no. 02 - Removing eIDAS as a requirement](../../WGDR/WALLET-WGDR-2025-05-2.md)
 
 
-
-## _v1.1.0_
-
-_Version Date: December 2025_\
-&#xNAN;_&#x41;uthors: David Higgins_
-
-***
-
-**Section 1 - Version History**
-
-* Update to Authors
-* Addition of Release notes for release
-
-**Section 2 - Description**
-
-* Minor Gramatical / Typo corrections
-
-**Section 3 - Terminology**
-
-* Reflect Common ID terminology
-* Removal of conflicting terms
-
-**Section 4 - Key Digital Functionality**
-
-* Changes to ensure all requirements meet GovSpecs 2.0 standards of (Required/Recommended)
 

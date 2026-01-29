@@ -6,7 +6,7 @@ description: >-
 
 # 9 Internal Workflows
 
-## 9.1. Credential Issuance
+## **9.1. Credential Issuance**
 
 ### 9.1.1. Credential Issuance via. Authorization Code Flow
 
@@ -81,7 +81,7 @@ Issuer -> Wallet: Credential Response \n(Credential(s) OR Transaction ID)
 
 </details>
 
-## 9.2. Presenting a Credentials
+## **9.2. Presenting a Credentials**
 
 ### 9.2.1. Presenting Credential on the Same Device
 

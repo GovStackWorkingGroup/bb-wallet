@@ -4,7 +4,7 @@ description: Terminology used within this specification.
 
 # 3 Terminology
 
-We recognise there are common terms across all ID related Building Blocks (Identity, E-Signature, Consent, Wallet).  We define these [here](/broken/pages/G8wr9foLwthyK0hPnuG9).
+We recognise there are common terms across all ID related Building Blocks (Identity, E-Signature, Consent, Wallet).  We define these [here](https://app.gitbook.com/s/cuIQsUm31pRS11jL4LMg/3-terminology/id-related-bb-common-terminology).
 
 In addition the following terms are specific to the Wallet Building Block.
 
@@ -12,7 +12,7 @@ In addition the following terms are specific to the Wallet Building Block.
 
 BLE is a wireless communication technology designed for short-range communication between devices. It is commonly used for connecting devices like smartphones and wearables.
 
-### Container
+### **Container**
 
 A Container refers to the technical medium or environment in which Verifiable Credentials (VCs) are securely stored, managed, and accessed by the holder. It ensures data protection, interoperability, access control, and portability of credentials.
 
@@ -23,7 +23,7 @@ Examples of Containers:
 * Cloud-based credential stores
 * Hardware-based secure elements (e.g., smartcards)
 
-### Content List
+### **Content List**
 
 The Content List refers to the collection of Verifiable Credentials (VCs) and associated artifacts that are stored in or linked to the wallet [container](3-terminology.md#container). This includes both locally stored credentials and remotely referenced credentials (e.g., held in cloud wallets or [digital lockers](3-terminology.md#digital-locker)).
 
@@ -34,6 +34,12 @@ Examples in a Content List:
 * Health credentials (e.g., vaccination record)
 * Employment or financial records (e.g., payslips, tax certificates)
 
+### **Credential**
+
+{% hint style="info" %}
+See [this entry](3-terminology.md), and related terminology for [Digital Credential](https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#digital-credential) and [Verifiable Credentials](https://app.gitbook.com/s/cuIQsUm31pRS11jL4LMg/3-terminology/id-related-bb-common-terminology#verifiable-credentials-vcs) in the **ID Common Terminology** reference.
+{% endhint %}
+
 ### **Credential Holder**
 
 The credential holder is an entity (person, device, or system) that possesses and manages digital credentials within a system or framework.
@@ -42,7 +48,7 @@ The credential holder is an entity (person, device, or system) that possesses an
 
 A credential issuer is an entity responsible for the lifecycle management of credentials (e.g. issuance and revocation of credentials). This entity is typically trusted to verify and confirm the identity of the credential holder before issuing credentials.
 
-### Credential Offer
+### **Credential Offer**
 
 A credential offer is a formal proposal from a Credential Issuer to a digital wallet user, providing detailed information about a specific verifiable credential and inviting the user to accept and receive it.
 
@@ -52,11 +58,17 @@ The primary purpose of a credential offer is to initiate the issuance process by
 
 The credential verifier is an entity responsible for checking the authenticity and validity of digital credentials presented by a credential holder.
 
-### eIDAS (Electronic Identification, Authentication, and Trust Services)
+### **Digital Credentials** <a href="#digital-credential" id="digital-credential"></a>
+
+{% hint style="info" %}
+See [this entry](https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#digital-credential), and related terminology for [Credential ](https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#credential)and [Verifiable Credentials](https://app.gitbook.com/s/cuIQsUm31pRS11jL4LMg/3-terminology/id-related-bb-common-terminology#verifiable-credentials-vcs) in the **ID Common Terminology** reference.
+{% endhint %}
+
+### **eIDAS (Electronic Identification, Authentication, and Trust Services)**
 
 eIDAS is an EU regulation that sets standards for electronic identification and trust services for electronic transactions within the European Union’s single market. It aims to facilitate secure cross-border digital interactions for businesses, citizens, and public administrations. eIDAS provides a legal framework for the mutual recognition of electronic IDs (eIDs) and the use of trust services such as electronic signatures, electronic seals, timestamps, and website authentication to enable secure, reliable digital transactions.
 
-### Holder Binding
+### **Holder Binding**
 
 Holder binding refers to the property that enables verifiers to trust that the individual presenting a credential is the same individual to whom the credential was originally issued.
 
@@ -96,6 +108,12 @@ OpenID Connect is an identity layer built on top of the OAuth 2.0 protocol. It p
 
 Defines a mechanism on top of OAuth 2.0 to allow the presentation of claims in the form of Verifiable Credentials as part of the protocol flow.
 
+### **PII (Personally Identifiable Information)**
+
+{% hint style="info" %}
+See [this entry](https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#pii-personally-identifiable-information) in the **ID Common Terminology** reference.
+{% endhint %}
+
 ### **Porting**
 
 Porting of credentials from one wallet to another refers to the process of transferring stored credentials, such as payment cards, identification documents, or other types of personal information, from one digital wallet application or service to another.
@@ -110,7 +128,7 @@ Here, pseudonymity refers to the possibility of using a pseudonym when authentic
 
 A QR code is a two-dimensional barcode that can store various types of information, such as website URLs, contact information, or other data. It is often used for easy and quick data exchange using a camera-equipped device.
 
-### Repudiation
+### **Repudiation**
 
 Repudiation (or "plausible deniability") refers to the property that allows an entity involved in an identification transaction to plausibly deny to a third party (i.e., a party not involved in the transaction) its participation in the transaction after its completion or the provision of certain data. Although "repudiation" typically denotes a single act of dispute, it is commonly used to describe the general ability to deny transactions. Importantly, this ability to deny the transaction to third parties does not affect the reliability of the transaction for the Verifier involved.
 
@@ -130,17 +148,23 @@ SD-JWT-based Verifiable Credential is a verifiable credential encoded using the 
 \
 For details check, the draft [SD-JWT VC spec](https://datatracker.ietf.org/doc/html/draft-terbu-oauth-sd-jwt-vc).
 
-### Self-Sovereign Identity (SSI)
+### **Self-Sovereign Identity (SSI)**
 
 Self-Sovereign Identity (SSI) is a decentralized identity model where individuals fully own, manage, and control their digital identity without relying on centralized institutions or third parties. SSI allows users to store their personal information (credentials) in a secure digital wallet and selectively share it with service providers. It leverages blockchain or distributed ledger technology to ensure trust, privacy, and security in verifying the authenticity of identity information.
 
-### Unlinkability
+### **Unlinkability**
 
 Unlinkability refers to the property that enables not to distinguish whether two transactions are related to the same user or not.
 
-### Unobservability
+### **Unobservability**
 
 Unobservability refers to the property where an adversary cannot discern any useful information about a communication or transaction. This ensures that sensitive data, such as message content, sender or receiver identity, or any other relevant information, remains hidden from unauthorized parties. In this context, neither Wallet Providers nor Issuers shall be able to track where a user uses their credentials or learn details concerning the attributes provided.
+
+### **Verifiable Credentials (VCs)**
+
+{% hint style="info" %}
+See [this entry](https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#verifiable-credentials-vcs) and related terminology for [Credential](https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#credential) and [Digital Credentials](https://app.gitbook.com/s/Vqte0R2TeBFaehnRpdeG/3-terminology/id-related-bb-common-terminology#digital-credential) in the **ID Common Terminology** reference.
+{% endhint %}
 
 ### **Verifiable Presentations (VPs)**
 

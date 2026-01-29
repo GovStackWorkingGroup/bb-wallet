@@ -6,7 +6,7 @@ description: >-
 
 # 5 Cross-Cutting Requirements
 
-## 5.1. Privacy Considerations
+## **5.1. Privacy Considerations**
 
 ### 5.1.1. Unobservability
 
@@ -14,7 +14,7 @@ description: >-
 Whilst we strongly recommend implementation of these requirements on unobservability, they are marked as RECOMMENDED in this specification to allow for implementations where either the local regulation or the specific use case requires they are not implemented.
 {% endhint %}
 
-[Unobservability](spec/3-terminology.md#unobservability) means that neither wallet providers nor issuers shall be able to track where a holder uses his/her credentials or learns details concerning the attributes provided.
+[Unobservability](5-cross-cutting-requirements.md#id-5.1.1.-unobservability) means that neither wallet providers nor issuers shall be able to track where a holder uses his/her credentials or learns details concerning the attributes provided.
 
 * The issuer should not be able to learn details (to whom the presentation was made when the presentation was made, etc.) of the presentation (RECOMMENDED)
 * The wallet provider should not be able to observe how the credentials are used (RECOMMENDED)
@@ -49,7 +49,7 @@ To ensure that minimal data is shared with the verifier, the wallet SHALL incorp
 
 * The wallet SHALL capture the holder's approval before the credentials are presented to any verifier. (REQUIRED)
 
-## 5.2. Security Considerations
+## **5.2. Security Considerations**
 
 ### 5.2.1. Holder Binding
 

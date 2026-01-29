@@ -2,7 +2,7 @@
 
 This section contains a non-exhaustive list of sample use cases around building blocks.
 
-## 1. Credential Issuance
+## **1. Credential Issuance**
 
 ### 1.1. Credential Issuance in Mobile Wallet
 
@@ -18,7 +18,7 @@ Robert opens his browser and navigates to the login screen of the cloud wallet. 
 
 Robert selects the Graduation Certificate section and selects his Institution, Institute A, which redirects him to an authentication screen for downloading the graduation certificate from Institute A. After choosing an authentication method and completing the process, the credential is downloaded to his cloud wallet. Robert then returns to the home screen of the wallet and sees his graduation certificate added.
 
-## 2. Credential Removal
+## **2. Credential Removal**
 
 Robert plans a trip to the Caribbean, purchases flight tickets, and adds the ticket credentials to his wallet. However, due to unforeseen circumstances, he has to cancel the trip. To tidy up his wallet, he decides to remove the ticket credentials:
 
@@ -27,7 +27,7 @@ Robert plans a trip to the Caribbean, purchases flight tickets, and adds the tic
 * A confirmation pop-up appears, prompting Robert to confirm the removal.
 * Robert confirms the removal and the flight ticket credential is successfully removed from his wallet.
 
-## 3. Porting Credentials
+## **3. Porting Credentials**
 
 Robert, in the process of upgrading her phone, needs to transfer all his data, including credentials and documents, to his new device. With no automatic cloud wallet integration available, she follows these steps:
 
@@ -46,7 +46,7 @@ Robert, in the process of upgrading her phone, needs to transfer all his data, i
 7. **Re-binding**:\
    Robert needs to bind these specific credentials once again due to the change in the device.
 
-## 4. Selective Disclosure
+## **4. Selective Disclosure**
 
 Robert, a 25-year-old, was riding his bike when he was stopped by a Traffic Police officer. Observing Robert's youthful appearance, the officer decided to verify Robert's age since the country has a minimum age limit of 18 for individuals to ride a vehicle.
 
@@ -54,7 +54,7 @@ The officer requested Robert to show his credentials for age verification. In re
 
 Robert's wallet retrieved the request object, which requested for the claim "ageOver18" from his driving license to be shared. The wallet informed Robert that the Police Officer was seeking confirmation of whether the age was over 18 or not. Considering that his driving license credential contained the claim "ageOver18," Robert authorized the sharing of this information with the police officer.
 
-## 5. Credential Statuses
+## **5. Credential Statuses**
 
 ### 5.1. Suspension and Reactivation
 
@@ -78,7 +78,7 @@ Due to work, Robert is moving to another country, so he decides to close his acc
 
 Following the revocation, whenever Robert attempts to share the digital passbook with any third-party verifier, the verifier is notified that the credential has been revoked and is no longer valid.
 
-## 6. Sharing of Credentials
+## **6. Sharing of Credentials**
 
 ### 6.1. Cross Device Sharing
 

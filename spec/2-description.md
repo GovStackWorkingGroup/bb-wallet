@@ -34,7 +34,7 @@ Since there exist a number of Verifiable Credential standards, the Wallet abstra
 
 With that understanding and focus let's look at the Digital Credential Wallet.
 
-### Digital Credential Wallet
+### **Digital Credential Wallet**
 
 #### Issuer-Holder-Verifier Model
 

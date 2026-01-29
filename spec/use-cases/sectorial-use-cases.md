@@ -4,7 +4,7 @@ As the digital landscape continues to evolve, the need for secure, portable, and
 
 This document explores sector-specific use cases for verifiable credentials, highlighting their transformative impact across industries such as finance, healthcare, education, travel, and more. By delving into real-world applications, we will illustrate how verifiable credentials enhance security, reduce fraud, streamline processes, and empower individuals with control over their data.
 
-## 1. Education
+## **1. Education**
 
 The education domain encompasses all stages of the learning journey, from primary education to higher education, as well as professional development and continuing education programs.
 
@@ -26,7 +26,7 @@ Due to COVID-19, ABC University is conducting online examinations and has implem
 
 Before starting his examination, John presents his digital admit card and government-issued digital ID to the examination portal using his digital wallet. Both documents are securely shared allowing the system to authenticate John's identity and exam eligibility.
 
-## 2. Retail
+## **2. Retail**
 
 The retail domain covers all areas involving the exchange of value at an individual level. This includes traditional brick-and-mortar stores, online-only platforms, and even direct person-to-person transactions.
 
@@ -62,7 +62,7 @@ John recently signed up for a loyalty membership program at his favorite grocery
 
 Every time John shops at ABCD Mart, he simply presents the digital loyalty card from his wallet at checkout. The system instantly verifies his membership, allowing him to earn points, redeem rewards, and enjoy special discounts.
 
-## 3. Finance
+## **3. Finance**
 
 ### 3.1. Opening a Bank Account
 
@@ -80,7 +80,7 @@ John wants to send money to his family overseas using a popular money transfer s
 
 John opens a checking account at MNO Bank and is issued a verifiable credential confirming the account's existence, that the bank has verified his identity, and that John has access to the account. Later, when John decides to move to a new city and closes the account, MNO Bank follows its standard procedure and revokes the verifiable credentials as part of the account closure process. This ensures that the credential can no longer be used, maintaining the integrity of the bank's system and preventing any future misuse.
 
-## 4. Healthcare
+## **4. Healthcare**
 
 ### 4.1. Professional Certificate
 
@@ -102,7 +102,7 @@ When the clinic submits the information to the insurance company, they can autom
 
 Jane, who is legally blind and currently unemployed, needs to use the local free disability ride service to get to the employment office. To access the service, she must verify her legal disability status. Jane provides her government-issued disability credential to sign up using her digital wallet, allowing the ride service to confirm her eligibility without requiring her to disclose the specific details of her disability. This ensures her privacy and protects her from potential risks, while still granting her access to the service.
 
-## 5. Professional Credentials
+## **5. Professional Credentials**
 
 ### 5.1. New Employer
 
