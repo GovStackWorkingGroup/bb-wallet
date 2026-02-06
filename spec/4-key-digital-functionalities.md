@@ -6,11 +6,11 @@ description: >-
 
 # 4 Key Digital Functionalities
 
-## **4.1. Credential Discovery** <a href="#id-1.1.-importing-credentials-into-wallet" id="id-1.1.-importing-credentials-into-wallet"></a>
+## **4.1. Credential Discovery**
 
 A wallet holder who intends to receive credentials from an issuer should be able to get relevant information on how to obtain the credentials, so that the process of credential issuance is convenient and secure.
 
-## **4.2. Credential Issuance** <a href="#id-1.1.-importing-credentials-into-wallet" id="id-1.1.-importing-credentials-into-wallet"></a>
+## **4.2. Credential Issuance**
 
 An Issuer should be able to issue digitally verifiable credentials to a trusted Wallet.
 

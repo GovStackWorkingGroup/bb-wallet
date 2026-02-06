@@ -12,6 +12,9 @@ Jaume Dubois (ID30), Torsten Lodderstedt (Openwallet Foundation), Vishwanath V (
 _**Authors to this version:**_\
 Mikael Linden, David Higgins
 
+_**Contributors:**_\
+Charity Chirowamhangu, Antony Muriithi, Daniel Abadie, Norbert Nahayo, Rounak Nayak, Eric Ramirez, and Mary Metias
+
 _**Reviewers:**_\
 Yuliia Kravchenko, Smita Selot
 
