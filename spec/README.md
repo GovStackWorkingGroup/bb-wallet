@@ -1,5 +1,5 @@
 ---
-description: Version 1.1; December 2025
+description: Version 1.2; May 2026
 ---
 
 # Wallet Building Block Specification
@@ -10,18 +10,18 @@ Jaume Dubois (ID30), Torsten Lodderstedt (Openwallet Foundation), Vishwanath V (
 ***
 
 _**Authors to this version:**_\
-Mikael Linden, David Higgins
+Yuliia Kravchenko, Mikael Linden, David Higgins
 
 _**Contributors:**_\
 Charity Chirowamhangu, Antony Muriithi, Daniel Abadie, Norbert Nahayo, Rounak Nayak, Eric Ramirez, and Mary Metias
 
 _**Reviewers:**_\
-Yuliia Kravchenko, Smita Selot
+Smita Selot, Illia Rodin
 
 _**Editor:**_\
 Ali González-García
 
 
 
-<figure><img src=".gitbook/assets/Wallet v2(1).svg" alt="Cover to Wallet Building Block"><figcaption><p>Cover to Wallet Building Block</p></figcaption></figure>
+<figure><img src=".gitbook/assets/Wallet-v1.2.svg" alt="Cover to Wallet Building Block"><figcaption><p>Cover to Wallet Building Block</p></figcaption></figure>
 

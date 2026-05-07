@@ -4,6 +4,70 @@
 
 ***
 
+## _v1.2.0_
+
+_Version Date: May 2026_\
+&#xNAN;_&#x41;uthor: Yuliia Kravchenko_
+
+***
+
+### 1. Overview
+
+During discussions and reviews of the Wallet BB process, we identified that some requirements may be impossible for a wallet vendor to comply with. Two main issues were highlighted:
+
+* To achieve full compliance, all three components must be developed: verifier, holder, and issuer. As a result, developing only the wallet (holder) is insufficient, which creates a barrier for wallet providers.
+* Some REQUIRED requirements relate to the verifier and issuer rather than the wallet itself, which further compounds the issue above.
+
+Following discussions within the WG, the following decisions were made:
+
+* First, some REQUIRED requirements were reframed so that the holder, rather than the verifier or issuer, became the primary focus of the requirement (CR 52).
+* Second, some requirements (CR 51) were temporarily removed. There is ongoing discussion within the WG on whether these requirements should be moved to a separate section of the BB dedicated specifically to issuer and verifier requirements, potentially as RECOMMENDED or optional requirements. This approach would still allow wallet vendors to achieve compliance with the Wallet BB.
+
+Another option under consideration is to create separate BBs for verifiers and issuers. The WG will continue its work to determine which option is the most feasible.
+
+To address the issues described above, CR 51 and CR 52 were created. Note that only REQUIRED requirements were considered in the current change, as these are necessary for compliance testing. The WG will continue reviewing the remaining requirements.
+
+### 2. Changes
+
+#### 2.1 Format-only changes
+
+* Format of **5.1.3.1 Selective Disclosure** and **5.1.3.2 Pseudonimity** was changed from `{Title} ({Level classifier}) <br> {Description}`\` to `` {Title}: {Description} ({Level classifier})` `` for machine-readibility. - [GITBOOK-51](https://github.com/GovStackWorkingGroup/bb-wallet/commit/c0b800498d37ea35d79d4ddb9d56c1d45f5d1598)
+* **5.1.4.2 Storage of keys** - Format changed from bullet points to complete enunciation of each requirement as separate for machine-readibility. This clarifies that compliance is against two different requirements. - [GITBOOK-51](https://github.com/GovStackWorkingGroup/bb-wallet/commit/c0b800498d37ea35d79d4ddb9d56c1d45f5d1598)
+
+#### 2.2 Substance changes
+
+The main change of this version can be seen in Change Request [GITBOOK-52](https://github.com/GovStackWorkingGroup/bb-wallet/commit/7ce18dfa3e0d0a92fa8f080f16d13cc46202b6ba). The following requirements were rewritten to so that the holder, rather than the verifier or issuer, became the primary focus of the requirement:&#x20;
+
+* 6.2.1 The credential issuer MUST authenticate the holder before issuing the credentials (REQUIRED)
+* 6.5.1 The credential verifier MUST be able to trust the credential wallet before requesting the presentations (REQUIRED)
+* 6.5.2 The credential verifier MUST be able to request a verifiable presentation (REQUIRED)
+* 6.5.7 The wallet MUST be able to present a verifiable presentation to the credential verifier in response to a valid request. (REQUIRED)
+
+#### 2.3 Removals
+
+The following requirements were removed:
+
+<table><thead><tr><th width="255">Requirement</th><th width="364">Description</th><th width="148">Change Request</th></tr></thead><tbody><tr><td>5.2.3: “The verifier MUST verify that a trusted Issuer issued the credentials.” </td><td>This requirement will be moved to a different section and will no longer be classified as REQUIRED.</td><td><a href="https://github.com/GovStackWorkingGroup/bb-wallet/commit/c0b800498d37ea35d79d4ddb9d56c1d45f5d1598">GITBOOK-51</a></td></tr><tr><td>6.1.2: “The credential issuer MUST expose an endpoint that provides relevant information to ensure convenient and secure credential issuance.”</td><td>This requirement will no longer be classified as REQUIRED.</td><td><a href="https://github.com/GovStackWorkingGroup/bb-wallet/commit/c0b800498d37ea35d79d4ddb9d56c1d45f5d1598">GITBOOK-51</a></td></tr></tbody></table>
+
+#### 2.2 Removals
+
+The following requirements are removed:
+
+<table><thead><tr><th width="343">Requirement</th><th width="249">Description</th><th width="148">Change Request</th></tr></thead><tbody><tr><td>5.2.3: “The verifier MUST verify that a trusted Issuer issued the credentials.” </td><td>This requirement will be moved to a different section and will no longer be classified as REQUIRED.</td><td><a href="https://github.com/GovStackWorkingGroup/bb-wallet/commit/c0b800498d37ea35d79d4ddb9d56c1d45f5d1598">GITBOOK-51</a></td></tr><tr><td>6.1.2: “The credential issuer MUST expose an endpoint that provides relevant information to ensure convenient and secure credential issuance.”</td><td>This requirement will no longer be classified as REQUIRED.</td><td><a href="https://github.com/GovStackWorkingGroup/bb-wallet/commit/c0b800498d37ea35d79d4ddb9d56c1d45f5d1598">GITBOOK-51</a></td></tr></tbody></table>
+
+
+
+### 3. Next version scope
+
+The following items are considered for version 2.0 of the Wallet Building Block:
+
+* Clear separation between Credential Issuer and Credential Verifier roles and the Wallet Building Block
+* Re-writing of [5-cross-cutting-requirements.md](../5-cross-cutting-requirements.md "mention") to align to [cfr-architecture-2.2.0](https://app.gitbook.com/o/pxmRWOPoaU8fUAbbcrus/s/C0KIlcm7qe4y5UQYkp98/ "mention"), namely that some requirements will be turned into Functional Requirements, and so they will be further specified as such, and some other requirements will be clarified as extensions of Core Cross-Functional Requirements.
+* Functional Requirements will have Observability classifiers and as such, Tests will be made available to enable a compliance testing mechanism.
+* Extensibility classifiers will be added to each requirement to clarify whether how extensions or regional implementations can be set.
+
+***
+
 ## _v1.1.0_
 
 _Version Date: December 2025_\
