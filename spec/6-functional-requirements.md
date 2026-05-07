@@ -7,7 +7,6 @@ description: This section lists the technical capabilities of this Building Bloc
 ## **6.1. Credential Discovery**
 
 * The credential wallet should host the credential offering endpoint that the credential issuer should call to share the [credential offer](spec/3-terminology.md) (RECOMMENDED)
-* The credential issuer MUST expose an endpoint that provides relevant information to ensure a convenient and secure credential issuance. (REQUIRED)
 
 ## **6.2. Credential Issuance**
 

@@ -39,11 +39,8 @@ Below are a few scenarios for unlikability.
 
 To ensure that minimal data is shared with the verifier, the wallet SHALL incorporate various features so that the holder shares only the required data with the verifier for a specific transaction. A few of these features are,
 
-*   **Selective Disclosure** (REQUIRED)
-
-    The wallet (with the holder's consent) should be able to present a selected subset of the data fields (claims) from a credential while other fields are not revealed to the verifier.
-* **Pseudonymity** (REQUIRED)\
-  The wallet should enable the holder to present a pseudonym instead of their real identity when authenticating online or presenting credentials, except in cases where legal identification is mandatory.
+* **Selective Disclosure:** The wallet (with the holder's consent) MUST be able to present a selected subset of the data fields (claims) from a credential while other fields are not revealed to the verifier. (REQUIRED)
+* **Pseudonymity:** The wallet MUST enable the holder to present a pseudonym instead of their real identity when authenticating online or presenting credentials, except in cases where legal identification is mandatory. (REQUIRED)
 
 ### 5.1.4. Consent
 
@@ -78,20 +75,16 @@ In biometrics-based binding, the Verifier should be able to authenticate the Hol
 The wallet MUST provide a secure environment to,
 
 * Store sensitive credential information by implementing secure cryptographic techniques (REQUIRED)
-* Store the keys
-  * Used for encrypting the credential data (REQUIRED)
-  * Used for cryptographically binding the holder with the credentials (REQUIRED)
+* Store the keys used for encrypting the credential data (REQUIRED)
+* Store the keys used for cryptographically binding the holder with the credentials (REQUIRED)
 
 ### 5.2.3. Trust Infrastructure
 
 In a digital credentialing ecosystem, the trust infrastructure is vital for ensuring trust and transparency within the trust triangle (Issuer-Holder-Verifier).
 
-<figure><img src="spec/.gitbook/assets/Wallet%20Building%20Block-Page-6%20(1).png" alt="" width="563"><figcaption></figcaption></figure>
-
 * The issuer SHOULD be able to verify that the credential is shared with a trusted Wallet (RECOMMENDED)
 * The wallet MUST verify that a trusted Issuer issued the credentials (REQUIRED)
 * The wallet SHOULD be able to verify that the presentation is shared with a trusted verifier (RECOMMENDED)
-* The verifier MUST verify that a trusted Issuer issued the credentials (REQUIRED)
 
 ### 5.2.4. Handle Replay Attacks
 
