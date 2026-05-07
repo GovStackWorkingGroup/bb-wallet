@@ -11,7 +11,7 @@ description: This section lists the technical capabilities of this Building Bloc
 ## **6.2. Credential Issuance**
 
 * The credential issuer SHOULD be able to validate the wallet before issuing the credentials (RECOMMENDED)
-* The credential issuer MUST authenticate the holder before issuing the credentials (REQUIRED)
+* The Wallet MUST only proceed to request/accept issuance after successful holder authentication as required by the issuer. (REQUIRED)
 
 {% hint style="info" %}
 The issuer determines the method of authentication. Issuance processes can be performed both online and in person, with varying authentication methods for each.
@@ -37,13 +37,13 @@ As most Android devices don't have trusted hardware, a trusted execution environ
 
 ## **6.5. Presenting a Credential**
 
-* The credential verifier MUST be able to trust the credential wallet before requesting the presentations (REQUIRED)
-* The credential verifier MUST be able to request a verifiable presentation (REQUIRED)
+* The wallet MUST provide mechanisms that enable a credential verifier to establish trust in the wallet before the verifier requests a verifiable presentation. (REQUIRED)
+* The wallet MUST be able to receive and process a credential verifier’s request for a verifiable presentation. (REQUIRED)
 * The credential wallet MUST be able to validate the verifier before presenting a credential (REQUIRED)
 * The credential wallet SHOULD capture the holder's consent before the credentials are presented to any verifier. (RECOMMENDED)
 * The credential issuer SHOULD NOT be involved in the presentation process (RECOMMENDED)
 * The credential wallet (with the holder's consent) SHOULD be able to present a selected subset of the data fields (claims) from a credential while other fields are not revealed to the verifier. (RECOMMENDED)
-* The credential verifier MUST be able to receive the verifiable presentation from the wallet (REQUIRED)
+* The wallet MUST be able to present a verifiable presentation to the credential verifier in response to a valid request. (REQUIRED)
 * The credential verifier SHOULD be able to verify the presentations after receiving the presentation (RECOMMENDED)
 * The credential wallet SHOULD enable the holder to present a pseudonym instead of their real identity when authenticating online or presenting credentials, except in cases where identification is mandatory. (RECOMMENDED)
 * The credential verifier SHOULD NOT be able to link two presentations to the same holder (unless the holder's information is provided as part of the presentation) (RECOMMENDED)
