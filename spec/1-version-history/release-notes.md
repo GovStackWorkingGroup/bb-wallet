@@ -57,15 +57,6 @@ The following requirements are removed:
 
 
 
-### 3. Next version scope
-
-The following items are considered for version 2.0 of the Wallet Building Block:
-
-* Clear separation between Credential Issuer and Credential Verifier roles and the Wallet Building Block
-* Re-writing of [5-cross-cutting-requirements.md](../5-cross-cutting-requirements.md "mention") to align to [cfr-architecture-2.2.0](https://app.gitbook.com/o/pxmRWOPoaU8fUAbbcrus/s/C0KIlcm7qe4y5UQYkp98/ "mention"), namely that some requirements will be turned into Functional Requirements, and so they will be further specified as such, and some other requirements will be clarified as extensions of Core Cross-Functional Requirements.
-* Functional Requirements will have Observability classifiers and as such, Tests will be made available to enable a compliance testing mechanism.
-* Extensibility classifiers will be added to each requirement to clarify whether how extensions or regional implementations can be set.
-
 ***
 
 ## _v1.1.0_
