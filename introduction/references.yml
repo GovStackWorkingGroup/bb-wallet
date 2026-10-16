@@ -1,0 +1,4 @@
+- title: OpenID Connect Self-Issued 2.1
+  url: https://openid.net/specs/openid-connect-self-issued-v2-1_0.html
+  abstract: OpenID Connect defines mechanisms by which an End-User can leverage an OpenID Provider (OP) to release identity information (such as authentication and claims) to a Relying Party (RP) which can act on that information. In this model, the RP trusts assertions made by the OP, i.e. the OP is the issuer of these assertions.
+  date: 28 November 2023 

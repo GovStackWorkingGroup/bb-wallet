@@ -1,0 +1,25 @@
+---
+name: Wallet Building Block Specification
+abstract: GovStack Specification on Digital Wallets.
+url: https://specs.govstack.global/bb-wallet/
+repository: https://github.com/govStackWorkingGroup/bb-wallet
+urn: govstack:spec:bb:wallet
+owner_group: govstack:wg:cfid
+versions:
+  - version: 1.2.0
+    url_suffix: /bb-wallet/1.2.0
+    latest: true
+    release_date:
+    short_description:
+  - version: 1.1.0
+    url_suffix: /bb-wallet/1.1.0
+    release_date:
+    short_description:
+  - version: 1.0.0
+    url_suffix: /bb-wallet/1.0.0
+    release_date:
+    short_description:
+  - version: 1.0.0-rc
+    url_suffix: /bb-wallet/1.0.0-rc
+    release_date:
+    short_description:
