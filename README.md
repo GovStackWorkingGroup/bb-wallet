@@ -23,5 +23,5 @@ Ali González-García
 
 
 
-<figure><img src=".gitbook/assets/Wallet-v1.2.svg" alt="Cover to Wallet Building Block"><figcaption><p>Cover to Wallet Building Block</p></figcaption></figure>
+<figure><img src="/assets/Wallet-v1.2.svg" alt="Cover to Wallet Building Block"><figcaption><p>Cover to Wallet Building Block</p></figcaption></figure>
 

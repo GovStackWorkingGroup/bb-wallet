@@ -1,4 +1,52 @@
+# References of the Wallet Building Block.
+#
+# Migrated from spec/10-other-resources.md, section 10.1 Reference Specifications.
+# Comments give the role each reference had in the old spec.
+
+# OpenID for Verifiable Credentials Suite: Issuance
+- title: OpenID4VCI - Draft 13
+  url: https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html
+
+# OpenID for Verifiable Credentials Suite: Presentation
+- title: OpenID4VP - Draft - 18
+  url: https://openid.net/specs/openid-4-verifiable-presentations-1_0-ID2.html
+
+- title: DIF Presentation Exchange v2.1.1
+  url: https://identity.foundation/presentation-exchange/spec/v2.1.1/
+
+# OpenID for Verifiable Credentials Suite: Pseudonymous Login
+# (old spec link text: "Self-Issued OpenID Provider V2 - Draft 13")
 - title: OpenID Connect Self-Issued 2.1
   url: https://openid.net/specs/openid-connect-self-issued-v2-1_0.html
   abstract: OpenID Connect defines mechanisms by which an End-User can leverage an OpenID Provider (OP) to release identity information (such as authentication and claims) to a Relying Party (RP) which can act on that information. In this model, the RP trusts assertions made by the OP, i.e. the OP is the issuer of these assertions.
-  date: 28 November 2023 
+  date: 28 November 2023
+
+# OpenID for Verifiable Credentials Suite: Presentation in proximity
+- title: OpenID4VP over BLE - Draft 0
+  url: https://openid.net/specs/openid-4-verifiable-presentations-over-ble-1_0.html
+
+# OpenID for Verifiable Credentials Suite: Profile for High Assurance Use Cases
+- title: OpenID4VC High Assurance Interoperability Profile with SD-JWT VC - Draft 0
+  url: https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-sd-jwt-vc-1_0.html
+
+# ISO: Presentation in proximity (mobile driver's license)
+- title: ISO/IEC 18013-5 Mobile Driving License (mDL)
+  url: https://www.iso.org/standard/69084.html
+
+# ISO: Issuance for mDoc (including OpenID4VCI profile with mDoc)
+- title: ISO/IEC 23220-3
+
+# ISO: Presentation for mDoc (including OpenID4VP profile with mDoc)
+- title: ISO/IEC 23220-4
+
+# W3C: Presentation in the Browser
+- title: Presentation in the Browser
+  url: https://wicg.github.io/digital-identities/
+
+# Status Management
+- title: W3C Bitstring Status List v1.0
+  url: https://www.w3.org/TR/vc-bitstring-status-list/
+
+# Use Cases
+- title: W3C Verifiable Credential Use Cases
+  url: https://www.w3.org/TR/vc-use-cases/
