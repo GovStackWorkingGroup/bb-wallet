@@ -1,37 +1,27 @@
-# GovStack Building Block Template
+---
+description: Version 1.2; May 2026
+---
 
-This template is intended to be used by the various GovStack building block
-repos. Each building block repo will have at least 4 main sections, outlined in
-the directory structure below.
+# Wallet Building Block Specification
 
-## Gitbook and the published "Building Block Specifications" document
+_**First developed by:**_ \
+Jaume Dubois (ID30), Torsten Lodderstedt (Openwallet Foundation), Vishwanath V (MOSIP), David Higgins (Mifos Initiative), Abbie Barbir (ITU), Mary Metias (Gov. of Egypt), Dr Ramkumar (ITU), Lal Chandran (iGrant.io), George J Padayatti (iGrant.io), Lotta Lundin (iGrant.io), and Rounak Nayak (ITU)
 
-Note that pushes to the `main` branch will automatically trigger a Gitbook build
-and deployment from the `/spec` directory.
+***
 
-## Repo Structure
+_**Authors to this version:**_\
+Yuliia Kravchenko, Mikael Linden, David Higgins
 
-```sh
-README.md
-/spec # the markdown files which are used to build the specification in GitBook
-/api # the openapi specification
-/test # the test plan and tests
-  plan.md
-/examples # examples for deploying, configuring, and testing applications which implement the behaviors specified by this building block
-  /application-a
-    README.md # instructions for deployment/testing
-    docker-compose.yaml # example deployment file
-      db
-      web
-      adaptor
-      security-server
-    Caddyfile # example config for "adaptor"
-    Dockerfile # dockerfile to build "adaptor"
-  /application-b
-  /application-c
-```
+_**Contributors:**_\
+Charity Chirowamhangu, Antony Muriithi, Daniel Abadie, Norbert Nahayo, Rounak Nayak, Eric Ramirez, and Mary Metias
 
-## ORB setup
+_**Reviewers:**_\
+Smita Selot, Illia Rodin
 
-Documentation for ORB setup is available here:
-[ORB setup instruction](https://govstack-global.atlassian.net/wiki/spaces/GH/pages/191692823/ORB+setup+instruction)
+_**Editor:**_\
+Ali González-García
+
+
+
+<figure><img src="/assets/Wallet-v1.2.svg" alt="Cover to Wallet Building Block"><figcaption><p>Cover to Wallet Building Block</p></figcaption></figure>
+

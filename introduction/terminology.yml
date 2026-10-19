@@ -1,0 +1,344 @@
+# Terminology of the Wallet Building Block.
+#
+# Migrated from spec/3-terminology.md.
+#
+# There are common terms across all ID related Building Blocks (Identity, E-Signature,
+# Consent, Wallet). These are defined in the ID Common Terminology reference:
+# https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology
+# The following terms are specific to the Wallet Building Block.
+#
+# Entry fields:
+#   term:        preferred term
+#   abbreviation: optional
+#   definition:  the definition as used in GovStack
+#   origin:      adopted  - definition quoted unchanged from the source
+#                adapted  - definition based on the source, modified; the note says how
+#                govstack - definition written by GovStack
+#   source:      citation of the source, with clause or section
+#   notes:       optional notes to entry
+#   related:     optional list of related terms in this file
+
+terms:
+
+  - term: Bluetooth Low Energy
+    abbreviation: BLE
+    definition: >-
+      BLE is a wireless communication technology designed for short-range communication between
+      devices. It is commonly used for connecting devices like smartphones and wearables.
+
+  - term: Container
+    definition: >-
+      A Container refers to the technical medium or environment in which Verifiable Credentials
+      (VCs) are securely stored, managed, and accessed by the holder. It ensures data protection,
+      interoperability, access control, and portability of credentials.
+    notes:
+      - >-
+        Examples of Containers: Mobile wallet apps (Android/iOS); Web-based wallets
+        (browser-accessible); Cloud-based credential stores; Hardware-based secure elements
+        (e.g., smartcards).
+    related: [Content List]
+
+  - term: Content List
+    definition: >-
+      The Content List refers to the collection of Verifiable Credentials (VCs) and associated
+      artifacts that are stored in or linked to the wallet container. This includes both locally
+      stored credentials and remotely referenced credentials (e.g., held in cloud wallets or
+      digital lockers).
+    notes:
+      - >-
+        Examples in a Content List: Identity credentials (e.g., digital ID, driver’s license);
+        Education credentials (e.g., diploma, transcript); Health credentials (e.g., vaccination
+        record); Employment or financial records (e.g., payslips, tax certificates).
+    related: [Container]
+
+  # Defined in the ID Common Terminology reference.
+  - term: Credential
+    source: >-
+      ID Common Terminology.
+      https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#credential
+    notes:
+      - >-
+        See related terminology for Digital Credential and Verifiable Credentials in the
+        ID Common Terminology reference.
+    related: [Digital Credentials, Verifiable Credentials]
+
+  - term: Credential Holder
+    definition: >-
+      The credential holder is an entity (person, device, or system) that possesses and manages
+      digital credentials within a system or framework.
+
+  - term: Credential Issuer
+    definition: >-
+      A credential issuer is an entity responsible for the lifecycle management of credentials
+      (e.g. issuance and revocation of credentials). This entity is typically trusted to verify
+      and confirm the identity of the credential holder before issuing credentials.
+
+  - term: Credential Offer
+    definition: >-
+      A credential offer is a formal proposal from a Credential Issuer to a digital wallet user,
+      providing detailed information about a specific verifiable credential and inviting the
+      user to accept and receive it.
+    notes:
+      - >-
+        The primary purpose of a credential offer is to initiate the issuance process by
+        providing the user with enough information to make an informed decision about whether
+        to accept the credential. It ensures that the user is aware of what the credential
+        represents, how it can be used, and what obligations or conditions are associated
+        with it.
+    related: [Credential Issuer]
+
+  - term: Credential Verifier
+    definition: >-
+      The credential verifier is an entity responsible for checking the authenticity and
+      validity of digital credentials presented by a credential holder.
+
+  # Defined in the ID Common Terminology reference.
+  - term: Digital Credentials
+    source: >-
+      ID Common Terminology.
+      https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#digital-credential
+    notes:
+      - >-
+        See related terminology for Credential and Verifiable Credentials in the
+        ID Common Terminology reference.
+    related: [Credential, Verifiable Credentials]
+
+  - term: Electronic Identification, Authentication, and Trust Services
+    abbreviation: eIDAS
+    definition: >-
+      eIDAS is an EU regulation that sets standards for electronic identification and trust
+      services for electronic transactions within the European Union’s single market.
+    notes:
+      - >-
+        It aims to facilitate secure cross-border digital interactions for businesses, citizens,
+        and public administrations. eIDAS provides a legal framework for the mutual recognition
+        of electronic IDs (eIDs) and the use of trust services such as electronic signatures,
+        electronic seals, timestamps, and website authentication to enable secure, reliable
+        digital transactions.
+
+  - term: Holder Binding
+    definition: >-
+      Holder binding refers to the property that enables verifiers to trust that the individual
+      presenting a credential is the same individual to whom the credential was originally
+      issued.
+
+  - term: International Civil Aviation Organisation
+    abbreviation: ICAO
+    definition: >-
+      ICAO is a specialized agency of the United Nations that sets international standards for
+      aviation, including standards for machine-readable travel documents like passports.
+
+  - term: ISO Mobile Driver's License
+    abbreviation: ISO mDL
+    definition: >-
+      ISO mDL refers to a digital representation of a driver's license that conforms to
+      international standards set by the International Organisation for Standardisation (ISO).
+    notes:
+      - >-
+        The ISO mDL standard (ISO/IEC 18013-5) outlines specifications for the format,
+        structure, security, and interoperability of mobile driver's licenses.
+
+  - term: Low Tech Wallets
+    definition: >-
+      A low-tech wallet refers to a physical storage device or medium that lacks sophisticated
+      digital interfaces and advanced connectivity features. These wallets typically rely on
+      simple mechanisms such as USB connections, embedded chips, or SIM cards for accessing and
+      managing digital credentials.
+    notes:
+      - >-
+        Unlike high-tech digital wallets that may incorporate biometric authentication, NFC
+        (Near Field Communication) capabilities or cloud-based storage, low-tech wallets offer a
+        more straightforward and often offline approach to storing digital credentials. They
+        prioritize simplicity and physical security over advanced digital features, providing
+        users with a tangible means of securely storing and accessing their digital credentials
+        without extensive reliance on complex technology.
+    related: [Near Field Communication]
+
+  - term: Near Field Communication
+    abbreviation: NFC
+    definition: >-
+      NFC is a short-range wireless communication technology that enables devices to exchange
+      data when placed close to each other. It is commonly used for contactless payments and
+      data transfer.
+
+  - term: OpenID for Verified Credentials
+    abbreviation: OpenID4VC
+    definition: >-
+      OpenID4VC is a protocol for exchanging verifiable credentials in a decentralized identity
+      environment.
+    notes:
+      - >-
+        OpenID4VC supports three main use cases, i.e. Credential Issuance, Credential
+        Presentation, and Pseudonymous User Authentication.
+    related: [OpenID for Verified Credentials Issuance, OpenID for Verifiable Presentation]
+
+  - term: OpenID for Verified Credentials Issuance
+    abbreviation: OpenID4VCI
+    definition: >-
+      Defines an API and corresponding OAuth-based authorization mechanisms for issuance of
+      Verifiable Credentials.
+    related: [OpenID for Verified Credentials]
+
+  - term: OpenID Connect
+    definition: >-
+      OpenID Connect is an identity layer built on top of the OAuth 2.0 protocol. It provides a
+      way for clients to authenticate users and obtain information about them.
+
+  - term: OpenID for Verifiable Presentation
+    abbreviation: OpenID4VP
+    definition: >-
+      Defines a mechanism on top of OAuth 2.0 to allow the presentation of claims in the form of
+      Verifiable Credentials as part of the protocol flow.
+    related: [OpenID for Verified Credentials]
+
+  # Defined in the ID Common Terminology reference.
+  - term: Personally Identifiable Information
+    abbreviation: PII
+    source: >-
+      ID Common Terminology.
+      https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#pii-personally-identifiable-information
+
+  - term: Porting
+    definition: >-
+      Porting of credentials from one wallet to another refers to the process of transferring
+      stored credentials, such as payment cards, identification documents, or other types of
+      personal information, from one digital wallet application or service to another.
+
+  - term: Pseudonymity
+    definition: >-
+      Pseudonymity refers to the use of a pseudonym (a fictitious name or identifier) instead of
+      one's real name or identity, particularly in digital and online contexts. This allows
+      individuals to interact, communicate, or perform transactions without revealing their true
+      identities, thereby protecting their privacy and reducing the risk of identity theft or
+      tracking.
+    notes:
+      - >-
+        Here, pseudonymity refers to the possibility of using a pseudonym when authenticating
+        online or presenting credentials.
+
+  - term: QR Code
+    definition: >-
+      A QR code is a two-dimensional barcode that can store various types of information, such
+      as website URLs, contact information, or other data. It is often used for easy and quick
+      data exchange using a camera-equipped device.
+
+  - term: Repudiation
+    definition: >-
+      Repudiation (or "plausible deniability") refers to the property that allows an entity
+      involved in an identification transaction to plausibly deny to a third party (i.e., a party
+      not involved in the transaction) its participation in the transaction after its completion
+      or the provision of certain data.
+    origin: adopted
+    source: >-
+      Architecture Proposal for the German eIDAS Implementation.
+      https://bmi.usercontent.opencode.de/eudi-wallet/eidas-2.0-architekturkonzept/#architecture-proposal-for-the-german-eidas-implementation
+    notes:
+      - >-
+        Although "repudiation" typically denotes a single act of dispute, it is commonly used to
+        describe the general ability to deny transactions. Importantly, this ability to deny the
+        transaction to third parties does not affect the reliability of the transaction for the
+        Verifier involved.
+
+  - term: Selective Disclosure
+    definition: >-
+      Selective disclosure refers to sharing only specific information or attributes from a
+      larger set of data or credentials, rather than revealing the entire set. It allows
+      individuals to control and limit the information they share based on the context or
+      requirements of a particular interaction or transaction.
+    notes:
+      - >-
+        Selective disclosure enhances privacy and security by minimizing the exposure of
+        sensitive data while still providing the necessary information to fulfill a given
+        purpose or request.
+
+  - term: SD-JWT VC
+    definition: >-
+      SD-JWT-based Verifiable Credential is a verifiable credential encoded using the Issuance
+      format defined in [I-D.ietf-oauth-selective-disclosure-jwt]. It may or may not contain
+      selectively disclosable claims.
+    source: >-
+      I-D.ietf-oauth-selective-disclosure-jwt.
+      https://datatracker.ietf.org/doc/html/draft-ietf-oauth-selective-disclosure-jwt-05
+    notes:
+      - >-
+        For details check, the draft SD-JWT VC spec:
+        https://datatracker.ietf.org/doc/html/draft-terbu-oauth-sd-jwt-vc
+    related: [Selective Disclosure]
+
+  - term: Self-Sovereign Identity
+    abbreviation: SSI
+    definition: >-
+      Self-Sovereign Identity (SSI) is a decentralized identity model where individuals fully
+      own, manage, and control their digital identity without relying on centralized
+      institutions or third parties.
+    notes:
+      - >-
+        SSI allows users to store their personal information (credentials) in a secure digital
+        wallet and selectively share it with service providers. It leverages blockchain or
+        distributed ledger technology to ensure trust, privacy, and security in verifying the
+        authenticity of identity information.
+
+  - term: Unlinkability
+    definition: >-
+      Unlinkability refers to the property that enables not to distinguish whether two
+      transactions are related to the same user or not.
+
+  - term: Unobservability
+    definition: >-
+      Unobservability refers to the property where an adversary cannot discern any useful
+      information about a communication or transaction. This ensures that sensitive data, such
+      as message content, sender or receiver identity, or any other relevant information,
+      remains hidden from unauthorized parties.
+    notes:
+      - >-
+        In this context, neither Wallet Providers nor Issuers shall be able to track where a
+        user uses their credentials or learn details concerning the attributes provided.
+
+  # Defined in the ID Common Terminology reference.
+  - term: Verifiable Credentials
+    abbreviation: VCs
+    source: >-
+      ID Common Terminology.
+      https://identity.govstack.global/development-5/3-terminology/id-related-bb-common-terminology#verifiable-credentials-vcs
+    notes:
+      - >-
+        See related terminology for Credential and Digital Credentials in the
+        ID Common Terminology reference.
+    related: [Credential, Digital Credentials]
+
+  - term: Verifiable Presentations
+    abbreviation: VPs
+    definition: >-
+      Verifiable presentations involve the secure and privacy-preserving presentation of
+      verifiable credentials to third parties for verification.
+    related: [Verifiable Credentials]
+
+  - term: Wallet (Digital Credential Wallet)
+    definition: >-
+      A Wallet is a secure and user-controlled digital storage system designed to manage, store,
+      and present digital credentials in a standardized and interoperable format.
+    notes:
+      - >-
+        Digital credentials, also known as Verifiable Credentials (VCs), represent various types
+        of qualifications, achievements, or attributes in a digital and tamper-evident form. The
+        Wallet provides individuals with a convenient and privacy-centric means of carrying and
+        presenting their verifiable information in various contexts.
+    related: [Verifiable Credentials, Container]
+
+  - term: W3C VC
+    definition: >-
+      W3C VC stands for "W3C Verifiable Credentials." Verifiable Credentials (VCs) are a
+      standardized format for digitally representing credentials, such as academic degrees,
+      professional certifications, or government-issued IDs, in a way that is cryptographically
+      secure, privacy-preserving, and interoperable across different systems and platforms.
+    notes:
+      - >-
+        Developed by the World Wide Web Consortium (W3C), the standard defines the structure and
+        semantics of verifiable credentials, as well as protocols and mechanisms for issuing,
+        presenting, and verifying them. W3C VC aims to provide a foundation for trusted and
+        decentralized digital identity systems, enabling individuals to own, control, and
+        selectively disclose their credentials without relying on central authorities or
+        intermediaries.
+      - >-
+        For details visit check W3C VC Data Model: https://www.w3.org/TR/vc-data-model/
+    related: [Verifiable Credentials]

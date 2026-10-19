@@ -1,0 +1,26 @@
+---
+name: Wallet Building Block Specification
+abstract: GovStack Specification on Digital Wallets.
+url: https://specs.govstack.global/bb-wallet/
+repository: https://github.com/govStackWorkingGroup/bb-wallet
+urn: govstack:spec:bb:wallet
+owner_group: govstack:wg:cfid
+versions:
+  - version: 1.2.0
+    url_suffix: /bb-wallet/1.2.0
+    latest: true
+    release_date: 2026-05-01
+    short_description: Re-writing requirements related to Issuers and Verifiers from the Wallet point of view to address compliance testing. See Release Notes
+  - version: 1.1.0
+    url_suffix: /bb-wallet/1.1.0
+    release_date: 2025-12-01
+    short_description: Updates for Terminology, minor typo/grammatical corrections. Ensuring alignment to GovSpecs 2.0 (Required/Recommended). See Release Notes
+  - version: 1.0.0
+    url_suffix: /bb-wallet/1.0.0
+    release_date: 2025-09-01
+    short_description: Externally reviewed and approved version
+See Release Notes
+  - version: 1.0.0-rc
+    url_suffix: /bb-wallet/1.0.0-rc
+    release_date: 2025-05-01
+    short_description: Final revision by Working Group

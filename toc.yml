@@ -1,0 +1,22 @@
+---
+toc:
+  introduction:
+    - overview.md
+    - scope.md
+    - references.yml
+    - terminology.yml
+  requirements:
+    - credential-discovery.md
+    - credential-issuance.md
+    - credential-status-management.md
+    - credential-validity.md
+    - presenting-a-credential.md
+    - portability.md
+    - transaction-logs.md
+    - handling-revoked-and-expired-credentials.md
+    - removing-a-credential.md
+    - complaint-submission-to-supervisory-body.md
+    - data-deletion-request.md
+  resources:
+    - research/
+    - tests/
