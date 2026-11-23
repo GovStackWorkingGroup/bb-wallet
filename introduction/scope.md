@@ -25,7 +25,7 @@ Whilst some aspects of the Wallet are future scope, it is important to highlight
 The following features are also out of scope:
 <!-- From wallet/10-other-resources#id-10.2-out-of-scope-features -->
 * Delegation of representing the credentials
-* Low tech wallets
+* Low tech wallets, unless they fulfil the definition of a Wallet in the Purpose: a holder-bound digital vault that manages credentials stored in a tamper-proof way and used in a secure manner. A credential carrier, such as a QR code printed on paper, does not, and is covered only as a credential presentation (WALLET-TDR-2026-10-3, sub-decision 6)
 * The format of Credential Discovery
 
 ## Future Scope
@@ -67,5 +67,5 @@ Although this version includes an initial set of functionalities for Digital Cre
 * Using the credential wallet for [eSignature](https://specs.govstack.global/esignature/)
 * Clear separation between Credential Issuer and Credential Verifier roles and the Wallet Building Block
 * Re-writing of the Cross-Cutting Requirements to align to [cfr-architecture-2.2.0](https://specs.govstack.global/architecture), namely that some requirements will be turned into Functional Requirements, and so they will be further specified as such, and some other requirements will be clarified as extensions of Core Cross-Functional Requirements.
-* Functional Requirements will have Observability classifiers and as such, Tests will be made available to enable a compliance testing mechanism.
+* Functional Requirements will have Interaction classifiers, from which the way each one is verified follows (tested at its interface, or audited against evidence), and as such, Tests will be made available to enable a compliance testing mechanism.
 * Extensibility classifiers will be added to each requirement to clarify whether how extensions or regional implementations can be set.
