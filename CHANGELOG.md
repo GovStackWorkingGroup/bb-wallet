@@ -15,7 +15,7 @@ Each entry names the requirement it affects and that requirement's level. Requir
 - **BREAKING:** The specification moves to the GovSpecs 2.0 template. `requirements/` is replaced by `conformance-profiles/`, with one core profile, Credential Wallet, and three extensions: Verifiable Credentials, Remote Presentation and Proximity Presentation. A wallet's conformance claim names the profiles it meets. ([#12](https://github.com/GovStackWorkingGroup/bb-wallet/pull/12))
 - **BREAKING:** The "Container with Content" definition of a Wallet is replaced by a narrower one: a holder-bound digital vault that manages credentials and related artefacts, stored in a tamper-proof way and used securely. ([WALLET-TDR-2026-10-3](ADR/WALLET-TDR-2026-10-3.md), [#12](https://github.com/GovStackWorkingGroup/bb-wallet/pull/12))
 - 1.2.0 §5.2.2, bullet 3 (REQUIRED): the requirement to store the keys that bind the holder to the credentials moves from Secure Storage to Holder Binding in the Verifiable Credentials profile, since only verifiable credentials have holder-binding keys. Secure Storage keeps a note that quotes the 1.2.0 wording and links to Holder Binding.
-- Rewrote the informative chapters: Purpose replaces Overview, a new Technical Overview describes the conformance profiles, and the references are in Markdown.
+- Rewrote the informative chapters: Purpose replaces Overview, a new Technical Overview describes the conformance profiles, Scope describes version 2.0 and lists the roadmap items, the README describes the specification instead of carrying the 1.2 cover and credits, and the references are in Markdown.
 
 ### Removed
 
