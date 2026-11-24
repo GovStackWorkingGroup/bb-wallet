@@ -1,5 +1,3 @@
-> For the complete documentation index, see [llms.txt](https://specs.govstack.global/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://specs.govstack.global/wallet/1-version-history/release-notes.md).
-
 # Release Notes
 
 ## **Version 2**
@@ -18,7 +16,7 @@ This version migrates the specification to the GovSpecs 2.0 template and re-scop
 
 The "Container with Content" abstraction of version 1.x is replaced by a narrower definition: a Wallet is a holder-bound digital vault that is capable of managing credentials and related artefacts that are stored in a tamper-proof way and used in a secure manner. The decisions behind this change are captured by the
 
-[Wallet TDR no. 03 - Wallet definition and scope for version 2.0](https://github.com/GovStackWorkingGroup/bb-wallet/blob/main/ADR/WALLET-TDR-2026-10-3.md)
+[Wallet TDR no. 03 - Wallet definition and scope for version 2.0](ADR/WALLET-TDR-2026-10-3.md)
 
 ### 2. Changes
 
@@ -216,26 +214,4 @@ However, through discussions on this matter the Wallet Working Group, the Archit
 
 Concerns regarding the reference to specific policy frameworks were captured by the
 
-[Wallet WGDR no. 02 - Removing eIDAS as a requirement](https://github.com/GovStackWorkingGroup/bb-wallet/blob/main/WGDR/WALLET-WGDR-2025-05-2.md)
-
-
----
-
-# Agent Instructions
-This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
-
-## Querying This Documentation
-If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
-
-Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
-
-```
-GET https://specs.govstack.global/wallet/1-version-history/release-notes.md?ask=<question>&goal=<user_goal>
-```
-
-`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
-`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
-
-The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
-
-Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+[Wallet WGDR no. 02 - Removing eIDAS as a requirement](ADR/WALLET-WGDR-2025-05-2.md)

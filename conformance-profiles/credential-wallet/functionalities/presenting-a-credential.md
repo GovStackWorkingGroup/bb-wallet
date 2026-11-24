@@ -136,7 +136,7 @@ requirements:
     test:
 ---
 
-A code shown on screen gives bearer-level guarantees, whatever the credential type: there is no request, no verifier check, and no binding to a transaction. A QR code printed on paper, a credential carrier, makes the same presentation without software. WALLET-TDR-2026-10-3 calls it a low-tech wallet; it is out of scope as a wallet because it does not fulfil the definition of a Wallet.
+A code shown on screen gives bearer-level guarantees, whatever the credential type: there is no request, no verifier check, and no binding to a transaction. A QR code printed on paper is a credential carrier: the same presentation without a wallet (WALLET-TDR-2026-10-3).
 
 A wallet cannot re-encode a verifiable credential as a code and keep it verifiable, because the issuer's signature covers the bytes the issuer signed. A verifiable credential is shown as a code only when its issuer issued that representation.
 

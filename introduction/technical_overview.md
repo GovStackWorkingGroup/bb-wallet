@@ -10,7 +10,7 @@ Products called wallets differ in what they hold and in whom they deal with:
 * **Wallets for signed codes** hold health certificates and visible digital seals scanned from QR codes or barcodes, and show them again as codes.
 * **Wallets in a credentials ecosystem** hold identity credentials, driving licences and diplomas obtained over OpenID4VCI, bound to the holder, and present them over OpenID4VP or ISO/IEC 18013-5. They depend on issuers, verifiers and trust infrastructure that follow those protocols.
 * **Crypto hardware wallets** hold keys the holder generates, and no credential issued by anyone. They are not wallets in the sense of this specification (WALLET-TDR-2026-10-3), though they may serve as a wallet's secure component.
-* **Credential carriers**, such as a QR code printed on paper, carry one credential and are not bound to the holder. They are low-tech wallets that do not fulfil the definition, so they are out of scope as wallets. A conformant wallet makes the same presentation through the `code` option.
+* **Credential carriers**, such as a QR code printed on paper, carry one credential and are not bound to the holder. They are credential presentations, not wallets (WALLET-TDR-2026-10-3). A conformant wallet makes the same presentation through the `code` option.
 
 What every wallet does is the same: keep credentials signed by someone else secure, check them before keeping them, and present them only with the holder's consent. What differs is which credential types it handles and how it presents them, and whether it takes part in a credentials ecosystem. The conformance profiles follow that line.
 

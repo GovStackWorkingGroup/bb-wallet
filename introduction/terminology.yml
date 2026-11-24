@@ -62,6 +62,20 @@ terms:
         ID Common Terminology reference.
     related: [Digital Credentials, Verifiable Credentials]
 
+  - term: Credential Carrier
+    definition: >-
+      A medium, such as a QR code printed on paper, that carries a single instance of one
+      credential, is not bound to the holder and cannot store more than one credential.
+    origin: govstack
+    source: WALLET-TDR-2026-10-3, sub-decision 6
+    notes:
+      - >-
+        A credential carrier is a credential presentation, not a wallet. It can still be
+        verified, but whoever holds it can present it, and it offers no consent, selective
+        disclosure or management. A wallet that shows the signed code a credential was issued
+        with makes the same presentation.
+    related: [Wallet, Low Tech Wallets, QR Code]
+
   - term: Credential Holder
     definition: >-
       The credential holder is an entity (person, device, or system) that possesses and manages
@@ -152,7 +166,14 @@ terms:
         prioritize simplicity and physical security over advanced digital features, providing
         users with a tangible means of securely storing and accessing their digital credentials
         without extensive reliance on complex technology.
-    related: [Near Field Communication]
+      - >-
+        Low-tech wallets are out of scope of this specification unless they fulfil the definition
+        of Wallet.
+      - >-
+        A low-tech wallet is not a credential carrier. A low-tech wallet is a device or medium that
+        stores and manages credentials; a credential carrier carries a single presentation of one
+        credential.
+    related: [Near Field Communication, Wallet, Credential Carrier]
 
   - term: Near Field Communication
     abbreviation: NFC
@@ -313,17 +334,20 @@ terms:
       verifiable credentials to third parties for verification.
     related: [Verifiable Credentials]
 
-  - term: Wallet (Digital Credential Wallet)
+  - term: Wallet
     definition: >-
-      A Wallet is a secure and user-controlled digital storage system designed to manage, store,
-      and present digital credentials in a standardized and interoperable format.
+      A holder-bound digital vault that is capable of managing credentials and related artefacts
+      (for example, a digital passport, passes, digital signatures) that are stored in a
+      tamper-proof way and used in a secure manner.
+    origin: govstack
+    source: >-
+      Wallet TDR no. 03 - Wallet definition and scope for version 2.0 (WALLET-TDR-2026-10-3).
     notes:
       - >-
-        Digital credentials, also known as Verifiable Credentials (VCs), represent various types
-        of qualifications, achievements, or attributes in a digital and tamper-evident form. The
-        Wallet provides individuals with a convenient and privacy-centric means of carrying and
-        presenting their verifiable information in various contexts.
-    related: [Verifiable Credentials, Container]
+        A wallet is edge-side (client-side): it lives on a device the holder carries, such as a
+        phone or a cryptographic device. A credential store held in a registry and accessed
+        through an app is not a wallet.
+    related: [Credential, Verifiable Credentials]
 
   - term: W3C VC
     definition: >-

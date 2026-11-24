@@ -25,7 +25,7 @@ Whilst some aspects of the Wallet are future scope, it is important to highlight
 The following features are also out of scope:
 <!-- From wallet/10-other-resources#id-10.2-out-of-scope-features -->
 * Delegation of representing the credentials
-* Low tech wallets, unless they fulfil the definition of a Wallet in the Purpose: a holder-bound digital vault that manages credentials stored in a tamper-proof way and used in a secure manner. A credential carrier, such as a QR code printed on paper, does not, and is covered only as a credential presentation (WALLET-TDR-2026-10-3, sub-decision 6)
+* Low tech wallets, unless they fulfil the definition of a Wallet in the Purpose: a holder-bound digital vault that manages credentials stored in a tamper-proof way and used in a secure manner. A credential carrier, such as a QR code printed on paper, is not a wallet: it is a credential presentation (WALLET-TDR-2026-10-3, sub-decision 6)
 * The format of Credential Discovery
 
 ## Future Scope
