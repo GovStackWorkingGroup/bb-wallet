@@ -4,7 +4,7 @@ toc:
     - purpose.md
     - scope.md
     - technical_overview.md
-    - references.yml
+    - references.md
     - terminology.yml
   conformance-profiles:
     - credential-wallet:
@@ -40,5 +40,4 @@ toc:
   resources:
     - use-cases/functional-use-cases.md
     - use-cases/sectorial-use-cases.md
-    - research/
     - tests/

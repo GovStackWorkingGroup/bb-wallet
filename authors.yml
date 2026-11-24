@@ -10,33 +10,12 @@ authors:
   - name: Mikael Linden
     roles: [Author]
     urn: govstack:person:mikael-linden
-  - name: Charity Chirowamhangu
-    roles: [Contributor]
-    urn: govstack:person:charity-chirowamhangu
-  - name: Antony Muriithi
-    roles: [Contributor]
-    urn: govstack:person:antony-muriithi
-  - name: Daniel Abadie
-    roles: [Contributor]
-    urn: govstack:person:daniel-abadie
-  - name: Norbert Nahayo
-    roles: [Contributor]
-    urn: govstack:person:norbert-nahayo
-  - name: Rounak Nayak
-    roles: [Contributor]
-    urn: govstack:person:rounak-nayak
-  - name: Eric Ramirez
-    roles: [Contributor]
-    urn: govstack:person:eric-ramirez
-  - name: Mary Metias
-    roles: [Contributor]
-    urn: govstack:person:mary-metias
-  - name: Smita Selot
-    roles: [Reviewer]
-    urn: govstack:person:smita-selot
   - name: Ilia Rodin
-    roles: [Reviewer]
+    roles: [Contributor, Reviewer]
     urn: govstack:person:ilia-rodin
   - name: Ali González-García
-    roles: [Editor]
+    roles: [Author, Editor]
     urn: govstack:person:ali-gonzalez-garcia
+  - name: Hendrik Ebbers
+    roles: [Contributor]
+    urn: govstack:person:hendrik-ebbers
