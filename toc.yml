@@ -1,22 +1,44 @@
 ---
 toc:
   introduction:
-    - overview.md
+    - purpose.md
     - scope.md
+    - technical_overview.md
     - references.yml
     - terminology.yml
-  requirements:
-    - credential-discovery.md
-    - credential-issuance.md
-    - credential-status-management.md
-    - credential-validity.md
-    - presenting-a-credential.md
-    - portability.md
-    - transaction-logs.md
-    - handling-revoked-and-expired-credentials.md
-    - removing-a-credential.md
-    - complaint-submission-to-supervisory-body.md
-    - data-deletion-request.md
+  conformance-profiles:
+    - credential-wallet:
+        - introduction.md
+        - functionalities/secure-storage.md
+        - functionalities/wallet-integrity.md
+        - functionalities/holder-authentication.md
+        - functionalities/credential-acquisition.md
+        - functionalities/updating-credentials.md
+        - functionalities/identifying-expired-credentials.md
+        - functionalities/identifying-revoked-credentials.md
+        - functionalities/removing-a-credential.md
+        - functionalities/portability.md
+        - functionalities/presenting-a-credential.md
+        - functionalities/transaction-logs.md
+        - functionalities/wallet-as-authenticator.md
+        - functionalities/signing-with-the-wallet.md
+    - verifiable-credentials:
+        - introduction.md
+        - functionalities/vc-acquisition.md
+        - functionalities/holder-binding.md
+        - functionalities/vc-lifecycle.md
+        - functionalities/answering-a-verifier-request.md
+        - functionalities/privacy-preserving-presentation.md
+        - functionalities/complaint-submission.md
+        - functionalities/data-deletion-request.md
+    - remote-presentation:
+        - introduction.md
+        - functionalities/remote-presentation.md
+    - proximity-presentation:
+        - introduction.md
+        - functionalities/proximity-presentation.md
   resources:
+    - use-cases/functional-use-cases.md
+    - use-cases/sectorial-use-cases.md
     - research/
     - tests/

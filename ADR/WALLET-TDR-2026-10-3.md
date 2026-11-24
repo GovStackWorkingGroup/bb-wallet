@@ -1,13 +1,13 @@
-# Wallet WGDR no. 03 - Wallet definition and scope for version 2.0
+# Wallet TDR no. 03 - Wallet definition and scope for version 2.0
 
 ### Decision Title:
 Wallet definition and scope for version 2.0
 
 ### Date:
-2026-10-05
+2026-10-05 to 2026-10-26
 
 ### Decision ID:
-WALLET-WGDR-2026-10-3
+WALLET-TDR-2026-10-3
 
 ### Status:
 
@@ -17,9 +17,17 @@ PARTIALLY CLOSED. Sub-decisions 1 to 6 are closed. Sub-decision 7 (whether a wal
 
 The Working Group replaces the "Container with Content" scope of version 1.2 with a narrower definition: a wallet is an edge-side (client-side) container, bound to its holder, that offers capabilities to store, share and verify credentials, supports more than one credential type, and has tamper-proofing and security mechanisms. A credential carrier, such as a QR code printed on paper, is a credential presentation and not a wallet.
 
+### Participants:
+
+- David Higgins
+- Yuliia Kravchenko
+- PS Ramkumar
+- Hendrik Eggers
+- Ali González-García
+
 ### Responsible Owner(s):
 
-Ali González, Technical Specifications Release Manager
+Ali González-García, Technical Specifications Release Manager
 
 ### Supporting References:
 
@@ -57,29 +65,31 @@ No vote was held. Decisions were reached by consensus during the Working Group d
 | Means | Rejected | "Electronic identification means" has a specific meaning in eIDAS. |
 | Capability, enabler or function | Rejected | A wallet *has* several capabilities, so it cannot *be* one. |
 | Repository | Rejected | Used by W3C, but reads as "just storage". |
-| Container with capabilities | **Agreed** | Keeps the container idea from version 1.2 and attaches the capabilities that make it a wallet. |
+| Container with capabilities | Withdrawn | Keeps the container idea from version 1.2 and attaches the capabilities that make it a wallet. |
+| Vault with capabilities | **Agreed** | Agreed after 2026-10-26 session because Container can be confused with docker containers, or digital lockers. |
 
 #### Sub-Decision 3: Is holder binding mandatory?
 
-- Yes
-- No
+- **Yes**. The WG has set as a minimum requirement that Digital Wallets are holder-bound so that the rest of the security mechanisms are delivered.
+- ~~No~~
 
 #### Sub-Decision 4: Must a wallet support more than one credential type?
 
-- Yes
-- No
+- ~~Yes~~
+- **No**. Its expliciteness was removed from the list, however the ability to hold other related artifacts was added.
 
 #### Sub-Decision 5: Wording of the security property
 
-- "has tamper-proofing and security mechanisms to provide assurances in the lifecycle mechanisms"
-- "has tamper-proofing and security mechanisms"
+- ~~"has tamper-proofing and security mechanisms to provide assurances in the lifecycle mechanisms"~~
+- ~~"has tamper-proofing and security mechanisms"~~
+- was replaced by "that are stored in a tamper-proof way and used in a secure manner"
 
 #### Sub-Decision 6: Is a credential carrier a wallet?
 
 A credential carrier, such as a QR code on paper, carries a single instance of one credential, is not bound to the holder and cannot store more than one credential.
 
-- Yes, as a low-tech wallet
-- No, it is a credential presentation
+- ~~Yes, as a low-tech wallet~~
+- **No**, it is a credential presentation. Dr Ramkumar noted that a QR code can still be verified, and the group accepted it as a presentation rather than a wallet. The term is defined in the terminology section, as distinct from a low-tech wallet.
 
 #### Sub-Decision 7: Must a wallet be able to hold more than one credential?
 
@@ -87,6 +97,8 @@ A credential carrier, such as a QR code on paper, carries a single instance of o
 - Required (David Higgins). The specification defines a solution, not an implementation. A government should not buy a compliant solution and later face a large change request to store a second credential. This follows the same reuse principle as the ID, Payments and Registries Building Blocks, and without it a supermarket loyalty card could claim GovStack compliance.
 
 eIDAS 2 says wallets must hold multiple and different types of credentials, but the only source found for this reading was walt.id. The EU text refers to credential types, not counts.
+
+This decision was delegated to the **Architecture Working Group**
 
 ## 3. Decision outcome
 
@@ -102,13 +114,19 @@ eIDAS 2 says wallets must hold multiple and different types of credentials, but 
 
 The candidate definition in the Re-Scoping document uses "a holder-controlled system". It must be revised to use "container" in line with sub-decision 2.
 
+## 4. Final definition
+
+As discussed on 2026-10-26 meeting, the Wallet definition will be as follows:
+
+> A holder-bound digital vault that is capable of managing credentials and related artefacts (for example, a digital passport, passes, digital signatures) that are stored in a tamper-proof way and used in a secure manner.
+
 ### Action items
 
 | Task | Owners | Status |
 | --- | --- | --- |
-| Rewrite the Wallet terminology entry from the current definition, removing the part that defines digital credentials and applying sub-decisions 1 to 6 | Ali González | Pending |
-| Remove the "Container with Content" definition from the overview and description sections | Ali González | Pending |
-| Change the "at least one of" options for credential types in the requirements so that at least two are required | Ali González | Pending |
-| Describe the tamper-proofing and security mechanisms in the capability descriptions | Ali González | Pending |
+| Rewrite the Wallet terminology entry from the current definition, removing the part that defines digital credentials and applying sub-decisions 1 to 6 | Ali González-García | Completed |
+| Remove the "Container with Content" definition from the overview and description sections | Ali González-García | Completed |
+| Change the "at least one of" options for credential types in the requirements so that at least two are required | Ali González-García | Withdrawn |
+| Describe the tamper-proofing and security mechanisms in the capability descriptions | Ali González-García | Delegated to Functionality Chapters |
 | Research sub-decision 7 and bring examples to the Architecture Working Group, including whether an existing cross-cutting requirement already rules out single-use systems | David Higgins | Pending |
-| Reference this decision record in the release notes for version 2.0 | Ali González | Pending |
+| Reference this decision record in the release notes for version 2.0 | Ali González-García | Completed |

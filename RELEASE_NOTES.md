@@ -1,6 +1,35 @@
-> For the complete documentation index, see [llms.txt](https://specs.govstack.global/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://specs.govstack.global/wallet/1-version-history/release-notes.md).
-
 # Release Notes
+
+## **Version 2**
+
+***
+
+## *v2.0.0*
+
+*Version Date: Unreleased*
+
+***
+
+### 1. Overview
+
+This version migrates the specification to the GovSpecs 2.0 template and re-scopes the definition of a Wallet.
+
+The "Container with Content" abstraction of version 1.x is replaced by a narrower definition: a Wallet is a holder-bound digital vault that is capable of managing credentials and related artefacts that are stored in a tamper-proof way and used in a secure manner. The decisions behind this change are captured by the
+
+[Wallet TDR no. 03 - Wallet definition and scope for version 2.0](ADR/WALLET-TDR-2026-10-3.md)
+
+### 2. Changes
+
+* **Terminology:** the `Wallet (Digital Credential Wallet)` entry is renamed to `Wallet` and its definition is replaced with the one agreed in WALLET-TDR-2026-10-3.
+* **Overview:** the "Container with Content" definition and "The Wallet Abstraction" figure are removed.
+* **Purpose:** new `introduction/purpose.md`, replacing `introduction/overview.md`, with the value of the Building Block, its capabilities, what a Wallet is, and its place in larger systems.
+* **Conformance profiles:** `requirements/` is replaced by `conformance-profiles/`, with one core, Credential Wallet, and three extensions: Verifiable Credentials, Remote Presentation and Proximity Presentation. Each profile is declared in the front matter of its `introduction.md`.
+* **Credential types and presentation methods as options:** bearer credentials and passes are options of Credential Acquisition in the core, and verifiable credentials an option met by claiming the Verifiable Credentials profile. Showing the signed code a credential was issued with is a core presentation option; OpenID4VP and ISO/IEC 18013-5 are met by claiming their profiles. Every credential type a wallet acquires must be presentable through an option it meets.
+* **Functionalities:** regrouped around what the wallet does for the holder. New functionalities: Secure Storage, Wallet Integrity, Holder Authentication, Updating Credentials, Holder Binding, Verifiable Credential Lifecycle, Answering a Verifier's Request, Privacy-preserving Presentation, and the roadmap functionalities Wallet as Authenticator and Signing with the Wallet. Credential Discovery, Credential Issuance, Credential Status Management, Credential Validity and Handling revoked and expired credentials are merged into them.
+* **Requirements:** ids 2, 6, 9, 10, 15, 18 and 20 to 25 are deprecated: they had the issuer, the verifier or the wallet backend as subject, or are split into requirements for every credential type. New requirements are `DRAFT` and unnumbered until accepted. Requirements carry `interaction` and no `observability`.
+* **Technical Overview:** new `introduction/technical_overview.md`, with the market assessment, the conformance profiles, example conformance claims and how the profiles divide the capabilities. Capabilities are declared in `metadata.yml`.
+
+***
 
 ## **Version 1**
 
@@ -185,26 +214,4 @@ However, through discussions on this matter the Wallet Working Group, the Archit
 
 Concerns regarding the reference to specific policy frameworks were captured by the
 
-[Wallet WGDR no. 02 - Removing eIDAS as a requirement](https://github.com/GovStackWorkingGroup/bb-wallet/blob/main/WGDR/WALLET-WGDR-2025-05-2.md)
-
-
----
-
-# Agent Instructions
-This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
-
-## Querying This Documentation
-If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
-
-Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
-
-```
-GET https://specs.govstack.global/wallet/1-version-history/release-notes.md?ask=<question>&goal=<user_goal>
-```
-
-`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
-`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
-
-The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
-
-Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+[Wallet WGDR no. 02 - Removing eIDAS as a requirement](ADR/WALLET-WGDR-2025-05-2.md)
