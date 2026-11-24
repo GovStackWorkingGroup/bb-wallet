@@ -17,5 +17,5 @@ authors:
     roles: [Author, Editor]
     urn: govstack:person:ali-gonzalez-garcia
   - name: Hendrik Ebbers
-    roles: [Contributor]
+    roles: [Contributor, Reviewer]
     urn: govstack:person:hendrik-ebbers
