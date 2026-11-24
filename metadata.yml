@@ -34,8 +34,10 @@ capabilities:
     title: Document Signing
     description: Holders sign documents with keys their wallet keeps.
 versions:
+  - version: 2.0-draft
+    short_description: Decoupling Wallet from OpenID specifications. Adding Bearer and Pass credential types.
+    latest: true 
   - version: 1.2.0
-    latest: true
     release_date: 2026-05-01
     short_description: Re-writing requirements related to Issuers and Verifiers from the Wallet point of view to address compliance testing. See Release Notes
   - version: 1.1.0
