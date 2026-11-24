@@ -45,7 +45,7 @@ requirements:
     test:
 ---
 
-The requirement on holder-binding keys (ch5 5.2.2 b3) is in the `verifiable-credentials` conformance profile, in Holder Binding.
+Version 1.2 of this specification listed a third Secure Storage requirement (section 5.2.2): the wallet must provide a secure environment to "store the keys used for cryptographically binding the holder with the credentials". Only verifiable credentials have holder-binding keys, so that requirement now lives in the Verifiable Credentials conformance profile, under [Holder Binding](../../verifiable-credentials/functionalities/holder-binding.md): "The wallet MUST store the private keys used for holder binding so that they cannot be exported from the secure environment."
 
 # Workflows
 
